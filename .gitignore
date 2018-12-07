@@ -1,0 +1,11 @@
+#ignore directory
+.vs/
+Library/
+Temp/
+
+#ignore files
+Assembly-CSharp.csproj
+バトル鉛筆.sln
+
+#ignore vim files
+*~
