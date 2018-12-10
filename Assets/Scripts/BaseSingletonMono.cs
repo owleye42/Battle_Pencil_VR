@@ -10,7 +10,7 @@ using UnityEngine;
 /// 継承先のクラス自身を指定
 /// 例) public class AAA : SingletonMonoBehaviour&lt;AAA&gt; {}
 /// </typeparam>
-public abstract class BaseSingletonMono<T> : MonoBehaviour where T : MonoBehaviour {
+public class BaseSingletonMono<T> : MonoBehaviour where T : MonoBehaviour {
 
 	protected static T instance;
 
@@ -27,7 +27,17 @@ public abstract class BaseSingletonMono<T> : MonoBehaviour where T : MonoBehavio
 		}
 	}
 
+	/// <summary>
+	/// 継承先で Awake() を使う場合は Awake()内の先頭で base.Awake() を呼び出す
+	/// 例）
+	/// protected override void Awake() {
+	///		base.Awake();
+	///		
+	///		Awake処理
+	/// }
+	/// </summary>
 	protected virtual void Awake() {
+		Debug.Log(typeof(T).ToString() + " awake!");
 		if (instance != null) Destroy(gameObject);
 		DontDestroyOnLoad(gameObject);
 		instance = this as T;
