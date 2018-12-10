@@ -4,35 +4,30 @@ using UnityEngine;
 
 public class SoundController : BaseSingletonMono<SoundController>
 {
-    public AudioSource AudioSource { get; set; }
-    public AudioSource AudioSource2 { get; set; }
+    private List<BGMModel> bgmModels = new List<BGMModel>();
+    public List<BGMModel> BGMModels { set { bgmModels = value; } get { return bgmModels; } }
 
     // Use this for initialization
     protected override void Awake()
     {
         base.Awake();
+    }
 
-        if (AudioSource == null)
-        {
-            AudioSource = gameObject.AddComponent<AudioSource>();
-            AudioSource.loop = true;
-        }
-
-        if (AudioSource2 == null)
-        {
-            AudioSource2 = gameObject.AddComponent<AudioSource>();
-            AudioSource2.loop = true;
-        }
+    private void Start()
+    {
 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!AudioSource.isPlaying)
-            AudioSource.Play();
+        foreach(var num in bgmModels)
+        {
+            if (!num.audioSource.isPlaying)
+            {
+                num.audioSource.Play();
+            }
+        }
 
-        if (!AudioSource2.isPlaying)
-            AudioSource2.Play();
     }
 }

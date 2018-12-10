@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class aaa : MonoBehaviour {
+public class aaa : MonoBehaviour
+{
     [SerializeField]
-    AudioClip clip;
+    private AudioClip clip;
+    [SerializeField]
+    private AudioClip clip2;
 
-    [SerializeField]
-    AudioClip clip2;
+    private BGMModel bgmModel = new BGMModel();
 
     // Use this for initialization
     void Start()
     {
-        SoundController.Instance.AudioSource.clip = clip;
-        SoundController.Instance.AudioSource2.clip = clip2;
+        bgmModel.audioSource = SoundController.Instance.gameObject.AddComponent<AudioSource>();
+        bgmModel.audioSource.clip = clip;
+        SoundController.Instance.BGMModels.Add(bgmModel);
     }
 
     // Update is called once per frame
-    void Update () {
-        if (Input.GetMouseButtonUp(0))
-        {
-            SoundController.Instance.AudioSource.clip = clip2;
-        }
-       
-	}
+    void Update()
+    {
+
+    }
 }
