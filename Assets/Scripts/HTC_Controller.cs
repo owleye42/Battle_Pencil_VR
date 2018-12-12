@@ -14,7 +14,7 @@ public class HTC_Controller : MonoBehaviour {
         get { return SteamVR_Controller.Input((int)trackedObj.index); }
     }
 
-    void Awake()
+   void Awake()
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
     }
