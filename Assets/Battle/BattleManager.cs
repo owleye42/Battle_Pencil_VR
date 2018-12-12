@@ -6,26 +6,20 @@ using System.Linq;
 namespace Battle {
 	public class BattleManager : BaseSingletonMono<BattleManager> {
 
-		public List<BattleContext> battleContexts = new List<BattleContext>();
+		public BattleContext playerContext = new BattleContext();
+		public BattleContext enemyContext = new BattleContext();
 
 		void Update() {
-			// 各コンテキストの処理
-			battleContexts.ForEach(context => {
-				context.ExecuteUpdate();
-			});
+			// コンテキストのステート滞在中の処理
+			playerContext.ExecuteUpdate();
+			enemyContext.ExecuteUpdate();
 
-			// 全コンテキストが待機中なら攻守交代
-			var allStatesAreIdle = battleContexts.All(context => context.CurrentState == context.stateIdle);
-			if (allStatesAreIdle) {
-				ChangeOffenseOfAllContexts();
+			// 両コンテキストが待機中なら攻守交代
+			if (playerContext.CurrentState == playerContext.stateIdle
+				&& enemyContext.CurrentState == enemyContext.stateIdle) {
+				playerContext.ChangeOffense();
+				enemyContext.ChangeOffense();
 			}
-		}
-
-		/// <summary>
-		/// すべてのコンテキストを攻守交代させる
-		/// </summary>
-		void ChangeOffenseOfAllContexts() {
-			battleContexts.ForEach(context => context.ChangeOffense());
 		}
 	}
 }

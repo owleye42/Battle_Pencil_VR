@@ -10,31 +10,31 @@ namespace Battle {
 
 		bool isDecision = false;
 
-		// ステート開始時 の処理
 		public void ExecuteEntry(BattleContext context) {
-			Debug.Log("[Entry] Offensive Decision Battle State");
+			Debug.Log("[Entry] Battle State : Offensive Decision");
 
 			isDecision = false;
 		}
 
-		// ステート滞在中 の処理
 		public void ExecuteUpdate(BattleContext context) {
-			
+
 			// ステート遷移
 			if (isDecision) {
 				if (context.isOffense) context.ChangeState(context.stateActionSelect);
 				else context.ChangeState(context.stateIdle);
 			}
 		}
-
-		// ステート終了時 の処理
+		
 		public void ExecuteExit(BattleContext context) {
-			Debug.Log("[Entry] Offensive Decision Battle State");
+			Debug.Log("[Entry] Battle State : Offensive Decision");
 		}
 
-		// 攻守決定処理
-		void OffensiveDecision() {
+		/// <summary>
+		/// 攻守決定処理
+		/// </summary>
+		void DecideOffense(BattleContext context) {
 
+			isDecision = true;
 		}
 	}
 }

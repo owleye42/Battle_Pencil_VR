@@ -37,8 +37,10 @@ public class BaseSingletonMono<T> : MonoBehaviour where T : MonoBehaviour {
 	/// }
 	/// </summary>
 	protected virtual void Awake() {
-		Debug.Log(typeof(T).ToString() + " awake!");
+		Debug.Log(typeof(T).ToString() + " Awake!");
+
 		if (instance != null) Destroy(gameObject);
+
 		DontDestroyOnLoad(gameObject);
 		instance = this as T;
 	}
