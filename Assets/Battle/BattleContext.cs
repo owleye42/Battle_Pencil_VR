@@ -12,9 +12,6 @@ namespace Battle {
 		
 		public IBattleState CurrentState { get; private set; }
 
-		public List<BattleContext> enemyContexts = new List<BattleContext>();
-		public List<BattleContext> friendlyContexts = new List<BattleContext>();
-
 		public bool isOffense = false;
 
 		/// <summary>
@@ -26,7 +23,7 @@ namespace Battle {
 		}
 
 		/// <summary>
-		/// 毎フレーム実行
+		/// 滞在中のステートの ExecuteUpdate() を実行
 		/// </summary>
 		public void ExecuteUpdate() {
 			CurrentState.ExecuteUpdate(this);
@@ -46,6 +43,7 @@ namespace Battle {
 		/// 攻守交替させる
 		/// </summary>
 		public void ChangeOffense() {
+			if (!isOffense) ChangeState(stateActionSelect);
 			isOffense = !isOffense;
 		}
 	}
