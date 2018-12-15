@@ -8,7 +8,7 @@ namespace Battle {
 	public enum SkillType {
 		Attack,
 		Heal,
-		None,
+		Miss,
 	}
 
 	[System.Serializable]
@@ -22,6 +22,6 @@ namespace Battle {
 	public class SkillModel {
 		public SkillType skillType;
 		public TargetType targetType;
-		public int basePower;
+		public int power;
 	}
 }

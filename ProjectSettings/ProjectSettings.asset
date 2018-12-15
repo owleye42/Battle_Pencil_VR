@@ -152,9 +152,8 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.VantanGraduationProduction.BattlePencilVR
     Android: com.Company.ProductName
-    Standalone: unity.Valve.SteamVR
+    Standalone: com.VantanGraduationProduction.BattlePencilVR
     iOS: com.Company.ProductName
     tvOS: com.Company.ProductName
   buildNumber:
