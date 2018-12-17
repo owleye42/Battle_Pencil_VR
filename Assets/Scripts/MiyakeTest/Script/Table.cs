@@ -3,28 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Table : MonoBehaviour {
-　　//テーブル配下のコライダー（Scene内で作っておく）
-    [SerializeField] BoxCollider[] colliders;
+    public static Table instance;
 
-    void Start () {
-        colliders = GetComponentsInChildren<BoxCollider>();
-        //起動時はコライダーは消しておく
-        for (int i = 0; i < colliders.Length; i++)
+    private void Awake()
+    {
+        if (instance == null)
         {
-            colliders[i].enabled =false;
+            instance = this;
         }
-        this.GetComponent<BoxCollider>().enabled = true;
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
+
+    //テーブル配下のコライダー（Scene内で作っておく）
+    [SerializeField] Colliders [] colliders;
+
+    void Start()
+    {
+        colliders = GetComponentsInChildren<Colliders>();
+        //起動時はコライダーは消しておく
+        AllDisable();
+    }
+
+    //枠を作る
+    public void AllEnable()
+    {
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].Enabled();
+
+        }
+    }
+    //枠を消す
+    public void AllDisable()
+    {
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].Disable();
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
         //鉛筆との衝突ですべてのコライダーをonにする
-       if(collision.gameObject.tag=="Pencill")
-        for (int i = 0; i < colliders.Length; i++)
-        {        
-                colliders[i].enabled=true;
-            
+        if (collision.gameObject.tag == "Pencill")
+        {
+            AllEnable();
         }
+       
     }
 
 }
