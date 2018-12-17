@@ -2,19 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseMonsterBehaviour : MonoBehaviour {
+namespace Battle
+{
+    public class BaseMonsterBehaviour : MonoBehaviour
+    {
 
-	MonsterModel monsterModel;
+        [SerializeField]
+        MonsterModel monsterModel;
+        public MonsterModel Model { get { return monsterModel; } }
+        public BaseMonsterBehaviour EnemyBehavior { set; get; }
 
-	void Awake() {
+        int random;
 
-	}
+        void Awake()
+        {
+            
+        }
 
-	void Start() {
+        void Start()
+        {
+            random = Random.Range(0, 6);
+        }
 
-	}
+        void Update()
+        {
+            ActionSelect();
+        }
 
-	void Update() {
-
-	}
+        public void ActionSelect()
+        {
+            if (monsterModel.skillList[random].skillType == SkillType.Attack)
+            {
+                EnemyBehavior.monsterModel.hp -= monsterModel.skillList[random].power;
+                Debug.Log(EnemyBehavior.monsterModel.hp);
+            }
+            else if (monsterModel.skillList[random].skillType == SkillType.Heal)
+            {
+                monsterModel.hp += monsterModel.skillList[random].power;
+                Debug.Log(monsterModel.hp);
+            }
+            else if (monsterModel.skillList[random].skillType == SkillType.Miss)
+            {
+                Debug.Log("MISS!!!!!!!!!!!!!!!!");
+            }
+        }
+    }
 }
