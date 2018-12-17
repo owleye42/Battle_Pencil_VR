@@ -17,6 +17,7 @@ public class BattleStateFight : IBattleState {
 
 	public void ExecuteUpdate(BattleContext context) {
 
+
 		if (isEndGame == true) context.ChangeState(context.stateResult);
 	}
 

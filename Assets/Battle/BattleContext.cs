@@ -11,8 +11,6 @@ public class BattleContext {
 
 	public IBattleState CurrentState { get; private set; }
 
-	public bool isOffense = false;
-
 	List<MonsterContext> monsterContexts = new List<MonsterContext>();
 
 	/// <summary>

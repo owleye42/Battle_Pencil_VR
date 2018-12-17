@@ -9,8 +9,6 @@ public class BattleStateOffensiveDecision : IBattleState {
 
 	bool isDecision = false;
 
-	public int num;
-
 	public void ExecuteEntry(BattleContext context) {
 		Debug.Log("[Entry] Battle State : Offensive Decision");
 

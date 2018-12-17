@@ -8,6 +8,9 @@ public class MonsterContext {
 	public readonly IMonsterState stateAction = new MonsterStateAction();
 	public readonly IMonsterState stateDeath = new MonsterStateDeath();
 
+	public readonly IMonsterState stateOffense = new MonsterStateDeath();
+	public readonly IMonsterState stateDefense = new MonsterStateDeath();
+
 	public MonsterContext enemyContext;
 
 
