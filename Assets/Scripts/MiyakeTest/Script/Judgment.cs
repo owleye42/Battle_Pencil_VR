@@ -5,6 +5,21 @@ using UnityEngine;
 //出目判定用クラス
 //空のobj等に張り付けて使う
 public class Judgment : MonoBehaviour {
+    public static Judgment instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
 
     public GameObject target;
     RaycastHit hit;
