@@ -5,22 +5,22 @@ using UnityEngine;
 /// <summary>
 /// 実行順は Entry -> Update(ループ) -> Exit
 /// </summary>
-public interface IBattleState {
+public interface IMonsterState {
 	/// <summary>
 	/// ステート開始時に実行
 	/// </summary>
 	/// <param name="context"></param>
-	void ExecuteEntry(BattleContext context);
+	void ExecuteEntry(MonsterContext context);
 
 	/// <summary>
 	/// ステート滞在中に実行
 	/// </summary>
 	/// <param name="context"></param>
-	void ExecuteUpdate(BattleContext context);
+	void ExecuteUpdate(MonsterContext context);
 
 	/// <summary>
 	/// ステート終了時に実行
 	/// </summary>
 	/// <param name="context"></param>
-	void ExecuteExit(BattleContext context);
+	void ExecuteExit(MonsterContext context);
 }

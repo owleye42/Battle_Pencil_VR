@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Battle {
-	public class BaseMonsterBehaviour : MonoBehaviour {
+public class BaseMonsterBehaviour : MonoBehaviour {
 
-		MonsterModel monsterModel;
+	MonsterModel monsterModel;
 
-		void Awake() {
+	void Awake() {
 
-		}
+	}
 
-		void Start() {
-			
-		}
+	void Start() {
 
-		void Update() {
+	}
 
-		}
+	void Update() {
+
 	}
 }
