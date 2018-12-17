@@ -108,3 +108,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4251622e5d926fe4db34c821d6833457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterModel:
+    id: 0
+    name: AttackModel
+    hp: 100
+    skillList:
+    - skillType: 0
+      targetType: 0
+      power: 20
+    - skillType: 0
+      targetType: 0
+      power: 20
+    - skillType: 0
+      targetType: 0
+      power: 20
+    - skillType: 0
+      targetType: 0
+      power: 20
+    - skillType: 0
+      targetType: 0
+      power: 20
+    - skillType: 0
+      targetType: 0
+      power: 20

@@ -109,27 +109,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterModel:
-    id: 0
-    prefab: {fileID: 0}
-    name: monster1
+    id: 1
+    name: HealModel
     hp: 100
-    attack: 0
     skillList:
     - skillType: 0
       targetType: 0
-      basePower: 0
+      power: 20
+    - skillType: 1
+      targetType: 0
+      power: 20
     - skillType: 0
       targetType: 0
-      basePower: 0
+      power: 20
     - skillType: 0
       targetType: 0
-      basePower: 0
+      power: 20
+    - skillType: 1
+      targetType: 0
+      power: 20
     - skillType: 0
       targetType: 0
-      basePower: 0
-    - skillType: 0
-      targetType: 0
-      basePower: 0
-    - skillType: 0
-      targetType: 0
-      basePower: 0
+      power: 20
