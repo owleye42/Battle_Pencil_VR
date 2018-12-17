@@ -23,8 +23,7 @@ public class BattleStateOffensiveDecision : IBattleState {
 
 		// ステート遷移
 		if (isDecision) {
-			if (context.isOffense) context.ChangeState(context.stateOffense);
-			else context.ChangeState(context.stateDefense);
+			context.ChangeState(context.stateFight);
 		}
 	}
 

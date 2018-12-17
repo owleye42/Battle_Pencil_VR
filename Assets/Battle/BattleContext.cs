@@ -6,14 +6,10 @@ using UnityEngine;
 public class BattleContext {
 	public readonly IBattleState stateInit = new BattleStateInit();
 	public readonly IBattleState stateOffensiveDecision = new BattleStateOffensiveDecision();
-	public readonly IBattleState stateOffense = new BattleStateOffense();
-	public readonly IBattleState stateDefense = new BattleStateDefense();
+	public readonly IBattleState stateFight = new BattleStateFight();
+	public readonly IBattleState stateResult = new BattleStateResult();
 
 	public IBattleState CurrentState { get; private set; }
-
-	internal void AddMonster(object monsterBehaviour) {
-		throw new NotImplementedException();
-	}
 
 	public bool isOffense = false;
 
@@ -33,7 +29,9 @@ public class BattleContext {
 	/// </summary>
 	public void ExecuteUpdate() {
 		CurrentState.ExecuteUpdate(this);
-		monsterContexts.ForEach(monsterContext => monsterContext.ExecuteUpdate());
+
+		if(monsterContexts != null && monsterContexts.Count > 0)
+			monsterContexts.ForEach(monsterContext => monsterContext.ExecuteUpdate());
 	}
 
 	/// <summary>

@@ -6,33 +6,34 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 
 	[SerializeField]
 	MonsterModel monsterModel;
-	public MonsterModel Model { get { return monsterModel; } }
+	public MonsterModel MonsterModel { get { return monsterModel; } }
+
 	public BaseMonsterBehaviour EnemyBehavior { set; get; }
 
-	int random;
+	readonly MonsterContext monsterContext = new MonsterContext();
 
 	void Awake() {
-
+		BattleManager.Instance.BattleContext.AddMonster(monsterContext);
 	}
 
 	void Start() {
-		random = Random.Range(0, 6);
+		ActionSelect(Random.Range(0, 6));
 	}
 
 	void Update() {
-		ActionSelect();
+
 	}
 
-	public void ActionSelect() {
-		if (monsterModel.skillList[random].skillType == SkillType.Attack) {
-			EnemyBehavior.monsterModel.hp -= monsterModel.skillList[random].power;
+	public void ActionSelect(int skill_id) {
+		if (monsterModel.skillList[skill_id].skillType == SkillType.Attack) {
+			EnemyBehavior.monsterModel.hp -= monsterModel.skillList[skill_id].power;
 			Debug.Log(EnemyBehavior.monsterModel.hp);
 		}
-		else if (monsterModel.skillList[random].skillType == SkillType.Heal) {
-			monsterModel.hp += monsterModel.skillList[random].power;
+		else if (monsterModel.skillList[skill_id].skillType == SkillType.Heal) {
+			monsterModel.hp += monsterModel.skillList[skill_id].power;
 			Debug.Log(monsterModel.hp);
 		}
-		else if (monsterModel.skillList[random].skillType == SkillType.Miss) {
+		else if (monsterModel.skillList[skill_id].skillType == SkillType.Miss) {
 			Debug.Log("MISS!!!!!!!!!!!!!!!!");
 		}
 	}

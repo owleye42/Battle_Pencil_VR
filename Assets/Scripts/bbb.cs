@@ -21,11 +21,11 @@ public class bbb : MonoBehaviour {
     {
         objects[0] = Instantiate(attackObj);
         monsterBehaviour[0] = objects[0].GetComponent<BaseMonsterBehaviour>();
-        objects[0].name = monsterBehaviour[0].Model.name;
+        objects[0].name = monsterBehaviour[0].MonsterModel.name;
         
         objects[1] = Instantiate(healObj);
         monsterBehaviour[1] = objects[1].GetComponent<BaseMonsterBehaviour>();
-        objects[1].name = monsterBehaviour[1].Model.name;
+        objects[1].name = monsterBehaviour[1].MonsterModel.name;
         monsterBehaviour[1].EnemyBehavior = monsterBehaviour[0];
 
 

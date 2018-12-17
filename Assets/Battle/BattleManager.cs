@@ -8,9 +8,6 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	BattleContext battleContext;
 	public BattleContext BattleContext { get; private set; }
 
-	public BaseMonsterBehaviour PlayerMonsterBehaviour { get; set; }
-	public BaseMonsterBehaviour EnemyMonsterBehaviour { get; set; }
-
 	protected override void Awake() {
 		base.Awake();
 

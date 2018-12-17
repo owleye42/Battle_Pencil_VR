@@ -10,6 +10,7 @@ public class MonsterContext {
 
 	public MonsterContext enemyContext;
 
+
 	IMonsterState currentState;
 
 	public bool isDone = false;
