@@ -11,7 +11,7 @@ public class BattleContext {
 
 	public IBattleState CurrentState { get; private set; }
 
-	List<MonsterContext> monsterContexts = new List<MonsterContext>();
+	public List<MonsterContext> monsterContexts = new List<MonsterContext>();
 
 	/// <summary>
 	/// 生成時
@@ -40,9 +40,5 @@ public class BattleContext {
 		CurrentState.ExecuteExit(this);
 		CurrentState = state;
 		CurrentState.ExecuteEntry(this);
-	}
-
-	public void AddMonster(MonsterContext monsterContext) {
-		monsterContexts.Add(monsterContext);
 	}
 }

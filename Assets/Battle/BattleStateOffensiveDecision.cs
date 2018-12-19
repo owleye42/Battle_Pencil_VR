@@ -13,6 +13,7 @@ public class BattleStateOffensiveDecision : IBattleState {
 		Debug.Log("[Entry] Battle State : Offensive Decision");
 
 		isDecision = false;
+		BattleManager.Instance.IsThrowable = true;
 	}
 
 	public void ExecuteUpdate(BattleContext context) {
@@ -35,5 +36,6 @@ public class BattleStateOffensiveDecision : IBattleState {
 	void DecideOffense(BattleContext context) {
 
 		isDecision = true;
+		BattleManager.Instance.IsThrowable = false;
 	}
 }

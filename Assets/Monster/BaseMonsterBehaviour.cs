@@ -8,16 +8,23 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 	MonsterModel monsterModel;
 	public MonsterModel MonsterModel { get { return monsterModel; } }
 
-	public BaseMonsterBehaviour EnemyBehavior { set; get; }
+	public BaseMonsterBehaviour EnemyBehavior;
 
-	readonly MonsterContext monsterContext = new MonsterContext();
+	public bool isPlayer = false;
+
+	MonsterContext monsterContext = null;
 
 	void Awake() {
-		BattleManager.Instance.BattleContext.AddMonster(monsterContext);
+		if (isPlayer)
+			BattleManager.Instance.playerMonsterBehaviour = this;
+		else
+			BattleManager.Instance.computerMonsterBehaviour = this;
 	}
 
 	void Start() {
-		ActionSelect(Random.Range(0, 6));
+		//monsterContext = new MonsterContext();
+
+		//ActionSelect(Random.Range(0, 6));
 	}
 
 	void Update() {

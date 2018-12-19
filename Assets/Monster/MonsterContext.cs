@@ -11,16 +11,13 @@ public class MonsterContext {
 	public readonly IMonsterState stateOffense = new MonsterStateDeath();
 	public readonly IMonsterState stateDefense = new MonsterStateDeath();
 
-	public MonsterContext enemyContext;
-
-
 	IMonsterState currentState;
 
 	public bool isDone = false;
 
 	public MonsterContext() {
-		BattleManager.Instance.BattleContext.AddMonster(this);
 		currentState = stateAppear;
+		BattleManager.Instance.BattleContext.monsterContexts.Add(this);
 	}
 
 	public void ExecuteUpdate() {
@@ -31,9 +28,5 @@ public class MonsterContext {
 		currentState.ExecuteExit(this);
 		currentState = state;
 		currentState.ExecuteEntry(this);
-	}
-
-	public void RegisterEnemy(MonsterContext enemyContext) {
-		this.enemyContext = enemyContext;
 	}
 }

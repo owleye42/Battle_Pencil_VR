@@ -8,17 +8,27 @@ public class Throw_ball : MonoBehaviour {
     [SerializeField] GameObject targetObj;
     [SerializeField] float tAngle;
     [SerializeField] Judgment judgment;
+
+	GameObject pen = null;
+
     private void Update()
     {
-        Debug.Log(targetObj.transform.position);
+        //Debug.Log(targetObj.transform.position);
     }
     public void CreatePencil()
     {
-        if (penPref != null && targetObj != null)
+        if (BattleManager.Instance.IsThrowable && penPref != null && targetObj != null)
         {
-            // Ballオブジェクトの生成
-            GameObject pen = Instantiate(penPref, this.transform.position, Quaternion.identity);
-            judgment.target = pen;
+			if (pen != null) {
+				Table.instance.AllDisable();
+				pen.transform.position = transform.position;
+			}
+			else {
+				// Ballオブジェクトの生成
+				pen = Instantiate(penPref, this.transform.position, transform.rotation);
+			}
+
+			judgment.target = pen;
             // 標的の座標
             Vector3 targetPosition = targetObj.transform.position;
             // 射出角度
