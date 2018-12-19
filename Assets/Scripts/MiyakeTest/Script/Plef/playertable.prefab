@@ -88,8 +88,8 @@ GameObject:
   - component: {fileID: 4556124951743862}
   - component: {fileID: 33260787924646150}
   - component: {fileID: 23203971410596826}
+  - component: {fileID: 114524220161542440}
   - component: {fileID: 65265217258602610}
-  - component: {fileID: 114606822358870424}
   m_Layer: 0
   m_Name: playertable
   m_TagString: Untagged
@@ -160,7 +160,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1632800691258892}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.458, y: 0.456, z: 0.6}
+  m_LocalPosition: {x: -0.01, y: 0, z: 0.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4119627140706484}
@@ -333,6 +333,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb369fe05d29d3498a5d76348c02782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114524220161542440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1632800691258892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46f288adcd6e544f8e5e9e2ff0e174a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  enemyTurnCollider: {fileID: 65324664477585774}
 --- !u!114 &114532472995122874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -355,16 +368,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb369fe05d29d3498a5d76348c02782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114606822358870424
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1632800691258892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e359d8f3f46eb14d95a55a8b6dc3acc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliders: []
-  enemyTurnCollider: {fileID: 65324664477585774}

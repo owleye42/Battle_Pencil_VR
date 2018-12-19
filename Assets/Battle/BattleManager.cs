@@ -1,25 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
-namespace Battle {
-	public class BattleManager : BaseSingletonMono<BattleManager> {
+public class BattleManager : BaseSingletonMono<BattleManager> {
 
-		public BattleContext playerContext = new BattleContext();
-		public BattleContext enemyContext = new BattleContext();
+	BattleContext battleContext;
+	public BattleContext BattleContext { get; private set; }
 
-		void Update() {
-			// コンテキストのステート滞在中の処理
-			playerContext.ExecuteUpdate();
-			enemyContext.ExecuteUpdate();
+	public BaseMonsterBehaviour playerMonsterBehaviour;
+	public BaseMonsterBehaviour computerMonsterBehaviour;
 
-			// 両コンテキストが待機中なら攻守交代
-			if (playerContext.CurrentState == playerContext.stateIdle
-				&& enemyContext.CurrentState == enemyContext.stateIdle) {
-				playerContext.ChangeOffense();
-				enemyContext.ChangeOffense();
-			}
-		}
+	public Transform playerStandingTransform;
+	public Transform computerStandingTransform;
+
+	public int outcome = 0;
+	public bool IsThrowable { get; set; }
+
+	protected override void Awake() {
+		base.Awake();
+
+		IsThrowable = false;
+		battleContext = new BattleContext();
+	}
+
+	void Update() {
+		// コンテキストのステート滞在中の処理
+		battleContext.ExecuteUpdate();
 	}
 }
