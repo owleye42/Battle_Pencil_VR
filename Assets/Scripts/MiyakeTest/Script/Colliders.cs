@@ -5,7 +5,7 @@ using UnityEngine;
 public class Colliders : MonoBehaviour {
     BoxCollider collider;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         collider = GetComponent<BoxCollider>();    
     }
     

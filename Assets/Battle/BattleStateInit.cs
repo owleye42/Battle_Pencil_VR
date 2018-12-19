@@ -7,15 +7,22 @@ using UnityEngine;
 /// </summary>
 public class BattleStateInit : IBattleState {
 
+	float elapsedTime = 0;
+
 	public void ExecuteEntry(BattleContext context) {
 		Debug.Log("[Entry] Battle State : Init");
-
-		// 攻守決定ステートへ遷移
-		context.ChangeState(context.stateOffensiveDecision);
+		elapsedTime = 0;
 	}
 
 	public void ExecuteUpdate(BattleContext context) {
+		elapsedTime += Time.deltaTime;
 
+		if(elapsedTime > 3) {
+			Debug.Log("初期化ステート 3秒経過");
+
+			// 攻守決定ステートへ遷移
+			context.ChangeState(context.stateOffensiveDecision);
+		}
 	}
 
 	public void ExecuteExit(BattleContext context) {

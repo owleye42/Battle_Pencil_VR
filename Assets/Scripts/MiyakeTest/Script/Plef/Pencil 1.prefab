@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 23102391376775474}
   - component: {fileID: 54017871506511868}
   - component: {fileID: 64191974762266020}
+  - component: {fileID: 114952081404811872}
   m_Layer: 0
   m_Name: Pencil 1
   m_TagString: Pencill
@@ -396,7 +397,7 @@ Transform:
   m_GameObject: {fileID: 1845490202439006}
   m_LocalRotation: {x: 0.49999997, y: 0.5000001, z: -0.5, w: -0.49999988}
   m_LocalPosition: {x: 1.54, y: 1.3050001, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 20}
+  m_LocalScale: {x: 6, y: 6, z: 12}
   m_Children:
   - {fileID: 4566603441642198}
   - {fileID: 4055883031816670}
@@ -729,7 +730,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
 --- !u!64 &64191974762266020
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -754,7 +755,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.000100000005, y: 0.0005581803, z: 0.014117333}
+  m_Size: {x: 0.000100000005, y: 0.001, z: 0.014117333}
   m_Center: {x: 1.7621288e-10, y: -0.00022908983, z: 0.001134565}
 --- !u!65 &65122681998239490
 BoxCollider:
@@ -936,6 +937,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   num: 2
+--- !u!114 &114952081404811872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1845490202439006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2246f3e9ea20e54f96e89f70f3c504e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayer: 0
+  monsterPrefab: {fileID: 100096, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 2}
 --- !u!114 &114969040900766224
 MonoBehaviour:
   m_ObjectHideFlags: 1

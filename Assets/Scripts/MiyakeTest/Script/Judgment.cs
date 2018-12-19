@@ -28,7 +28,7 @@ public class Judgment : MonoBehaviour {
 
     private void Update()
     {
-        LuckDetermination();
+        //LuckDetermination();
     }
 
     //出目判定
