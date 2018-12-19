@@ -3,24 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Table : MonoBehaviour {
-    public static Table instance;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
-
-
+ 
     //テーブル配下のコライダー（Scene内で作っておく）
     [SerializeField] Colliders [] colliders;
-
+    [SerializeField] BoxCollider enemyTurnCollider;
     void Start()
     {
         colliders = GetComponentsInChildren<Colliders>();
@@ -45,6 +31,17 @@ public class Table : MonoBehaviour {
             colliders[i].Disable();
         }
     }
+
+
+    public void OnEnemyTurnCol()
+    {
+        enemyTurnCollider.enabled = true;
+    }
+    public void OfEneyTurnCol()
+    {
+        enemyTurnCollider.enabled = false;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         //鉛筆との衝突ですべてのコライダーをonにする

@@ -28,7 +28,7 @@ public class Judgment : MonoBehaviour {
 
     private void Update()
     {
-        Debug.Log("出目は"+LuckDetermination());
+   //     Debug.Log("出目は"+LuckDetermination());
     }
 
     //出目判定
