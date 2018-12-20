@@ -12,6 +12,7 @@ public class Table : MonoBehaviour {
         colliders = GetComponentsInChildren<Colliders>();
         //起動時はコライダーは消しておく
         AllDisable();
+		OfEneyTurnCol();
     }
 
     //枠を作る
@@ -42,14 +43,14 @@ public class Table : MonoBehaviour {
         enemyTurnCollider.enabled = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        //鉛筆との衝突ですべてのコライダーをonにする
-        if (collision.gameObject.tag == "Pencill")
-        {
-            AllEnable();
-        }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    //鉛筆との衝突ですべてのコライダーをonにする
+    //    if (collision.gameObject.tag == "Pencill")
+    //    {
+    //        AllEnable();
+    //    }
        
-    }
+    //}
 
 }

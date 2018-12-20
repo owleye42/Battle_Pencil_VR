@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Colliders : MonoBehaviour {
-    BoxCollider collider;
+	new BoxCollider collider;
 	// Use this for initialization
 	void Awake () {
         collider = GetComponent<BoxCollider>();    

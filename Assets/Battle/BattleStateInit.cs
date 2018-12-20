@@ -14,7 +14,7 @@ public class BattleStateInit : IBattleState {
 	public void ExecuteUpdate(BattleContext context) {
 
 		// 初期化完了したなら
-		if(context.InitPencils()) {
+		if (Init()) {
 			// 攻守決定ステートへ遷移
 			context.ChangeState(context.stateOffensiveDecision);
 		}
@@ -27,7 +27,12 @@ public class BattleStateInit : IBattleState {
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
-	void Init() {
+	bool Init() {
 
+		if (BattleManager.Instance.playerPencil && BattleManager.Instance.computerPencil) {
+			return true;
+		}
+
+		return false;
 	}
 }

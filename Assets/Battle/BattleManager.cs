@@ -32,4 +32,17 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 		// コンテキストのステート滞在中の処理
 		battleContext.ExecuteUpdate();
 	}
+
+	public void StartThrowPhasePencils() {
+		playerPencil.StartThrowPhase();
+		computerPencil.StartThrowPhase();
+	}
+
+	public bool CheckPencilsAreEnd() {
+		return playerPencil.IsEnd && computerPencil.IsEnd;
+	}
+
+	public bool CheckOutcomesDifference() {
+		return playerPencil.Outcome == computerPencil.Outcome;
+	}
 }
