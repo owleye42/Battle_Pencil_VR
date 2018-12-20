@@ -16,11 +16,19 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 
     public bool isCounter = false;
 
+    Transform standingTransform;
+
 	void Awake() {
-		if (isPlayer)
+		monsterContext = new MonsterContext();
+
+		if (isPlayer) {
 			BattleManager.Instance.playerMonsterBehaviour = this;
-		else
+			BattleManager.Instance.playerMonsterContext = monsterContext;
+		}
+		else {
 			BattleManager.Instance.computerMonsterBehaviour = this;
+			BattleManager.Instance.computerMonsterContext = monsterContext;
+		}
 	}
 
 	void Start() {

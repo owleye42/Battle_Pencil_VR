@@ -13,16 +13,23 @@ public class BattleStateOffensiveDecision : IBattleState {
 		Debug.Log("[Entry] Battle State : Offensive Decision");
 
 		isDecision = false;
+
 		BattleManager.Instance.IsThrowable = true;
+		context.playerPencil.StartThrowPhase();
+		context.computerPencil.StartThrowPhase();
 	}
 
 	public void ExecuteUpdate(BattleContext context) {
-		// 出目を検出して互いに同値ならやり直し
-
-
-		// ステート遷移
-		if (isDecision) {
-			context.ChangeState(context.stateFight);
+		if (context.playerPencil.IsEnd && context.computerPencil.IsEnd) {
+			// 出目を検出して互いに同値ならやり直し
+			if (context.playerPencil.Outcome == context.computerPencil.Outcome) {
+				context.playerPencil.StartThrowPhase();
+				context.computerPencil.StartThrowPhase();
+			}
+			// ステート遷移
+			else if (context.InitMonsterContexts()) { 
+				context.ChangeState(context.stateFight);
+			}
 		}
 	}
 
