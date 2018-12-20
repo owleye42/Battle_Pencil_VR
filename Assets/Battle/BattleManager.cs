@@ -7,13 +7,18 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	BattleContext battleContext;
 	public BattleContext BattleContext { get; private set; }
 
-	public BaseMonsterBehaviour playerMonsterBehaviour;
-	public BaseMonsterBehaviour computerMonsterBehaviour;
+	public BaseMonsterBehaviour playerMonsterBehaviour = null;
+	public BaseMonsterBehaviour computerMonsterBehaviour = null;
 
-	public Transform playerStandingTransform;
-	public Transform computerStandingTransform;
+	public MonsterContext playerMonsterContext = null;
+	public MonsterContext computerMonsterContext = null;
 
-	public int outcome = 0;
+	public Pencil playerPencil = null;
+	public Pencil computerPencil = null;
+
+	public Transform playerMonsterStandingTransform;
+	public Transform computerMonsterStandingTransform;
+
 	public bool IsThrowable { get; set; }
 
 	protected override void Awake() {

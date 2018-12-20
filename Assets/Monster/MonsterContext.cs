@@ -13,11 +13,17 @@ public class MonsterContext {
 
 	IMonsterState currentState;
 
+	public bool isPlayerMosnter = false;
 	public bool isDone = false;
 
 	public MonsterContext() {
+		if (isPlayerMosnter)
+			BattleManager.Instance.playerMonsterContext = this;
+		else
+			BattleManager.Instance.computerMonsterContext = this;
+
 		currentState = stateAppear;
-		BattleManager.Instance.BattleContext.monsterContexts.Add(this);
+		currentState.ExecuteEntry(this);
 	}
 
 	public void ExecuteUpdate() {
