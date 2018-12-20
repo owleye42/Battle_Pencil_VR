@@ -6,7 +6,8 @@ using UnityEngine;
 public enum SkillType {
 	Attack,
 	Heal,
-	Miss,
+    Counter,
+    Miss,
 }
 
 [System.Serializable]

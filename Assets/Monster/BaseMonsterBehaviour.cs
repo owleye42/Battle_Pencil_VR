@@ -14,6 +14,8 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 
 	MonsterContext monsterContext = null;
 
+    public bool isCounter = false;
+
 	void Awake() {
 		if (isPlayer)
 			BattleManager.Instance.playerMonsterBehaviour = this;
@@ -32,16 +34,27 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 	}
 
 	public void ActionSelect(int skill_id) {
+        isCounter = false;
+
 		if (monsterModel.skillList[skill_id].skillType == SkillType.Attack) {
+            if(EnemyBehavior.isCounter && monsterModel.skillList[skill_id].power >= 40){
+                monsterModel.hp -= EnemyBehavior.monsterModel.skillList[skill_id].power;
+                Debug.Log(monsterModel.hp);
+            }
+            else{
 			EnemyBehavior.monsterModel.hp -= monsterModel.skillList[skill_id].power;
 			Debug.Log(EnemyBehavior.monsterModel.hp);
+            }
 		}
-		else if (monsterModel.skillList[skill_id].skillType == SkillType.Heal) {
+        else if(monsterModel.skillList[skill_id].skillType == SkillType.Heal) {
 			monsterModel.hp += monsterModel.skillList[skill_id].power;
 			Debug.Log(monsterModel.hp);
 		}
+        else if(monsterModel.skillList[skill_id].skillType == SkillType.Counter){
+            isCounter = true;
+        }
 		else if (monsterModel.skillList[skill_id].skillType == SkillType.Miss) {
 			Debug.Log("MISS!!!!!!!!!!!!!!!!");
 		}
-	}
+    }
 }
