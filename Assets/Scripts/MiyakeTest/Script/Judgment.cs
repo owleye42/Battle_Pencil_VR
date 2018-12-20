@@ -27,8 +27,12 @@ public class Judgment : MonoBehaviour {
 
 
     private void Update()
-    {
+    {//
+//<<<<<<< HEAD
+   //     Debug.Log("出目は"+LuckDetermination());
+//=======
         //LuckDetermination();
+// update/master
     }
 
     //出目判定

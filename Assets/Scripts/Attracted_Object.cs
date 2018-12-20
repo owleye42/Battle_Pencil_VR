@@ -18,7 +18,7 @@ public class Attracted_Object : MonoBehaviour {
     private void Start()
     {
         attractedPos = AttractedObj.transform.position;
-        AttRig=
+       // AttRig=
     }
     // Update is called once per frame
     void Update () {
@@ -31,7 +31,7 @@ public class Attracted_Object : MonoBehaviour {
 
         Angle = AttractedObj.transform.position - transform.position;
 
-      AttractedObj.AddForce(Angle.normalized * (gravity / Mathf.Pow(distance, 2)));
+  //    Att//ractedObj.AddForce(Angle.normalized * (gravity / Mathf.Pow(distance, 2)));
     }
 
         /*distance1 = Vector3.Distance(pos1, transform.position);

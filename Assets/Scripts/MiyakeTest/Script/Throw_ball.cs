@@ -20,8 +20,10 @@ public class Throw_ball : MonoBehaviour {
         if (BattleManager.Instance.IsThrowable && penPref != null && targetObj != null)
         {
 			if (pen != null) {
-				Table.instance.AllDisable();
-				pen.transform.position = transform.position;
+				TableManager.instance.cpuTable .AllDisable();
+
+                TableManager.instance.playerTabel.AllDisable();
+                pen.transform.position = transform.position;
 			}
 			else {
 				// Ballオブジェクトの生成
