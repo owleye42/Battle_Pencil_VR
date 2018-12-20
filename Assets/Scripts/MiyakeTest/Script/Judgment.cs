@@ -27,8 +27,12 @@ public class Judgment : MonoBehaviour {
 
 
     private void Update()
-    {
+    {//
+//<<<<<<< HEAD
+   //     Debug.Log("出目は"+LuckDetermination());
+//=======
         //LuckDetermination();
+// update/master
     }
 
     //出目判定
@@ -56,6 +60,5 @@ public class Judgment : MonoBehaviour {
         Ray ray = new Ray(transform.position, new Vector3(0, -10, 0));
         Debug.DrawRay(ray.origin, new Vector3(0, -1, 0), Color.gray);
         Gizmos.DrawRay(ray);
-
     }
 }
