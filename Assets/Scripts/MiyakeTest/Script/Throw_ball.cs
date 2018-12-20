@@ -9,7 +9,7 @@ public class Throw_ball : MonoBehaviour {
     [SerializeField] float tAngle;
     [SerializeField] Judgment judgment;
 
-	GameObject pen = null;
+	[SerializeField] GameObject pen = null;
 
     private void Update()
     {
@@ -28,7 +28,6 @@ public class Throw_ball : MonoBehaviour {
 				pen = Instantiate(penPref, this.transform.position, transform.rotation);
 			}
 
-			judgment.target = pen;
             // 標的の座標
             Vector3 targetPosition = targetObj.transform.position;
             // 射出角度
@@ -37,9 +36,9 @@ public class Throw_ball : MonoBehaviour {
             Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
             // 射出
             Rigidbody rigidbody = pen.GetComponent<Rigidbody>();
+			rigidbody.velocity = Vector3.zero;
             rigidbody.AddForce(velocity * rigidbody.mass, ForceMode.Impulse);
         }
-        
     }
 
 

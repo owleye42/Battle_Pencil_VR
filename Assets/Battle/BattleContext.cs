@@ -11,7 +11,11 @@ public class BattleContext {
 
 	public IBattleState CurrentState { get; private set; }
 
-	public List<MonsterContext> monsterContexts = new List<MonsterContext>();
+	public MonsterContext playerMonsterContext = null;
+	public MonsterContext computerMonsterContext = null;
+
+	public Pencil playerPencil = null;
+	public Pencil computerPencil = null;
 
 	/// <summary>
 	/// 生成時
@@ -21,6 +25,32 @@ public class BattleContext {
 		CurrentState.ExecuteEntry(this);
 	}
 
+	public bool InitPencils() {
+		if (playerPencil == null)
+			playerPencil = BattleManager.Instance.playerPencil;
+		if (computerPencil == null)
+			computerPencil = BattleManager.Instance.computerPencil;
+
+		if(playerPencil != null && computerPencil != null) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public bool InitMonsterContexts() {
+		if (playerMonsterContext == null)
+			playerMonsterContext = BattleManager.Instance.playerMonsterContext;
+		if (computerMonsterContext == null)
+			computerMonsterContext = BattleManager.Instance.computerMonsterContext;
+
+		if (playerMonsterContext != null && computerMonsterContext != null) {
+			return true;
+		}
+
+		return false;
+	}
+
 	/// <summary>
 	/// 滞在中のステートの ExecuteUpdate() を実行
 	/// モンスターのコンテキストの ExecuteUpdate() を実行
@@ -28,8 +58,11 @@ public class BattleContext {
 	public void ExecuteUpdate() {
 		CurrentState.ExecuteUpdate(this);
 
-		if(monsterContexts != null && monsterContexts.Count > 0)
-			monsterContexts.ForEach(monsterContext => monsterContext.ExecuteUpdate());
+		if (playerMonsterContext != null)
+			playerMonsterContext.ExecuteUpdate();
+
+		if (computerMonsterContext != null)
+			computerMonsterContext.ExecuteUpdate();
 	}
 
 	/// <summary>

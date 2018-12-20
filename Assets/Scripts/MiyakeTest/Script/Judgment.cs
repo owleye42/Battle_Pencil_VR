@@ -56,6 +56,5 @@ public class Judgment : MonoBehaviour {
         Ray ray = new Ray(transform.position, new Vector3(0, -10, 0));
         Debug.DrawRay(ray.origin, new Vector3(0, -1, 0), Color.gray);
         Gizmos.DrawRay(ray);
-
     }
 }
