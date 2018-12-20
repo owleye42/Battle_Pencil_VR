@@ -15,19 +15,18 @@ public class BattleStateOffensiveDecision : IBattleState {
 		isDecision = false;
 
 		BattleManager.Instance.IsThrowable = true;
-		context.playerPencil.StartThrowPhase();
-		context.computerPencil.StartThrowPhase();
+		BattleManager.Instance.StartThrowPhasePencils();
 	}
 
 	public void ExecuteUpdate(BattleContext context) {
-		if (context.playerPencil.IsEnd && context.computerPencil.IsEnd) {
+		if (BattleManager.Instance.CheckPencilsAreEnd()) {
+
 			// 出目を検出して互いに同値ならやり直し
-			if (context.playerPencil.Outcome == context.computerPencil.Outcome) {
-				context.playerPencil.StartThrowPhase();
-				context.computerPencil.StartThrowPhase();
+			if (BattleManager.Instance.CheckOutcomesDifference()) {
+				BattleManager.Instance.StartThrowPhasePencils();
 			}
 			// ステート遷移
-			else if (context.InitMonsterContexts()) { 
+			else if (CheckMonsterContexts()) {
 				context.ChangeState(context.stateFight);
 			}
 		}
@@ -44,5 +43,14 @@ public class BattleStateOffensiveDecision : IBattleState {
 
 		isDecision = true;
 		BattleManager.Instance.IsThrowable = false;
+	}
+
+	bool CheckMonsterContexts() {
+		if (BattleManager.Instance.playerMonsterContext != null
+			&& BattleManager.Instance.computerMonsterContext != null) {
+			return true;
+		}
+
+		return false;
 	}
 }

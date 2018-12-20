@@ -123,4 +123,15 @@ public class Pencil : MonoBehaviour {
 		Debug.DrawRay(ray.origin, new Vector3(0, -1, 0), Color.gray);
 		Gizmos.DrawRay(ray);
 	}
+
+	private void OnCollisionStay(Collision collision) {
+		if (isPlayer && collision.gameObject.tag == "PlayerTable") {
+			TableManager.instance.playerTabel.OfEneyTurnCol();
+			TableManager.instance.playerTabel.AllEnable();
+		}
+		else if (!isPlayer && collision.gameObject.tag == "CPUTable") {
+			TableManager.instance.cpuTable.OfEneyTurnCol();
+			TableManager.instance.cpuTable.AllEnable();
+		}
+	}
 }

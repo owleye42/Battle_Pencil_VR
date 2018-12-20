@@ -11,44 +11,12 @@ public class BattleContext {
 
 	public IBattleState CurrentState { get; private set; }
 
-	public MonsterContext playerMonsterContext = null;
-	public MonsterContext computerMonsterContext = null;
-
-	public Pencil playerPencil = null;
-	public Pencil computerPencil = null;
-
 	/// <summary>
 	/// 生成時
 	/// </summary>
 	public BattleContext() {
 		CurrentState = stateInit;
 		CurrentState.ExecuteEntry(this);
-	}
-
-	public bool InitPencils() {
-		if (playerPencil == null)
-			playerPencil = BattleManager.Instance.playerPencil;
-		if (computerPencil == null)
-			computerPencil = BattleManager.Instance.computerPencil;
-
-		if(playerPencil != null && computerPencil != null) {
-			return true;
-		}
-
-		return false;
-	}
-
-	public bool InitMonsterContexts() {
-		if (playerMonsterContext == null)
-			playerMonsterContext = BattleManager.Instance.playerMonsterContext;
-		if (computerMonsterContext == null)
-			computerMonsterContext = BattleManager.Instance.computerMonsterContext;
-
-		if (playerMonsterContext != null && computerMonsterContext != null) {
-			return true;
-		}
-
-		return false;
 	}
 
 	/// <summary>
@@ -58,11 +26,11 @@ public class BattleContext {
 	public void ExecuteUpdate() {
 		CurrentState.ExecuteUpdate(this);
 
-		if (playerMonsterContext != null)
-			playerMonsterContext.ExecuteUpdate();
+		if (BattleManager.Instance.playerMonsterContext != null)
+			BattleManager.Instance.playerMonsterContext.ExecuteUpdate();
 
-		if (computerMonsterContext != null)
-			computerMonsterContext.ExecuteUpdate();
+		if (BattleManager.Instance.computerMonsterContext != null)
+			BattleManager.Instance.computerMonsterContext.ExecuteUpdate();
 	}
 
 	/// <summary>
