@@ -6,53 +6,38 @@ using UnityEngine.UI;
 public class PencilNumberSelect : MonoBehaviour
 {
     [SerializeField]
-    Transform grid;
-
-    [SerializeField]
     Text[] child;
 
     [SerializeField]
-    Image image = null;
+    Image image;
 
-
-    float arrayNum;
-    [SerializeField]
-    float speed = 50f;
-
-    
 
     // Use this for initialization
     void Start()
     {
-
-        for (int i = 0; i < child.Length; ++i)
-        {
-            child[i].name = "Skill" + i;
-        }
-
-        SkillText(BattleManager.Instance.computerMonsterBehaviour.MonsterModel.skillList);
+        //SkillText(BattleManager.Instance.computerMonsterBehaviour.MonsterModel.skillList);
     }
 
     // Update is called once per frame
     void Update()
     {
-        SkillRotate();
-        //SkillDecision();
+
     }
 
+    // 生成されるタイミングで一回呼ぶ
     public void SkillText(List<SkillModel> skillModels)
     {
         for (int i = 0; i < skillModels.Count; ++i)
+        {
+            child[i].name = "Skill" + i;
             child[i].text = skillModels[i].text;
+        }
     }
 
-    public void SkillRotate()
-    {
-        arrayNum += speed * Time.deltaTime;
-        if (arrayNum >= child.Length)
-            arrayNum = 0;
 
-        //image.transform.position = child[(int)arrayNum].transform.position;
+    public void SkillSelect(int num)
+    {
+        image.transform.position = child[num].transform.position;
     }
 
     public void SkillDecision()

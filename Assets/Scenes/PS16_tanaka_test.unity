@@ -298,8 +298,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 830, y: -15}
-  m_SizeDelta: {x: 300, y: 30}
+  m_AnchoredPosition: {x: 830, y: -90}
+  m_SizeDelta: {x: 300, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &469258186
 MonoBehaviour:
@@ -1034,7 +1034,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351a497537c251f488b68fa4f991065c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 1452237977}
   child:
   - {fileID: 2053068220}
   - {fileID: 1695826541}
@@ -1042,6 +1041,7 @@ MonoBehaviour:
   - {fileID: 1215831325}
   - {fileID: 1915596606}
   - {fileID: 1542234084}
+  image: {fileID: 469258186}
 --- !u!4 &1873731068
 Transform:
   m_ObjectHideFlags: 0
