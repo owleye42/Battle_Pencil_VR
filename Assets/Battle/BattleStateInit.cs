@@ -2,30 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Battle {
-	/// <summary>
-	/// バトルの初期化ステート
-	/// </summary>
-	public class BattleStateInit : IBattleState {
+/// <summary>
+/// バトルの初期化ステート
+/// </summary>
+public class BattleStateInit : IBattleState {
 
-		// ステート開始時 の処理
-		public void ExecuteEntry(BattleContext context) {
-			Debug.Log("[Entry] Init Battle State");
-		}
+	public void ExecuteEntry(BattleContext context) {
+		Debug.Log("[Entry] Battle State : Init");
+	}
 
-		// ステート滞在中 の処理
-		public void ExecuteUpdate(BattleContext context) {
+	public void ExecuteUpdate(BattleContext context) {
 
-
-			// ステート遷移
+		// 初期化完了したなら
+		if (Init()) {
 			// 攻守決定ステートへ遷移
-			if (context.enemyContexts != null && context.enemyContexts.Count > 0)
-				context.ChangeState(context.stateOffensiveDecision);
+			context.ChangeState(context.stateOffensiveDecision);
+		}
+	}
+
+	public void ExecuteExit(BattleContext context) {
+		Debug.Log("[Exit] Battle State : Init");
+	}
+
+	/// <summary>
+	/// 初期化処理
+	/// </summary>
+	bool Init() {
+
+		if (BattleManager.Instance.playerPencil && BattleManager.Instance.computerPencil) {
+			return true;
 		}
 
-		// ステート終了時 の処理
-		public void ExecuteExit(BattleContext context) {
-			Debug.Log("[Exit] Init Battle State");
-		}
+		return false;
 	}
 }

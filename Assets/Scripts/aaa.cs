@@ -5,9 +5,9 @@ using UnityEngine;
 public class aaa : MonoBehaviour
 {
     [SerializeField]
-    private AudioClip clip;
+    private AudioClip clip = null;
     [SerializeField]
-    private AudioClip clip2;
+    private AudioClip clip2 =  null;
 
     private BGMModel bgmModel = new BGMModel();
 

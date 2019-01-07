@@ -2,29 +2,54 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Battle {
-	public class BaseMonsterBehaviour : MonoBehaviour {
+public class BaseMonsterBehaviour : MonoBehaviour {
 
-		[SerializeField]
-		BaseMonsterBehaviour enemyBehaviour;
+	[SerializeField]
+	MonsterModel monsterModel;
+	public MonsterModel MonsterModel { get { return monsterModel; } }
 
-		MonsterModel monsterModel;
+	public BaseMonsterBehaviour EnemyBehavior;
 
-		public BattleContext Context { get; private set; }
+	public bool isPlayer = false;
 
-		void Awake() {
-			Context = new BattleContext();
+	MonsterContext monsterContext = null;
+
+	Transform standingTransform;
+
+	void Awake() {
+		monsterContext = new MonsterContext();
+
+		if (isPlayer) {
+			BattleManager.Instance.playerMonsterBehaviour = this;
+			BattleManager.Instance.playerMonsterContext = monsterContext;
 		}
-
-		void Start() {
-			BattleManager.Instance.battleContexts.Add(Context);
-			Context.enemyContexts.Add(enemyBehaviour.Context);
-
-			//Debug.Log(context.GetHashCode() + "..." + opponentBehaviour.Context.GetHashCode());
+		else {
+			BattleManager.Instance.computerMonsterBehaviour = this;
+			BattleManager.Instance.computerMonsterContext = monsterContext;
 		}
+	}
 
-		void Update() {
+	void Start() {
+		//monsterContext = new MonsterContext();
 
+		//ActionSelect(Random.Range(0, 6));
+	}
+
+	void Update() {
+
+	}
+
+	public void ActionSelect(int skill_id) {
+		if (monsterModel.skillList[skill_id].skillType == SkillType.Attack) {
+			EnemyBehavior.monsterModel.hp -= monsterModel.skillList[skill_id].power;
+			Debug.Log(EnemyBehavior.monsterModel.hp);
+		}
+		else if (monsterModel.skillList[skill_id].skillType == SkillType.Heal) {
+			monsterModel.hp += monsterModel.skillList[skill_id].power;
+			Debug.Log(monsterModel.hp);
+		}
+		else if (monsterModel.skillList[skill_id].skillType == SkillType.Miss) {
+			Debug.Log("MISS!!!!!!!!!!!!!!!!");
 		}
 	}
 }

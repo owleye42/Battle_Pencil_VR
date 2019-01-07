@@ -2,39 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Battle {
-	/// <summary>
-	/// バトルの攻守決定ステート
-	/// </summary>
-	public class BattleStateOffensiveDecision : IBattleState {
+/// <summary>
+/// バトルの攻守決定ステート
+/// </summary>
+public class BattleStateOffensiveDecision : IBattleState {
 
-		bool isDecision = false;
+	bool isDecision = false;
 
-		// ステート開始時 の処理
-		public void ExecuteEntry(BattleContext context) {
-			Debug.Log("[Entry] Offensive Decision Battle State");
+	public void ExecuteEntry(BattleContext context) {
+		Debug.Log("[Entry] Battle State : Offensive Decision");
 
-			isDecision = false;
-		}
+		isDecision = false;
 
-		// ステート滞在中 の処理
-		public void ExecuteUpdate(BattleContext context) {
-			
+		BattleManager.Instance.IsThrowable = true;
+		BattleManager.Instance.StartThrowPhasePencils();
+	}
+
+	public void ExecuteUpdate(BattleContext context) {
+		if (BattleManager.Instance.CheckPencilsAreEnd()) {
+
+			// 出目を検出して互いに同値ならやり直し
+			if (BattleManager.Instance.CheckOutcomesDifference()) {
+				BattleManager.Instance.StartThrowPhasePencils();
+			}
 			// ステート遷移
-			if (isDecision) {
-				if (context.isOffense) context.ChangeState(context.stateActionSelect);
-				else context.ChangeState(context.stateIdle);
+			else if (CheckMonsterContexts()) {
+				context.ChangeState(context.stateFight);
 			}
 		}
+	}
 
-		// ステート終了時 の処理
-		public void ExecuteExit(BattleContext context) {
-			Debug.Log("[Entry] Offensive Decision Battle State");
+	public void ExecuteExit(BattleContext context) {
+		Debug.Log("[Entry] Battle State : Offensive Decision");
+	}
+
+	/// <summary>
+	/// 攻守決定処理
+	/// </summary>
+	void DecideOffense(BattleContext context) {
+
+		isDecision = true;
+		BattleManager.Instance.IsThrowable = false;
+	}
+
+	bool CheckMonsterContexts() {
+		if (BattleManager.Instance.playerMonsterContext != null
+			&& BattleManager.Instance.computerMonsterContext != null) {
+			return true;
 		}
 
-		// 攻守決定処理
-		void OffensiveDecision() {
-
-		}
+		return false;
 	}
 }

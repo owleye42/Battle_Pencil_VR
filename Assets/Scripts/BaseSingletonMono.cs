@@ -18,11 +18,6 @@ public class BaseSingletonMono<T> : MonoBehaviour where T : MonoBehaviour {
 
 	public static T Instance {
 		get {
-			if (instance == null) {
-				GameObject obj = new GameObject(typeof(T).ToString() + "(singleton)");
-				instance = obj.AddComponent<T>();
-			}
-
 			return instance;
 		}
 	}
@@ -37,8 +32,11 @@ public class BaseSingletonMono<T> : MonoBehaviour where T : MonoBehaviour {
 	/// }
 	/// </summary>
 	protected virtual void Awake() {
-		Debug.Log(typeof(T).ToString() + " awake!");
-		if (instance != null) Destroy(gameObject);
+		Debug.Log(typeof(T).ToString() + " Awake!");
+
+		if (instance == null) instance = this as T;
+		else if (instance != this as T) Destroy(gameObject);
+
 		DontDestroyOnLoad(gameObject);
 		instance = this as T;
 	}

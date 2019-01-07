@@ -1,31 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
-namespace Battle {
-	public class BattleManager : BaseSingletonMono<BattleManager> {
+public class BattleManager : BaseSingletonMono<BattleManager> {
 
-		public List<BattleContext> battleContexts = new List<BattleContext>();
+	BattleContext battleContext;
+	public BattleContext BattleContext { get; private set; }
 
-		void Update() {
-			// 各コンテキストの処理
-			battleContexts.ForEach(context => {
-				context.ExecuteUpdate();
-			});
+	public BaseMonsterBehaviour playerMonsterBehaviour = null;
+	public BaseMonsterBehaviour computerMonsterBehaviour = null;
 
-			// 全コンテキストが待機中なら攻守交代
-			var allStatesAreIdle = battleContexts.All(context => context.CurrentState == context.stateIdle);
-			if (allStatesAreIdle) {
-				ChangeOffenseOfAllContexts();
-			}
-		}
+	public MonsterContext playerMonsterContext = null;
+	public MonsterContext computerMonsterContext = null;
 
-		/// <summary>
-		/// すべてのコンテキストを攻守交代させる
-		/// </summary>
-		void ChangeOffenseOfAllContexts() {
-			battleContexts.ForEach(context => context.ChangeOffense());
-		}
+	public Pencil playerPencil = null;
+	public Pencil computerPencil = null;
+
+	public Transform playerMonsterStandingTransform;
+	public Transform computerMonsterStandingTransform;
+
+	public bool IsThrowable { get; set; }
+
+	protected override void Awake() {
+		base.Awake();
+
+		IsThrowable = false;
+		battleContext = new BattleContext();
+	}
+
+	void Update() {
+		// コンテキストのステート滞在中の処理
+		battleContext.ExecuteUpdate();
+	}
+
+	public void StartThrowPhasePencils() {
+		playerPencil.StartThrowPhase();
+		computerPencil.StartThrowPhase();
+	}
+
+	public bool CheckPencilsAreEnd() {
+		return playerPencil.IsEnd && computerPencil.IsEnd;
+	}
+
+	public bool CheckOutcomesDifference() {
+		return playerPencil.Outcome == computerPencil.Outcome;
 	}
 }
