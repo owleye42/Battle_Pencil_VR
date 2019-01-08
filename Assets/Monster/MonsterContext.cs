@@ -33,6 +33,7 @@ public class MonsterContext {
 	public void ChangeState(IMonsterState state) {
 		currentState.ExecuteExit(this);
 		currentState = state;
+		isDone = false;
 		currentState.ExecuteEntry(this);
 	}
 }
