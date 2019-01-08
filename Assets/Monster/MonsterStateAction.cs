@@ -18,8 +18,4 @@ public class MonsterStateAction : IMonsterState {
 	public void ExecuteExit(MonsterContext context) {
 
 	}
-
-	public void EndState() {
-
-	}
 }

@@ -7,12 +7,8 @@ using UnityEngine;
 /// </summary>
 public class BattleStateOffensiveDecision : IBattleState {
 
-	bool isDecision = false;
-
 	public void ExecuteEntry(BattleContext context) {
 		Debug.Log("[Entry] Battle State : Offensive Decision");
-
-		isDecision = false;
 
 		BattleManager.Instance.IsThrowable = true;
 		BattleManager.Instance.StartThrowPhasePencils();
@@ -40,8 +36,7 @@ public class BattleStateOffensiveDecision : IBattleState {
 	/// 攻守決定処理
 	/// </summary>
 	void DecideOffense(BattleContext context) {
-
-		isDecision = true;
+		
 		BattleManager.Instance.IsThrowable = false;
 	}
 
