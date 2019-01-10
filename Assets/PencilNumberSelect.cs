@@ -6,11 +6,17 @@ using UnityEngine.UI;
 public class PencilNumberSelect : MonoBehaviour
 {
     [SerializeField]
-    Text[] child;
+    Text[] playerSkills;
+    public Text[] PlayerSkills { get { return playerSkills; } }
+    [SerializeField]
+    Image playerFrame;
+
 
     [SerializeField]
-    Image image;
-
+    Text[] enemySkills;
+    public Text[] EnemySkills { get { return enemySkills; } }
+    [SerializeField]
+    Image enemyFrame;
 
     // Use this for initialization
     void Start()
@@ -25,19 +31,19 @@ public class PencilNumberSelect : MonoBehaviour
     }
 
     // 生成されるタイミングで一回呼ぶ
-    public void SkillText(List<SkillModel> skillModels)
+    public void SkillText(Text[] skillTexts, List<SkillModel> skillModels)
     {
         for (int i = 0; i < skillModels.Count; ++i)
         {
-            child[i].name = "Skill" + i;
-            child[i].text = skillModels[i].text;
+            skillTexts[i].name = "Skill" + i;
+            skillTexts[i].text = skillModels[i].text;
         }
     }
 
 
-    public void SkillSelect(int num)
+    public void SkillSelect(Text[] skillTexts, int num)
     {
-        image.transform.position = child[num].transform.position;
+        playerFrame.transform.position = skillTexts[num].transform.position;
     }
 
     public void SkillDecision()
