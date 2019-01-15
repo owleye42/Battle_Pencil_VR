@@ -20,21 +20,10 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 
 	void Awake() {
 		monsterContext = new MonsterContext();
-
-		if (isPlayer) {
-			BattleManager.Instance.playerMonsterBehaviour = this;
-			BattleManager.Instance.playerMonsterContext = monsterContext;
-		}
-		else {
-			BattleManager.Instance.computerMonsterBehaviour = this;
-			BattleManager.Instance.computerMonsterContext = monsterContext;
-		}
 	}
 
 	void Start() {
-		//monsterContext = new MonsterContext();
 
-		//ActionSelect(Random.Range(0, 6));
 	}
 
 	void Update() {

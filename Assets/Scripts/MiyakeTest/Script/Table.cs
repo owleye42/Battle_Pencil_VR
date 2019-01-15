@@ -12,7 +12,6 @@ public class Table : MonoBehaviour {
         colliders = GetComponentsInChildren<Colliders>();
         //起動時はコライダーは消しておく
         AllDisable();
-		OfEneyTurnCol();
     }
 
     //枠を作る
@@ -31,16 +30,6 @@ public class Table : MonoBehaviour {
         {
             colliders[i].Disable();
         }
-    }
-
-
-    public void OnEnemyTurnCol()
-    {
-        enemyTurnCollider.enabled = true;
-    }
-    public void OfEneyTurnCol()
-    {
-        enemyTurnCollider.enabled = false;
     }
 
     //private void OnCollisionEnter(Collision collision)

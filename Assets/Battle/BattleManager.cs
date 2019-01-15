@@ -7,17 +7,8 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	BattleContext battleContext;
 	public BattleContext BattleContext { get; private set; }
 
-	public BaseMonsterBehaviour playerMonsterBehaviour = null;
-	public BaseMonsterBehaviour computerMonsterBehaviour = null;
-
-	public MonsterContext playerMonsterContext = null;
-	public MonsterContext computerMonsterContext = null;
-
-	public Pencil playerPencil = null;
-	public Pencil computerPencil = null;
-
-	public Transform playerMonsterStandingTransform;
-	public Transform computerMonsterStandingTransform;
+	public OperatorController PlayerController { get; set; }
+	public OperatorController ComputerController { get; set; }
 
 	public bool IsThrowable { get; set; }
 
@@ -33,16 +24,27 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 		battleContext.ExecuteUpdate();
 	}
 
-	public void StartThrowPhasePencils() {
-		playerPencil.StartThrowPhase();
-		computerPencil.StartThrowPhase();
+	// 両者の投擲フェイズを開始
+	public void StartOutcomeDetectionEachPencil() {
+		PlayerController.OperatorModel.pencil.StartOutcomeDetection();
+		ComputerController.OperatorModel.pencil.StartOutcomeDetection();
 	}
 
-	public bool CheckPencilsAreEnd() {
-		return playerPencil.IsEnd && computerPencil.IsEnd;
+	// 出目が異なる値かチェック
+	public bool CheckOutcomesAreDifferent() {
+
+		var playerOutcome = PlayerController.OperatorModel.pencil.Outcome;
+		var cpuOutcome = ComputerController.OperatorModel.pencil.Outcome;
+
+		if (playerOutcome == 0 || cpuOutcome == 0) return false;
+
+		return  playerOutcome != cpuOutcome;
 	}
 
-	public bool CheckOutcomesDifference() {
-		return playerPencil.Outcome == computerPencil.Outcome;
+	// 両者のモンスターを召喚
+	public void SummonMonsters() {
+		PlayerController.OperatorModel.pencil.SummonMonster();
+		ComputerController.OperatorModel.pencil.SummonMonster();
+		
 	}
 }

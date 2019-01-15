@@ -73,7 +73,6 @@ public class HTC_Controller : MonoBehaviour {
 
             objectInHand.GetComponent<Rigidbody>().velocity = Controller.velocity;
             objectInHand.GetComponent<Rigidbody>().angularVelocity = Controller.angularVelocity;
-            TableManager.instance.cpuTable.OnEnemyTurnCol();
         }
 
         objectInHand = null;
