@@ -15,15 +15,6 @@ public class Throw_ball : MonoBehaviour {
 		//Debug.Log(targetObj.transform.position);
 	}
 
-	public void CreatePencil() {
-		if (BattleManager.Instance.IsThrowable && penPref != null && targetObj != null) {
-			// Ballオブジェクトの生成
-			pen = Instantiate(penPref, this.transform.position, transform.rotation);
-
-			ThrowPencil();
-		}
-	}
-
 	public void ThrowPencil() {
 		pen.transform.position = transform.position;
 
