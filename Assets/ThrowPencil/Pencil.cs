@@ -54,7 +54,7 @@ public class Pencil : MonoBehaviour {
 
 			// 投擲フェイズが終わっていないなら
 			if (!isEnd) {
-			
+         //       Debug.Log(rigidbody.velocity.magnitude+"magnitude");
 				// 静止していたら
 				if (rigidbody.velocity.sqrMagnitude == 0)
 					stopTime += Time.deltaTime;
@@ -74,11 +74,13 @@ public class Pencil : MonoBehaviour {
 	// 出目判定のコルーチン
 	IEnumerator LuckDetectCoroutine() {
 		while (true) {
+            Debug.Log(isPlayer+""+Outcome);
 			// 出目判定を格納
 			Outcome = LuckDetermination();
 
 			// 出目が1~6の範囲内なら
 			if (Outcome >= 1 && Outcome <= 6) {
+                Debug.Log(Outcome);
 				break;
 			}
 			yield return null;
@@ -92,8 +94,8 @@ public class Pencil : MonoBehaviour {
 		if (monsterInstance == null) {
 			monsterInstance = Instantiate(monsterPrefab, transform.position, Quaternion.identity);
 			monsterInstance.GetComponent<BaseMonsterBehaviour>().isPlayer = isPlayer;
-            StartCoroutine(monsterInstance.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(monsterInstance,GameObject.Find("ComputerMonsterPosition").transform.position,45f));
-
+            StartCoroutine(monsterInstance.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(monsterInstance,GameObject.Find("CpuMonsterPoint").transform.position,45f));
+            Debug.Log(isPlayer+"召喚");
         }
     
 		yield return null;
@@ -107,7 +109,7 @@ public class Pencil : MonoBehaviour {
 
 		//鉛筆の上からRayを出して判定
 
-		ray = new Ray(transform.position + new Vector3(0, 1, 0), Vector3.down);
+		ray = new Ray(transform.position + new Vector3(0, 1, 0), Vector3.down+Vector3.down);
 		RaycastHit hit;
 
 		if (Physics.Raycast(ray, out hit, 1)) {
