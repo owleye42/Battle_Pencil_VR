@@ -109,25 +109,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterModel:
-    id: 0
+    id: 1
     name: AttackModel
     hp: 100
     skillList:
     - skillType: 0
       targetType: 0
-      power: 20
+      power: 50
+      text: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306B50\u306E\u30C0\u30E1\u30FC\u30B8"
+    - skillType: 0
+      targetType: 0
+      power: 10
+      text: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306B10\u306E\u30C0\u30E1\u30FC\u30B8"
+    - skillType: 3
+      targetType: 0
+      power: 0
+      text: "\u30DF\u30B9"
     - skillType: 0
       targetType: 0
       power: 20
+      text: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306B20\u306E\u30C0\u30E1\u30FC\u30B8"
     - skillType: 0
       targetType: 0
-      power: 20
-    - skillType: 0
+      power: 40
+      text: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306B40\u306E\u30C0\u30E1\u30FC\u30B8"
+    - skillType: 3
       targetType: 0
-      power: 20
-    - skillType: 0
-      targetType: 0
-      power: 20
-    - skillType: 0
-      targetType: 0
-      power: 20
+      power: 0
+      text: "\u30DF\u30B9"
+  EnemyBehavior: {fileID: 0}
+  isPlayer: 0
+  isCounter: 0
