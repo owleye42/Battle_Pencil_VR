@@ -10,7 +10,8 @@ public class OperatorController : MonoBehaviour {
 
 	readonly OperatorContext operatorContext = new OperatorContext();
 
-	public Pencil Pencil { get { return operatorModel.pencil; } }
+	[SerializeField]
+	Transform monsterStandPos;
 
 	private void Start() {
 		operatorModel.pencil = GetComponentInChildren<Pencil>();

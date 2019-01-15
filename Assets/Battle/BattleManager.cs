@@ -24,17 +24,24 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 		battleContext.ExecuteUpdate();
 	}
 
-	// 
-	public void StartThrowPhaseEachPencil() {
-		PlayerController.OperatorModel.pencil.StartThrowPhase();
-		ComputerController.OperatorModel.pencil.StartThrowPhase();
+	// 両者の投擲フェイズを開始
+	public void StartOutcomeDetectionEachPencil() {
+		PlayerController.OperatorModel.pencil.StartOutcomeDetection();
+		ComputerController.OperatorModel.pencil.StartOutcomeDetection();
 	}
 
+	// 出目が異なる値かチェック
 	public bool CheckOutcomesAreDifferent() {
-		return PlayerController.OperatorModel.pencil.Outcome 
-			!= ComputerController.OperatorModel.pencil.Outcome;
+
+		var playerOutcome = PlayerController.OperatorModel.pencil.Outcome;
+		var cpuOutcome = ComputerController.OperatorModel.pencil.Outcome;
+
+		if (playerOutcome == 0 || cpuOutcome == 0) return false;
+
+		return  playerOutcome != cpuOutcome;
 	}
 
+	// 両者のモンスターを召喚
 	public void SummonMonsters() {
 		PlayerController.OperatorModel.pencil.SummonMonster();
 		ComputerController.OperatorModel.pencil.SummonMonster();

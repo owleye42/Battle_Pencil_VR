@@ -30,7 +30,7 @@ public class Throw_ball : MonoBehaviour {
 		// 標的の座標
 		Vector3 targetPosition = targetObj.transform.position;
 		// 射出角度
-		float angle = Random.Range(-2, 5);
+		float angle = Random.Range(-7, 0);
 		// 射出速度を算出
 		Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
 		// 射出

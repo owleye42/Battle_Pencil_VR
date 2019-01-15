@@ -11,5 +11,4 @@ public class OperatorModel {
 
 	public EOperator eOperator;
 	public Pencil pencil;
-	public Transform initPencilPos;
 }

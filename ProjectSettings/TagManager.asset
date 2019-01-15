@@ -9,6 +9,7 @@ TagManager:
   - CPU
   - CPUTable
   - PlayerTable
+  - table
   layers:
   - Default
   - TransparentFX
