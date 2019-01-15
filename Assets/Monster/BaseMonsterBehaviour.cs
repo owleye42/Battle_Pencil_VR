@@ -45,13 +45,13 @@ public class BaseMonsterBehaviour : MonoBehaviour {
         isCounter = false;
 
 		if (monsterModel.skillList[skill_id].skillType == SkillType.Attack) {
-            if(EnemyBehavior.isCounter && monsterModel.skillList[skill_id].power >= 40){
-                monsterModel.hp -= EnemyBehavior.monsterModel.skillList[skill_id].power;
+            if(EnemyBehavior.isCounter){
+                monsterModel.hp -= EnemyBehavior.monsterModel.skillList[skill_id].power * 2;
                 Debug.Log(monsterModel.hp);
             }
             else{
-			EnemyBehavior.monsterModel.hp -= monsterModel.skillList[skill_id].power;
-			Debug.Log(EnemyBehavior.monsterModel.hp);
+			    EnemyBehavior.monsterModel.hp -= monsterModel.skillList[skill_id].power;
+			    Debug.Log(EnemyBehavior.monsterModel.hp);
             }
 		}
         else if(monsterModel.skillList[skill_id].skillType == SkillType.Heal) {
