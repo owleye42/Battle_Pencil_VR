@@ -105,7 +105,7 @@ public class Pencil : MonoBehaviour {
 		// 召喚されていないなら
 		if (IsSummoned == false) {
 			Debug.Log("summon!");
-			var monsterObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity);
+			Instantiate(monsterPrefab, transform.position, Quaternion.identity);
 
 			IsSummoned = true;
 		}

@@ -10,12 +10,9 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	public OperatorController PlayerController { get; set; }
 	public OperatorController ComputerController { get; set; }
 
-	public bool IsThrowable { get; set; }
-
 	protected override void Awake() {
 		base.Awake();
-
-		IsThrowable = false;
+		
 		battleContext = new BattleContext();
 	}
 
@@ -45,6 +42,5 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	public void SummonMonsters() {
 		PlayerController.OperatorModel.pencil.SummonMonster();
 		ComputerController.OperatorModel.pencil.SummonMonster();
-		
 	}
 }

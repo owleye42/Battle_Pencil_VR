@@ -21,7 +21,7 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 	}
 
 	void Start() {
-
+		GetComponentInParent<OperatorController>().OperatorModel.monsterBehaviour = this;
 	}
 
 	void Update() {
