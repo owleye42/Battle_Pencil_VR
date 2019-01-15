@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// バトルの初期化ステート
 /// </summary>
-public class BattleStateInit : IBattleState {
+public class BattleStateInit : IState<BattleContext> {
 
 	public void ExecuteEntry(BattleContext context) {
 		Debug.Log("[Entry] Battle State : Init");
@@ -29,7 +29,7 @@ public class BattleStateInit : IBattleState {
 	/// </summary>
 	bool Init() {
 
-		if (BattleManager.Instance.playerPencil && BattleManager.Instance.computerPencil) {
+		if (BattleManager.Instance.PlayerController && BattleManager.Instance.ComputerController) {
 			return true;
 		}
 

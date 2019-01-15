@@ -3,25 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterContext {
-	public readonly IMonsterState stateAppear = new MonsterStateAppear();
-	public readonly IMonsterState stateIdle = new MonsterStateIdle();
-	public readonly IMonsterState stateAction = new MonsterStateAction();
-	public readonly IMonsterState stateDeath = new MonsterStateDeath();
+	public readonly IState<MonsterContext> stateAppear = new MonsterStateAppear();
+	public readonly IState<MonsterContext> stateIdle = new MonsterStateIdle();
+	public readonly IState<MonsterContext> stateAction = new MonsterStateAction();
+	public readonly IState<MonsterContext> stateDeath = new MonsterStateDeath();
 
-	public readonly IMonsterState stateOffense = new MonsterStateDeath();
-	public readonly IMonsterState stateDefense = new MonsterStateDeath();
+	IState<MonsterContext> currentState;
 
-	IMonsterState currentState;
-
-	public bool isPlayerMosnter = false;
 	public bool isDone = false;
 
 	public MonsterContext() {
-		if (isPlayerMosnter)
-			BattleManager.Instance.playerMonsterContext = this;
-		else
-			BattleManager.Instance.computerMonsterContext = this;
-
 		currentState = stateAppear;
 		currentState.ExecuteEntry(this);
 	}
@@ -30,7 +21,7 @@ public class MonsterContext {
 		currentState.ExecuteUpdate(this);
 	}
 
-	public void ChangeState(IMonsterState state) {
+	public void ChangeState(IState<MonsterContext> state) {
 		currentState.ExecuteExit(this);
 		currentState = state;
 		isDone = false;

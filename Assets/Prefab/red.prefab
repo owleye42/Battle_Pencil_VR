@@ -109,25 +109,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterModel:
-    id: 1
+    id: 2
     name: HealModel
     hp: 100
     skillList:
+    - skillType: 3
+      targetType: 0
+      power: 0
+      text: "\u30DF\u30B9"
     - skillType: 0
       targetType: 0
-      power: 20
+      power: 10
+      text: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306B10\u306E\u30C0\u30E1\u30FC\u30B8"
     - skillType: 1
       targetType: 0
-      power: 20
+      power: 10
+      text: "HP10\u304B\u3044\u3075\u304F"
     - skillType: 0
       targetType: 0
-      power: 20
-    - skillType: 0
+      power: 30
+      text: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306B30\u306E\u30C0\u30E1\u30FC\u30B8"
+    - skillType: 3
       targetType: 0
-      power: 20
+      power: 0
+      text: "\u30DF\u30B9"
     - skillType: 1
       targetType: 0
-      power: 20
-    - skillType: 0
-      targetType: 0
-      power: 20
+      power: 30
+      text: "HP30\u304B\u3044\u3075\u304F"
+  EnemyBehavior: {fileID: 0}
+  isPlayer: 0
+  isCounter: 0

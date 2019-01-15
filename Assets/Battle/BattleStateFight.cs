@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// バトルの戦闘ステート
 /// </summary>
-public class BattleStateFight : IBattleState {
+public class BattleStateFight : IState<BattleContext> {
 
 	bool isEndGame = false;
 
