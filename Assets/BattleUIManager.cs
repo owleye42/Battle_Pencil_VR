@@ -13,17 +13,8 @@ public class BattleUIManager : MonoBehaviour
     // 仮の変数
     bool isPlayer = false;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
-    public void monsterUI()
+    
+    public void monsterHPUI()
     {
         if (isPlayer)
             playerUIModel.HPText.text = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.hp + " / " + playerUIModel.monsterMaxHP;
