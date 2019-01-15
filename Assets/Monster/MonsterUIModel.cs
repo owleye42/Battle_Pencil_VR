@@ -10,4 +10,5 @@ public class MonsterUIModel {
     public Image HPBar;
     public Text[] skillTexts;
     public Image frame;
+    public Image characterImage;
 }

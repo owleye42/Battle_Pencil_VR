@@ -10,6 +10,9 @@ public class BattleUIManager : MonoBehaviour
     [SerializeField]
     MonsterUIModel enemyUIModel;
 
+    [SerializeField]
+    Image[] characterImages = null;
+
     // 仮の変数
     bool isPlayer = false;
 
@@ -32,6 +35,7 @@ public class BattleUIManager : MonoBehaviour
             {
                 playerUIModel.skillTexts[i].name = "Skill" + i;
                 playerUIModel.skillTexts[i].text = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.skillList[i].text;
+                
             }
         }
         else
@@ -41,6 +45,30 @@ public class BattleUIManager : MonoBehaviour
             {
                 enemyUIModel.skillTexts[i].name = "Skill" + i;
                 enemyUIModel.skillTexts[i].text = BattleManager.Instance.computerMonsterBehaviour.MonsterModel.skillList[i].text;
+            }
+        }
+    }
+
+    private void CharacterImageSerect()
+    {
+        if (isPlayer)
+        {
+            for (int i = 0; i < characterImages.Length; ++i)
+            {
+                if (BattleManager.Instance.playerMonsterBehaviour.MonsterModel.id == i + 1)
+                {
+                    playerUIModel.characterImage = characterImages[i];
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < characterImages.Length; ++i)
+            {
+                if (BattleManager.Instance.computerMonsterBehaviour.MonsterModel.id == i + 1)
+                {
+                    enemyUIModel.characterImage = characterImages[i];
+                }
             }
         }
     }

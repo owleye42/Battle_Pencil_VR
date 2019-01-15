@@ -42,17 +42,9 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 	}
 
 	public void ActionSelect(int skill_id) {
-        isCounter = false;
-
 		if (monsterModel.skillList[skill_id].skillType == SkillType.Attack) {
-            if(EnemyBehavior.isCounter){
-                monsterModel.hp -= EnemyBehavior.monsterModel.skillList[skill_id].power * 2;
-                Debug.Log(monsterModel.hp);
-            }
-            else{
-			    EnemyBehavior.monsterModel.hp -= monsterModel.skillList[skill_id].power;
-			    Debug.Log(EnemyBehavior.monsterModel.hp);
-            }
+            EnemyBehavior.monsterModel.hp -= monsterModel.skillList[skill_id].power;
+			Debug.Log(EnemyBehavior.monsterModel.hp);
 		}
         else if(monsterModel.skillList[skill_id].skillType == SkillType.Heal) {
 			monsterModel.hp += monsterModel.skillList[skill_id].power;
