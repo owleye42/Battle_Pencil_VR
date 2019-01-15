@@ -24,6 +24,13 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 
 	void Start() {
 		GetComponentInParent<OperatorController>().OperatorModel.monsterBehaviour = this;
+
+		if(gameObject.tag == "Player") {
+			MonsterManager.Instance.PlayerMonsterBehaviour = this;
+		}
+		else if(gameObject.tag == "Computer") {
+			MonsterManager.Instance.ComputerMonsterBehaviour = this;
+		}
 	}
 
 	void Update() {

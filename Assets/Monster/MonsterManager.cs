@@ -2,15 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterManager : MonoBehaviour {
+public class MonsterManager : BaseSingletonMono<MonsterManager> {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public BaseMonsterBehaviour PlayerMonsterBehaviour { get; set; }
+	public BaseMonsterBehaviour ComputerMonsterBehaviour { get; set; }
 }

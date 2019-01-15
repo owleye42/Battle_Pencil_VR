@@ -17,9 +17,9 @@ public class BattleUIManager : MonoBehaviour
     public void monsterHPUI()
     {
         if (isPlayer)
-            playerUIModel.HPText.text = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.hp + " / " + playerUIModel.monsterMaxHP;
+            playerUIModel.HPText.text = MonsterManager.Instance.PlayerMonsterBehaviour.MonsterModel.hp + " / " + playerUIModel.monsterMaxHP;
         else
-            enemyUIModel.HPText.text = BattleManager.Instance.computerMonsterBehaviour.MonsterModel.hp + " / " + enemyUIModel.monsterMaxHP;
+            enemyUIModel.HPText.text = MonsterManager.Instance.ComputerMonsterBehaviour.MonsterModel.hp + " / " + enemyUIModel.monsterMaxHP;
     }
 
     // 生成されるタイミングで一回呼ぶ
@@ -27,20 +27,20 @@ public class BattleUIManager : MonoBehaviour
     {
         if (isPlayer)
         {
-            playerUIModel.monsterMaxHP = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.hp;
-            for (int i = 0; i < BattleManager.Instance.playerMonsterBehaviour.MonsterModel.skillList.Count; ++i)
+            playerUIModel.monsterMaxHP = MonsterManager.Instance.PlayerMonsterBehaviour.MonsterModel.hp;
+            for (int i = 0; i < MonsterManager.Instance.PlayerMonsterBehaviour.MonsterModel.skillList.Count; ++i)
             {
                 playerUIModel.skillTexts[i].name = "Skill" + i;
-                playerUIModel.skillTexts[i].text = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.skillList[i].text;
+                playerUIModel.skillTexts[i].text = MonsterManager.Instance.PlayerMonsterBehaviour.MonsterModel.skillList[i].text;
             }
         }
         else
         {
-            enemyUIModel.monsterMaxHP = BattleManager.Instance.computerMonsterBehaviour.MonsterModel.hp;
-            for (int i = 0; i < BattleManager.Instance.computerMonsterBehaviour.MonsterModel.skillList.Count; ++i)
+            enemyUIModel.monsterMaxHP = MonsterManager.Instance.ComputerMonsterBehaviour.MonsterModel.hp;
+            for (int i = 0; i < MonsterManager.Instance.ComputerMonsterBehaviour.MonsterModel.skillList.Count; ++i)
             {
                 enemyUIModel.skillTexts[i].name = "Skill" + i;
-                enemyUIModel.skillTexts[i].text = BattleManager.Instance.computerMonsterBehaviour.MonsterModel.skillList[i].text;
+                enemyUIModel.skillTexts[i].text = MonsterManager.Instance.ComputerMonsterBehaviour.MonsterModel.skillList[i].text;
             }
         }
     }
