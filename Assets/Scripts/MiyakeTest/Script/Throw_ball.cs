@@ -25,15 +25,13 @@ public class Throw_ball : MonoBehaviour {
 	}
 
 	public void ThrowPencil() {
-		TableManager.instance.cpuTable.AllDisable();
-		TableManager.instance.cpuTable.OfEneyTurnCol();
 		pen.transform.position = transform.position;
 
 		// 標的の座標
 		Vector3 targetPosition = targetObj.transform.position;
 		// 射出角度
-		float angle = tAngle;//Random.Range(41,49) ;
-							 // 射出速度を算出
+		float angle = Random.Range(-2, 5);
+		// 射出速度を算出
 		Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
 		// 射出
 		Rigidbody rigidbody = pen.GetComponent<Rigidbody>();

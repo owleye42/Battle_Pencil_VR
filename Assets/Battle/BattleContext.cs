@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleContext {
-	public readonly IBattleState stateInit = new BattleStateInit();
-	public readonly IBattleState stateOffensiveDecision = new BattleStateOffensiveDecision();
-	public readonly IBattleState stateFight = new BattleStateFight();
-	public readonly IBattleState stateResult = new BattleStateResult();
+	public readonly IState<BattleContext> stateInit = new BattleStateInit();
+	public readonly IState<BattleContext> stateOffensiveDecision = new BattleStateOffensiveDecision();
+	public readonly IState<BattleContext> stateFight = new BattleStateFight();
+	public readonly IState<BattleContext> stateResult = new BattleStateResult();
 
-	public IBattleState CurrentState { get; private set; }
+	public IState<BattleContext> CurrentState { get; private set; }
+
+	public bool isDone = false;
 
 	/// <summary>
 	/// 生成時
@@ -21,25 +23,19 @@ public class BattleContext {
 
 	/// <summary>
 	/// 滞在中のステートの ExecuteUpdate() を実行
-	/// モンスターのコンテキストの ExecuteUpdate() を実行
 	/// </summary>
 	public void ExecuteUpdate() {
 		CurrentState.ExecuteUpdate(this);
-
-		if (BattleManager.Instance.playerMonsterContext != null)
-			BattleManager.Instance.playerMonsterContext.ExecuteUpdate();
-
-		if (BattleManager.Instance.computerMonsterContext != null)
-			BattleManager.Instance.computerMonsterContext.ExecuteUpdate();
 	}
 
 	/// <summary>
 	/// ステート遷移
 	/// </summary>
 	/// <param name="state">遷移先のステート</param>
-	public void ChangeState(IBattleState state) {
+	public void ChangeState(IState<BattleContext> state) {
 		CurrentState.ExecuteExit(this);
 		CurrentState = state;
+		isDone = false;
 		CurrentState.ExecuteEntry(this);
 	}
 }

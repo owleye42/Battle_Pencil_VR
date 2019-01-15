@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// モンスターの待機ステート
 /// </summary>
-public class MonsterStateDeath : IMonsterState {
+public class MonsterStateDeath : IState<MonsterContext> {
 
 	public void ExecuteEntry(MonsterContext context) {
 

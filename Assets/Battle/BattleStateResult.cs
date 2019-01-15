@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// バトルの結果ステート
 /// </summary>
-public class BattleStateResult : IBattleState {
+public class BattleStateResult : IState<BattleContext> {
 
 	public void ExecuteEntry(BattleContext context) {
 		Debug.Log("[Entry] Battle State : Result");

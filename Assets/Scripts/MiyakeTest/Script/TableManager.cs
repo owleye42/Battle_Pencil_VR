@@ -19,7 +19,6 @@ public class TableManager : MonoBehaviour {
 
     public Table playerTabel;
     public Table cpuTable;
-    
 	
 	// Update is called once per frame
 	void Update () {

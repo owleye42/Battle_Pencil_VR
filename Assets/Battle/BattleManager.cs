@@ -7,17 +7,8 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	BattleContext battleContext;
 	public BattleContext BattleContext { get; private set; }
 
-	public BaseMonsterBehaviour playerMonsterBehaviour = null;
-	public BaseMonsterBehaviour computerMonsterBehaviour = null;
-
-	public MonsterContext playerMonsterContext = null;
-	public MonsterContext computerMonsterContext = null;
-
-	public Pencil playerPencil = null;
-	public Pencil computerPencil = null;
-
-	public Transform playerMonsterStandingTransform;
-	public Transform computerMonsterStandingTransform;
+	public OperatorController PlayerController { get; set; }
+	public OperatorController ComputerController { get; set; }
 
 	public bool IsThrowable { get; set; }
 
@@ -33,16 +24,20 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 		battleContext.ExecuteUpdate();
 	}
 
-	public void StartThrowPhasePencils() {
-		playerPencil.StartThrowPhase();
-		computerPencil.StartThrowPhase();
+	// 
+	public void StartThrowPhaseEachPencil() {
+		PlayerController.OperatorModel.pencil.StartThrowPhase();
+		ComputerController.OperatorModel.pencil.StartThrowPhase();
 	}
 
-	public bool CheckPencilsAreEnd() {
-		return playerPencil.IsEnd && computerPencil.IsEnd;
+	public bool CheckOutcomesAreDifferent() {
+		return PlayerController.OperatorModel.pencil.Outcome 
+			!= ComputerController.OperatorModel.pencil.Outcome;
 	}
 
-	public bool CheckOutcomesDifference() {
-		return playerPencil.Outcome == computerPencil.Outcome;
+	public void SummonMonsters() {
+		PlayerController.OperatorModel.pencil.SummonMonster();
+		ComputerController.OperatorModel.pencil.SummonMonster();
+		
 	}
 }
