@@ -92,8 +92,10 @@ public class Pencil : MonoBehaviour {
 		if (monsterInstance == null) {
 			monsterInstance = Instantiate(monsterPrefab, transform.position, Quaternion.identity);
 			monsterInstance.GetComponent<BaseMonsterBehaviour>().isPlayer = isPlayer;
-		}
+            StartCoroutine(monsterInstance.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(monsterInstance,GameObject.Find("ComputerMonsterPosition").transform.position,45f));
 
+        }
+    
 		yield return null;
 	}
 
@@ -111,7 +113,7 @@ public class Pencil : MonoBehaviour {
 		if (Physics.Raycast(ray, out hit, 1)) {
 			if (hit.collider.tag == "numbers") {
 				num = hit.collider.gameObject.GetComponent<number>().num;
-				Debug.Log("出目" + num);
+			//	Debug.Log("出目" + num);
 				return num;
 			}
 		}
