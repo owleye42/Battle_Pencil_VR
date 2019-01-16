@@ -23,7 +23,9 @@ public class Pencil : MonoBehaviour {
 		Outcome = 0;
 		TmpOutcome = 0;
 		IsSummoned = false;
-		GetComponent<Rigidbody>().velocity = Vector3.zero;
+		var rigidbody = GetComponent<Rigidbody>();
+		rigidbody.velocity = Vector3.zero;
+		rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
 	}
 
 	private void Awake() {
@@ -69,8 +71,7 @@ public class Pencil : MonoBehaviour {
 				
 				break;
 			}
-
-
+			
 		   yield return null;
 		}
 	}

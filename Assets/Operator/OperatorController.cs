@@ -17,9 +17,9 @@ public class OperatorController : MonoBehaviour {
 		operatorModel.pencil = GetComponentInChildren<Pencil>();
 
 		if(operatorModel.eOperator == OperatorModel.EOperator.Player)
-			BattleManager.Instance.PlayerController = this;
+			OperatorManager.Instance.PlayerController = this;
 		else if(operatorModel.eOperator == OperatorModel.EOperator.Computer)
-			BattleManager.Instance.ComputerController = this;
+			OperatorManager.Instance.ComputerController = this;
 	}
 
 	void Update() {

@@ -3,35 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleManager : BaseSingletonMono<BattleManager> {
-
-	BattleContext battleContext;
+	
 	public BattleContext BattleContext { get; private set; }
-
-	public OperatorController PlayerController { get; set; }
-	public OperatorController ComputerController { get; set; }
 
 	protected override void Awake() {
 		base.Awake();
 		
-		battleContext = new BattleContext();
+		BattleContext = new BattleContext();
 	}
 
 	void Update() {
 		// コンテキストのステート滞在中の処理
-		battleContext.ExecuteUpdate();
+		BattleContext.ExecuteUpdate();
 	}
 
 	// 両者の投擲フェイズを開始
 	public void StartOutcomeDetectionEachPencil() {
-		PlayerController.OperatorModel.pencil.StartOutcomeDetection();
-		ComputerController.OperatorModel.pencil.StartOutcomeDetection();
+		OperatorManager.Instance.PlayerController.OperatorModel.pencil.StartOutcomeDetection();
+		OperatorManager.Instance.ComputerController.OperatorModel.pencil.StartOutcomeDetection();
 	}
 
 	// 出目が異なる値かチェック
 	public bool CheckOutcomesAreDifferent() {
 
-		var playerOutcome = PlayerController.OperatorModel.pencil.Outcome;
-		var cpuOutcome = ComputerController.OperatorModel.pencil.Outcome;
+		var playerOutcome = OperatorManager.Instance.PlayerController.OperatorModel.pencil.Outcome;
+		var cpuOutcome = OperatorManager.Instance.ComputerController.OperatorModel.pencil.Outcome;
 
 		if (playerOutcome == 0 || cpuOutcome == 0) return false;
 
@@ -40,7 +36,7 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 
 	// 両者のモンスターを召喚
 	public void SummonMonsters() {
-		PlayerController.OperatorModel.pencil.SummonMonster();
-		ComputerController.OperatorModel.pencil.SummonMonster();
+		OperatorManager.Instance.PlayerController.OperatorModel.pencil.SummonMonster();
+		OperatorManager.Instance.ComputerController.OperatorModel.pencil.SummonMonster();
 	}
 }
