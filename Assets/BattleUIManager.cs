@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BattleUIManager : MonoBehaviour
+public class BattleUIManager : MonoBehaviour 
 {
     [SerializeField]
     MonsterUIModel playerUIModel;
@@ -14,36 +14,36 @@ public class BattleUIManager : MonoBehaviour
     bool isPlayer = false;
 
     
-    public void monsterHPUI()
-    {
-        if (isPlayer)
-            playerUIModel.HPText.text = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.hp + " / " + playerUIModel.monsterMaxHP;
-        else
-            enemyUIModel.HPText.text = BattleManager.Instance.computerMonsterBehaviour.MonsterModel.hp + " / " + enemyUIModel.monsterMaxHP;
-    }
+    //public void monsterHPUI()
+    //{
+    //    if (isPlayer)
+    //        playerUIModel.HPText.text = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.hp + " / " + playerUIModel.monsterMaxHP;
+    //    else
+    //        enemyUIModel.HPText.text = BattleManager.Instance.computerMonsterBehaviour.MonsterModel.hp + " / " + enemyUIModel.monsterMaxHP;
+    //}
 
-    // 生成されるタイミングで一回呼ぶ
-    public void Init()
-    {
-        if (isPlayer)
-        {
-            playerUIModel.monsterMaxHP = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.hp;
-            for (int i = 0; i < BattleManager.Instance.playerMonsterBehaviour.MonsterModel.skillList.Count; ++i)
-            {
-                playerUIModel.skillTexts[i].name = "Skill" + i;
-                playerUIModel.skillTexts[i].text = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.skillList[i].text;
-            }
-        }
-        else
-        {
-            enemyUIModel.monsterMaxHP = BattleManager.Instance.computerMonsterBehaviour.MonsterModel.hp;
-            for (int i = 0; i < BattleManager.Instance.computerMonsterBehaviour.MonsterModel.skillList.Count; ++i)
-            {
-                enemyUIModel.skillTexts[i].name = "Skill" + i;
-                enemyUIModel.skillTexts[i].text = BattleManager.Instance.computerMonsterBehaviour.MonsterModel.skillList[i].text;
-            }
-        }
-    }
+    //// 生成されるタイミングで一回呼ぶ
+    //public void Init()
+    //{
+    //    if (isPlayer)
+    //    {
+    //        playerUIModel.monsterMaxHP = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.hp;
+    //        for (int i = 0; i < BattleManager.Instance.playerMonsterBehaviour.MonsterModel.skillList.Count; ++i)
+    //        {
+    //            playerUIModel.skillTexts[i].name = "Skill" + i;
+    //            playerUIModel.skillTexts[i].text = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.skillList[i].text;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        enemyUIModel.monsterMaxHP = BattleManager.Instance.computerMonsterBehaviour.MonsterModel.hp;
+    //        for (int i = 0; i < BattleManager.Instance.computerMonsterBehaviour.MonsterModel.skillList.Count; ++i)
+    //        {
+    //            enemyUIModel.skillTexts[i].name = "Skill" + i;
+    //            enemyUIModel.skillTexts[i].text = BattleManager.Instance.computerMonsterBehaviour.MonsterModel.skillList[i].text;
+    //        }
+    //    }
+    //}
 
     public void SkillSelect(int num)
     {
