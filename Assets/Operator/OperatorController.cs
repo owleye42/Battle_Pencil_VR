@@ -12,8 +12,9 @@ public class OperatorController : MonoBehaviour {
 
 	[SerializeField]
 	Transform monsterStandPos;
+    public Transform MonsterStandPos { get { return monsterStandPos; } }
 
-	private void Start() {
+    private void Start() {
 		operatorModel.pencil = GetComponentInChildren<Pencil>();
 
 		if(operatorModel.eOperator == OperatorModel.EOperator.Player)

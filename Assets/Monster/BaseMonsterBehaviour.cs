@@ -23,14 +23,15 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 	}
 
 	void Start() {
-		GetComponentInParent<OperatorController>().OperatorModel.monsterBehaviour = this;
+        if (this.gameObject.tag == "Player")
+        {
+            MonsterManager.Instance.PlayerMonsterBehaviour=this;
+        }else if (this.gameObject.tag == "CPU")
+        {
+            MonsterManager.Instance.ComputerMonsterBehaviour = this;
+        }
 
-		if(gameObject.tag == "Player") {
-			MonsterManager.Instance.PlayerMonsterBehaviour = this;
-		}
-		else if(gameObject.tag == "Computer") {
-			MonsterManager.Instance.ComputerMonsterBehaviour = this;
-		}
+
 	}
 
 	void Update() {
@@ -62,51 +63,47 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 		}
 	}
 
-    public IEnumerator GetJumpimgOnuma(GameObject jumpObj, Vector3 targetPosition, float tAngle)
+    public IEnumerator GetJumpimgOnuma(Vector3 targetPos)
     {
-        StartCoroutine(JumpingOnuma( jumpObj,  targetPosition, tAngle));
+        StartCoroutine(JumpingOnuma( targetPos));
         yield return null;
     }
 
-    IEnumerator JumpingOnuma(GameObject jumpObj,Vector3 targetPosition,float tAngle)
+    IEnumerator JumpingOnuma(Vector3 targetPos)
     {
-        Debug.Log("超エキサイティング！");
-        	// 標的の座標
-        // 射出角度
-        float angle = tAngle;
-        Vector3 velocity = CalculateVelocity(jumpObj.transform.position, targetPosition, angle);
+        while (true)
+        {
+            var distance= Vector3.Distance(this.transform.position,targetPos);
+            while (distance > 0.15f)
+            {
+                distance = Vector3.Distance(this.transform.position, targetPos);
 
-        Rigidbody rigidbody = GetComponent<Rigidbody>();
-        rigidbody.velocity = Vector3.zero;
-        rigidbody.AddForce(velocity * rigidbody.mass, ForceMode.Impulse);
+                Vector3 targetDir = new Vector3(targetPos.x, transform.position.y, targetPos.z) - transform.position;
+                Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 100, 0f);
+                transform.rotation = Quaternion.LookRotation(newDir);
 
-        yield return null;
+                var rb = GetComponent<Rigidbody>();
+
+                rb.AddForce(transform.forward);
+                yield return null;
+            }
+
+            if (distance < 0.15)
+            {
+                if (this.gameObject.tag == "Player")
+            { 
+                    this.transform.rotation = Quaternion.LookRotation(MonsterManager.Instance.ComputerMonsterBehaviour.gameObject.transform.position - transform.position);
+            }
+            else if (this.gameObject.tag == "CPU")
+            {
+                this.transform.rotation = Quaternion.LookRotation(MonsterManager.Instance.PlayerMonsterBehaviour.gameObject.transform.position - transform.position);
+            }
+            }
+
+
+            break;
+        }
     }
 
     
-
-    private Vector3 CalculateVelocity(Vector3 pointA, Vector3 pointB, float angle)
-    {
-        // 射出角をラジアンに変換
-        float rad = angle * Mathf.PI / 180;
-
-        // 水平方向の距離x
-        float x = Vector2.Distance(new Vector2(pointA.x, pointA.z), new Vector2(pointB.x, pointB.z));
-
-        // 垂直方向の距離y
-        float y = pointA.y - pointB.y;
-
-        // 斜方投射の公式を初速度について解く
-        float speed = Mathf.Sqrt(-Physics.gravity.y * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y)));
-
-        if (float.IsNaN(speed))
-        {
-            // 条件を満たす初速を算出できなければVector3.zeroを返す
-            return Vector3.zero;
-        }
-        else
-        {
-            return (new Vector3(pointB.x - pointA.x, x * Mathf.Tan(rad), pointB.z - pointA.z).normalized * speed);
-        }
-    }
 }

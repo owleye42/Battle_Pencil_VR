@@ -107,8 +107,17 @@ public class Pencil : MonoBehaviour {
 			var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity);
 
 			monsObj.tag = gameObject.tag;
+            if (monsObj.gameObject.tag == "CPU")
+            {
+                monsObj.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(BattleManager.Instance.ComputerController.MonsterStandPos.position);
+            }
+            else
+            {
+                monsObj.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(BattleManager.Instance.PlayerController.MonsterStandPos.position);
 
-			IsSummoned = true;
+            }
+
+            IsSummoned = true;
 		}
 	}
 }
