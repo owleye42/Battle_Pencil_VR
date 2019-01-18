@@ -15,7 +15,7 @@ public class BattleStateOffensiveDecision : IState<BattleContext> {
 
 	public void ExecuteUpdate(BattleContext context) {
 
-		// 全ての処理が終わっているなら
+		// 全ての処理が終わっていないなら
 		if (!context.isDone) {
 
 			// 互いの出目が異値なら
@@ -25,7 +25,7 @@ public class BattleStateOffensiveDecision : IState<BattleContext> {
 				BattleManager.Instance.SummonMonsters();
 
 				// n秒後にステート遷移
-				Observable.Timer(TimeSpan.FromMilliseconds(500)).Subscribe(_ =>
+				Observable.Timer(TimeSpan.FromSeconds(3)).Subscribe(_ =>
 					context.ChangeState(context.stateFight)
 				);
 
@@ -35,6 +35,6 @@ public class BattleStateOffensiveDecision : IState<BattleContext> {
 	}
 
 	public void ExecuteExit(BattleContext context) {
-		Debug.Log("[Entry] Battle State : Offensive Decision");
+		Debug.Log("[Exit] Battle State : Offensive Decision");
 	}
 }

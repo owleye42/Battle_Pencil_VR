@@ -34,7 +34,7 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 	}
 
 	void Update() {
-
+		monsterContext.ExecuteUpdate();
 	}
 
 	public void ActionSelect(int skill_id) {

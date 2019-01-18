@@ -29,7 +29,7 @@ public class BattleStateInit : IState<BattleContext> {
 	/// </summary>
 	bool Init() {
 
-		if (BattleManager.Instance.PlayerController && BattleManager.Instance.ComputerController) {
+		if (OperatorManager.Instance.PlayerController && OperatorManager.Instance.ComputerController) {
 			return true;
 		}
 
