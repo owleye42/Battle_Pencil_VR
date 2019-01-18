@@ -8,18 +8,18 @@ public class OperatorController : MonoBehaviour {
 	OperatorModel operatorModel;
 	public OperatorModel OperatorModel { get { return operatorModel; } }
 
-	readonly OperatorContext operatorContext = new OperatorContext();
-
 	[SerializeField]
 	Transform monsterStandPos;
+
+	readonly OperatorContext operatorContext = new OperatorContext();
 
 	private void Start() {
 		operatorModel.pencil = GetComponentInChildren<Pencil>();
 
 		if(operatorModel.eOperator == OperatorModel.EOperator.Player)
-			BattleManager.Instance.PlayerController = this;
+			OperatorManager.Instance.PlayerController = this;
 		else if(operatorModel.eOperator == OperatorModel.EOperator.Computer)
-			BattleManager.Instance.ComputerController = this;
+			OperatorManager.Instance.ComputerController = this;
 	}
 
 	void Update() {

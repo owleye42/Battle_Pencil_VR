@@ -6,7 +6,8 @@ public class Throw_ball : MonoBehaviour {
 
 	[SerializeField] GameObject penPref;
 	[SerializeField] GameObject targetObj;
-	[SerializeField] float tAngle;
+	[SerializeField, Range(-30, 30)] float tAngle;
+	[SerializeField, Range(0, 20)] float tRange;
 	[SerializeField] Judgment judgment;
 
 	[SerializeField] GameObject pen = null;
@@ -21,7 +22,7 @@ public class Throw_ball : MonoBehaviour {
 		// 標的の座標
 		Vector3 targetPosition = targetObj.transform.position;
 		// 射出角度
-		float angle = Random.Range(-7, 0);
+		float angle = tAngle + Random.Range(-tRange/2, tRange / 2);
 		// 射出速度を算出
 		Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
 		// 射出
