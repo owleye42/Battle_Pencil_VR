@@ -35,6 +35,6 @@ public class BattleStateOffensiveDecision : IState<BattleContext> {
 	}
 
 	public void ExecuteExit(BattleContext context) {
-		Debug.Log("[Entry] Battle State : Offensive Decision");
+		Debug.Log("[Exit] Battle State : Offensive Decision");
 	}
 }

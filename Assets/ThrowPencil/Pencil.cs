@@ -23,9 +23,9 @@ public class Pencil : MonoBehaviour {
 		Outcome = 0;
 		TmpOutcome = 0;
 		IsSummoned = false;
-		var rigidbody = GetComponent<Rigidbody>();
-		rigidbody.velocity = Vector3.zero;
-		rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
+		//var rigidbody = GetComponent<Rigidbody>();
+		//rigidbody.velocity = Vector3.zero;
+		//rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
 	}
 
 	private void Awake() {
@@ -105,7 +105,7 @@ public class Pencil : MonoBehaviour {
 	public void SummonMonster() {
 		// 召喚されていないなら
 		if (IsSummoned == false) {
-			var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity);
+			var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity, transform.parent.transform);
 
 			monsObj.tag = gameObject.tag;
 
