@@ -3,89 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BattleUIManager : MonoBehaviour
+public class BattleUIManager : BaseSingletonMono<BattleUIManager>
 {
-    [SerializeField]
-    MonsterUIModel playerUIModel;
-    [SerializeField]
-    MonsterUIModel enemyUIModel;
+    UIContainer container;
 
-    [SerializeField]
-    Image[] characterImages = null;
+    MonsterUIModel model;
+    BaseMonsterBehaviour monsterBehavior;
 
-    // 仮の変数
-    bool isPlayer = false;
-
-    
-    public void monsterHPUI()
+    private void Start()
     {
-        if (isPlayer)
-            playerUIModel.HPText.text = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.hp + " / " + playerUIModel.monsterMaxHP;
-        else
-            enemyUIModel.HPText.text = BattleManager.Instance.computerMonsterBehaviour.MonsterModel.hp + " / " + enemyUIModel.monsterMaxHP;
+        Awake();
     }
 
     // 生成されるタイミングで一回呼ぶ
-    public void Init()
+    public void Init(MonsterUIModel mModel, BaseMonsterBehaviour mBehavior)
     {
-        if (isPlayer)
+        model = mModel;
+        monsterBehavior = mBehavior;
+
+        model.monsterMaxHP = monsterBehavior.MonsterModel.hp;
+        for (int i = 0; i < monsterBehavior.MonsterModel.skillList.Count; ++i)
         {
-            playerUIModel.monsterMaxHP = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.hp;
-            for (int i = 0; i < BattleManager.Instance.playerMonsterBehaviour.MonsterModel.skillList.Count; ++i)
-            {
-                playerUIModel.skillTexts[i].name = "Skill" + i;
-                playerUIModel.skillTexts[i].text = BattleManager.Instance.playerMonsterBehaviour.MonsterModel.skillList[i].text;
-                
-            }
+            model.skillTexts[i].name = "Skill" + i;
+            model.skillTexts[i].text = monsterBehavior.MonsterModel.skillList[i].text;
         }
-        else
-        {
-            enemyUIModel.monsterMaxHP = BattleManager.Instance.computerMonsterBehaviour.MonsterModel.hp;
-            for (int i = 0; i < BattleManager.Instance.computerMonsterBehaviour.MonsterModel.skillList.Count; ++i)
-            {
-                enemyUIModel.skillTexts[i].name = "Skill" + i;
-                enemyUIModel.skillTexts[i].text = BattleManager.Instance.computerMonsterBehaviour.MonsterModel.skillList[i].text;
-            }
-        }
+    }
+
+    public void monsterHPUI()
+    {
+        model.HPText.text = monsterBehavior.MonsterModel.hp + " / " + model.monsterMaxHP;
     }
 
     private void CharacterImageSerect()
     {
-        if (isPlayer)
+        for (int i = 0; i < container.characterImages.Length; ++i)
         {
-            for (int i = 0; i < characterImages.Length; ++i)
+            if (monsterBehavior.MonsterModel.id == i + 1)
             {
-                if (BattleManager.Instance.playerMonsterBehaviour.MonsterModel.id == i + 1)
-                {
-                    playerUIModel.characterImage = characterImages[i];
-                }
-            }
-        }
-        else
-        {
-            for (int i = 0; i < characterImages.Length; ++i)
-            {
-                if (BattleManager.Instance.computerMonsterBehaviour.MonsterModel.id == i + 1)
-                {
-                    enemyUIModel.characterImage = characterImages[i];
-                }
+                model.characterImage = container.characterImages[i];
             }
         }
     }
 
     public void SkillSelect(int num)
     {
-        if (isPlayer)
-            playerUIModel.frame.transform.position = playerUIModel.skillTexts[num].transform.position;
-        else
-            enemyUIModel.frame.transform.position = enemyUIModel.skillTexts[num].transform.position;
+        model.frame.transform.position = model.skillTexts[num].transform.position;
     }
 
     public void SkillDecision()
     {
-        if(isPlayer)
-            playerUIModel.frame.color = new Color(1f, 1f, 1f, Mathf.Clamp(Mathf.Cos(30f * Time.time), 0f, 1f));
-        else
-            enemyUIModel.frame.color = new Color(1f, 1f, 1f, Mathf.Clamp(Mathf.Cos(30f * Time.time), 0f, 1f));
+        model.frame.color = new Color(1f, 1f, 1f, Mathf.Clamp(Mathf.Cos(30f * Time.time), 0f, 1f));
     }
 }
