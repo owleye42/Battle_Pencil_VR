@@ -28,7 +28,7 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 		if(gameObject.tag == "Player") {
 			MonsterManager.Instance.PlayerMonsterBehaviour = this;
 		}
-		else if(gameObject.tag == "Computer") {
+		else if(gameObject.tag == "CPU") {
 			MonsterManager.Instance.ComputerMonsterBehaviour = this;
 		}
 	}
