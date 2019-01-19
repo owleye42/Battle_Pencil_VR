@@ -2188,21 +2188,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1873731066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 351a497537c251f488b68fa4f991065c, type: 3}
+  m_Script: {fileID: 11500000, guid: 94a89451f1d3c3841872acfa24c21d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUIModel:
-    monsterMaxHP: 100
-    HPText: {fileID: 117219812}
-    HPBar: {fileID: 126642115}
-    skillTexts: []
+  playerUI:
+    monsterMaxHP: 0
+    HPText: {fileID: 0}
+    HPBar: {fileID: 0}
+    skillTexts:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     frame: {fileID: 0}
-  enemyUIModel:
-    monsterMaxHP: 100
-    HPText: {fileID: 542470503}
-    HPBar: {fileID: 1141092556}
-    skillTexts: []
+    characterImage: {fileID: 0}
+  enemyUI:
+    monsterMaxHP: 0
+    HPText: {fileID: 0}
+    HPBar: {fileID: 0}
+    skillTexts:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     frame: {fileID: 0}
+    characterImage: {fileID: 0}
+  characterImages: []
 --- !u!4 &1873731068
 Transform:
   m_ObjectHideFlags: 0

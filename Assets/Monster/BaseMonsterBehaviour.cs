@@ -10,11 +10,11 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 
 	public BaseMonsterBehaviour EnemyBehavior;
 
-	public bool isPlayer = false;
-
 	MonsterContext monsterContext = null;
 
-    public bool isCounter = false;
+    // カウンター用
+    public int enemyPower = 0;
+    public bool isAttack = false;
 
     Transform standingTransform;
 
@@ -38,28 +38,30 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 	}
 
 	public void ActionSelect(int skill_id) {
-        isCounter = false;
-
 		if (monsterModel.skillList[skill_id].skillType == SkillType.Attack) {
-            if(EnemyBehavior.isCounter){
-                monsterModel.hp -= EnemyBehavior.monsterModel.skillList[skill_id].power * 2;
-                Debug.Log(monsterModel.hp);
-            }
-            else{
-			    EnemyBehavior.monsterModel.hp -= monsterModel.skillList[skill_id].power;
-			    Debug.Log(EnemyBehavior.monsterModel.hp);
-            }
+            isAttack = true;
+            enemyPower = monsterModel.skillList[skill_id].power;
+            EnemyBehavior.monsterModel.hp -= monsterModel.skillList[skill_id].power;
+			Debug.Log(EnemyBehavior.monsterModel.hp);
 		}
         else if(monsterModel.skillList[skill_id].skillType == SkillType.Heal) {
 			monsterModel.hp += monsterModel.skillList[skill_id].power;
 			Debug.Log(monsterModel.hp);
 		}
         else if(monsterModel.skillList[skill_id].skillType == SkillType.Counter){
-            isCounter = true;
+            if (EnemyBehavior.isAttack)
+            {
+                EnemyBehavior.monsterModel.hp -=  EnemyBehavior.enemyPower * 2;
+                Debug.Log(EnemyBehavior.monsterModel.hp);
+            }
+            else
+                Debug.Log("MISS!!!!!!!!!!!!!!");
         }
-		else if (monsterModel.skillList[skill_id].skillType == SkillType.Miss) {
+        else if (monsterModel.skillList[skill_id].skillType == SkillType.Miss) {
 			Debug.Log("MISS!!!!!!!!!!!!!!!!");
 		}
+
+        EnemyBehavior.isAttack = false;
 	}
 
     public IEnumerator GetJumpimgOnuma(GameObject jumpObj, Vector3 targetPosition, float tAngle)
