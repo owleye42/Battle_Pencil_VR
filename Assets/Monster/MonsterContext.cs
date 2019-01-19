@@ -5,7 +5,9 @@ using UnityEngine;
 public class MonsterContext {
 	public readonly IState<MonsterContext> stateAppear = new MonsterStateAppear();
 	public readonly IState<MonsterContext> stateIdle = new MonsterStateIdle();
-	public readonly IState<MonsterContext> stateAction = new MonsterStateAction();
+	public readonly IState<MonsterContext> stateAttack = new MonsterStateAttack();
+    public readonly IState<MonsterContext> stateCounter = new MonsterStateCounter();
+    public readonly IState<MonsterContext> stateHeal = new MonsterStateHeal();
 	public readonly IState<MonsterContext> stateDeath = new MonsterStateDeath();
 
 	IState<MonsterContext> currentState;

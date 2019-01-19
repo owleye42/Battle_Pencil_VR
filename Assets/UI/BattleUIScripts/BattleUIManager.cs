@@ -16,7 +16,7 @@ public class BattleUIManager : BaseSingletonMono<BattleUIManager>
     }
 
     // 生成されるタイミングで一回呼ぶ
-    public void Init(MonsterUIModel mModel, BaseMonsterBehaviour mBehavior)
+    public void Init(ref MonsterUIModel mModel, ref BaseMonsterBehaviour mBehavior)
     {
         model = mModel;
         monsterBehavior = mBehavior;
