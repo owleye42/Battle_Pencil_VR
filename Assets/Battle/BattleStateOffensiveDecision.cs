@@ -14,7 +14,7 @@ public class BattleStateOffensiveDecision : IState<BattleContext> {
 
 	public void ExecuteEntry(BattleContext context) {
 		Debug.Log("[Entry] Battle State : Offensive Decision");
-		BattleManager.Instance.StartOutcomeDetection();
+		BattleManager.Instance.StartPencilsOutcomeDetection();
 	}
 
 	public void ExecuteUpdate(BattleContext context) {
@@ -43,7 +43,7 @@ public class BattleStateOffensiveDecision : IState<BattleContext> {
 				}
 				// 互いの出目が同値なら
 				else if (BattleManager.Instance.CheckEachOutcomeSame()) {
-					BattleManager.Instance.StartOutcomeDetection();
+					BattleManager.Instance.StartPencilsOutcomeDetection();
 				}
 			}
 		}

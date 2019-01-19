@@ -12,7 +12,7 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 
 	protected override void Awake() {
 		base.Awake();
-		
+
 		BattleContext = new BattleContext();
 		ActiveController = null;
 	}
@@ -22,29 +22,23 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 		BattleContext.ExecuteUpdate();
 	}
 
-	// 投擲フェイズ開始
-	// アクティブなコントローラだけ
-	public void StartOutcomeDetection() {
-		var nonActiveList = new List<bool>();
+	// 勝手に鉛筆を投げる
+	public void ForceThrowPencil() {
+		ActiveController.GetComponent<Throw_ball>().ThrowPencil();
+	}
 
-		ControllerList.ForEach(oc => nonActiveList.Add(oc != ActiveController));
-
-		if (nonActiveList.Contains(false))
-			ActiveController.OperatorModel.pencil.StartOutcomeDetection();
-		else {
-			ControllerList.ForEach(oc => {
-				oc.StartThrow();
-				oc.OperatorModel.pencil.StartOutcomeDetection();
-			});
-		}
-		Debug.Log("startOutcomeDetection");
+	// 両者の投擲フェイズ開始
+	public void StartPencilsOutcomeDetection() {
+		ControllerList.ForEach(oc => {
+			oc.OperatorModel.pencil.StartOutcomeDetection();
+		});
 	}
 
 	// どちらかの出目が0かチェック
 	public bool CheckOutcomesContainZero() {
 		var playerOutcome = OperatorManager.Instance.PlayerController.OperatorModel.pencil.Outcome;
 		var cpuOutcome = OperatorManager.Instance.ComputerController.OperatorModel.pencil.Outcome;
-		
+
 		return playerOutcome == 0 || cpuOutcome == 0;
 	}
 
@@ -62,36 +56,24 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 		var playerOutcome = OperatorManager.Instance.PlayerController.OperatorModel.pencil.Outcome;
 		var cpuOutcome = OperatorManager.Instance.ComputerController.OperatorModel.pencil.Outcome;
 
-		return  playerOutcome != cpuOutcome;
+		return playerOutcome != cpuOutcome;
 	}
 
+	// 攻守交代
 	public void SwitchAvtiveController() {
 		if (ActiveController == ControllerList[0])
 			ActiveController = ControllerList[1];
-		else if(ActiveController == ControllerList[1])
+		else if (ActiveController == ControllerList[1])
 			ActiveController = ControllerList[0];
 	}
 
-	public void ChangeStateActiveController(IState<OperatorContext> state) {
-		ActiveController.operatorContext.ChangeState(state);
-	}
-
-	public void FinishFightState() {
-		BattleContext.isDone = true;
-	}
-
 	public void FinishGame() {
-		foreach(var oc in ControllerList) {
+		foreach (var oc in ControllerList) {
 			oc.operatorContext.ToResult();
 		}
-		BattleContext.ToResult();
 	}
 
 	public void StartThrowActiveController() {
-		ActiveController.operatorContext.ChangeState(ActiveController.operatorContext.stateThrow);
-	}
-
-	public void StartWaitActiveController() {
-		ActiveController.operatorContext.ChangeState(ActiveController.operatorContext.stateWait);
+		ActiveController.OperatorModel.pencil.StartOutcomeDetection();
 	}
 }

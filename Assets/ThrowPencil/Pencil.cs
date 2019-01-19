@@ -37,6 +37,10 @@ public class Pencil : MonoBehaviour {
 	}
 
 	public void StartOutcomeDetection() {
+		Debug.Log("StartOutcomeDetection : " + transform.parent.name);
+
+		GetComponentInParent<OperatorController>().StartThrow();
+
 		Init();
 		StartCoroutine(OutcomeDetectionCoroutine());
 	}
@@ -85,6 +89,8 @@ public class Pencil : MonoBehaviour {
 		// 出目判定を行う
 		Outcome = LuckDetermination();
 		Debug.Log(gameObject.name + "出目(確定)" + Outcome);
+
+		GetComponentInParent<OperatorController>().StopThrow();
 
 		yield return null;
 	}

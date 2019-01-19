@@ -16,9 +16,9 @@ public class OperatorController : MonoBehaviour {
 	private void Start() {
 		operatorModel.pencil = GetComponentInChildren<Pencil>();
 
-		if(operatorModel.eOperator == OperatorModel.EOperator.Player)
+		if (operatorModel.eOperator == OperatorModel.EOperator.Player)
 			OperatorManager.Instance.PlayerController = this;
-		else if(operatorModel.eOperator == OperatorModel.EOperator.Computer)
+		else if (operatorModel.eOperator == OperatorModel.EOperator.Computer)
 			OperatorManager.Instance.ComputerController = this;
 
 		BattleManager.Instance.ControllerList.Add(this);
@@ -33,8 +33,6 @@ public class OperatorController : MonoBehaviour {
 	}
 
 	public void StopThrow() {
-		if (operatorModel.pencil.Outcome != 0) {
-			operatorContext.ChangeState(operatorContext.stateWait);
-		}
+		operatorContext.ChangeState(operatorContext.stateWait);
 	}
 }
