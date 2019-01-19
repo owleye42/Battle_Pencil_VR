@@ -37,4 +37,8 @@ public class OperatorContext {
 		CurrentState = state;
 		CurrentState.ExecuteEntry(this);
 	}
+
+	public void ToResult() {
+		ChangeState(stateEnd);
+	}
 }

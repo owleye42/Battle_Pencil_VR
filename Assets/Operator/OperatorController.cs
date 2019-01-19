@@ -11,7 +11,7 @@ public class OperatorController : MonoBehaviour {
 	[SerializeField]
 	Transform monsterStandPos;
 
-	readonly OperatorContext operatorContext = new OperatorContext();
+	public readonly OperatorContext operatorContext = new OperatorContext();
 
 	private void Start() {
 		operatorModel.pencil = GetComponentInChildren<Pencil>();
@@ -20,9 +20,21 @@ public class OperatorController : MonoBehaviour {
 			OperatorManager.Instance.PlayerController = this;
 		else if(operatorModel.eOperator == OperatorModel.EOperator.Computer)
 			OperatorManager.Instance.ComputerController = this;
+
+		BattleManager.Instance.ControllerList.Add(this);
 	}
 
 	void Update() {
 		operatorContext.ExecuteUpdate();
+	}
+
+	public void StartThrow() {
+		operatorContext.ChangeState(operatorContext.stateThrow);
+	}
+
+	public void StopThrow() {
+		if (operatorModel.pencil.Outcome != 0) {
+			operatorContext.ChangeState(operatorContext.stateWait);
+		}
 	}
 }
