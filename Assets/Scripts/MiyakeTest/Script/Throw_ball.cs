@@ -6,7 +6,6 @@ public class Throw_ball : MonoBehaviour {
 
 	[SerializeField] GameObject penPref;
 	[SerializeField] GameObject targetObj;
-	[SerializeField, Range(-30, 30)] float tAngle;
 	[SerializeField, Range(0, 20)] float tRange;
 	[SerializeField] Judgment judgment;
 
@@ -17,18 +16,22 @@ public class Throw_ball : MonoBehaviour {
 	}
 
 	public void ThrowPencil() {
-		pen.transform.position = transform.position;
+		var opeContext = GetComponent<OperatorController>().operatorContext;
 
-		// 標的の座標
-		Vector3 targetPosition = targetObj.transform.position;
-		// 射出角度
-		float angle = tAngle + Random.Range(-tRange/2, tRange / 2);
-		// 射出速度を算出
-		Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
-		// 射出
-		Rigidbody rigidbody = pen.GetComponent<Rigidbody>();
-		rigidbody.velocity = Vector3.zero;
-		rigidbody.AddForce(velocity * rigidbody.mass, ForceMode.Impulse);
+		if (opeContext.CurrentState == opeContext.stateThrow) {
+			pen.transform.position = transform.position;
+
+			// 標的の座標
+			Vector3 targetPosition = targetObj.transform.position;
+			// 射出角度
+			float angle = Random.Range(-tRange / 2, tRange / 2);
+			// 射出速度を算出
+			Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
+			// 射出
+			Rigidbody rigidbody = pen.GetComponent<Rigidbody>();
+			rigidbody.velocity = Vector3.zero;
+			rigidbody.AddForce(velocity * rigidbody.mass, ForceMode.Impulse);
+		}
 	}
 
 	private Vector3 CalculateVelocity(Vector3 pointA, Vector3 pointB, float angle) {

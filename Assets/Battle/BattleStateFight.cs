@@ -11,28 +11,40 @@ public class BattleStateFight : IState<BattleContext> {
 
 	public void IsEnd(bool b) { isEnd = b; }
 
+	int count = 600;
+
 	public void ExecuteEntry(BattleContext context) {
 		Debug.Log("[Entry] Battle State : Fight");
 
 		BattleManager.Instance.StartThrowActiveController();
+
+		count = 600;
 	}
 
 	public void ExecuteUpdate(BattleContext context) {
+
+		if(BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome != 0) {
+			context.isDone = true;
+		}
 
 		if (isEnd) {
 			context.ChangeState(context.stateResult);
 			return;
 		}
 
+		if (count == 0) {
+			BattleManager.Instance.ForceThrowPencil();
+		}
+
 		if (context.isDone) {
+			BattleManager.Instance.SwitchAvtiveController();
 			context.ChangeState(context.stateFight);
 		}
+
+		count--;
 	}
 
 	public void ExecuteExit(BattleContext context) {
 		Debug.Log("[Exit] Battle State : Fight");
-
-		BattleManager.Instance.StartWaitActiveController();
-		BattleManager.Instance.SwitchAvtiveController();
 	}
 }
