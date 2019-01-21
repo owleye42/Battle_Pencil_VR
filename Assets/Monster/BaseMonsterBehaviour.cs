@@ -8,7 +8,7 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 	MonsterModel monsterModel;
 	public MonsterModel MonsterModel { get { return monsterModel; } }
 
-	public BaseMonsterBehaviour EnemyBehavior;
+	BaseMonsterBehaviour EnemyBehavior;
 
 	MonsterContext monsterContext = null;
 
@@ -27,42 +27,44 @@ public class BaseMonsterBehaviour : MonoBehaviour {
 
 		if(gameObject.tag == "Player") {
 			MonsterManager.Instance.PlayerMonsterBehaviour = this;
+            EnemyBehavior = MonsterManager.Instance.ComputerMonsterBehaviour;
 		}
 		else if(gameObject.tag == "CPU") {
 			MonsterManager.Instance.ComputerMonsterBehaviour = this;
-		}
+            EnemyBehavior = MonsterManager.Instance.PlayerMonsterBehaviour;
+        }
 	}
 
 	void Update() {
 		monsterContext.ExecuteUpdate();
 	}
 
-	public void ActionSelect(int skill_id) {
-		if (monsterModel.skillList[skill_id].skillType == SkillType.Attack) {
-            isAttack = true;
-            enemyPower = monsterModel.skillList[skill_id].power;
-            EnemyBehavior.monsterModel.hp -= monsterModel.skillList[skill_id].power;
-			Debug.Log(EnemyBehavior.monsterModel.hp);
-		}
-        else if(monsterModel.skillList[skill_id].skillType == SkillType.Heal) {
-			monsterModel.hp += monsterModel.skillList[skill_id].power;
-			Debug.Log(monsterModel.hp);
-		}
-        else if(monsterModel.skillList[skill_id].skillType == SkillType.Counter){
-            if (EnemyBehavior.isAttack)
-            {
-                EnemyBehavior.monsterModel.hp -=  EnemyBehavior.enemyPower * 2;
-                Debug.Log(EnemyBehavior.monsterModel.hp);
-            }
-            else
-                Debug.Log("MISS!!!!!!!!!!!!!!");
-        }
-        else if (monsterModel.skillList[skill_id].skillType == SkillType.Miss) {
-			Debug.Log("MISS!!!!!!!!!!!!!!!!");
-		}
+	//public void ActionSelect(int skill_id) {
+	//	if (monsterModel.skillList[skill_id].skillType == SkillType.Attack) {
+ //           isAttack = true;
+ //           enemyPower = monsterModel.skillList[skill_id].power;
+ //           EnemyBehavior.monsterModel.hp -= monsterModel.skillList[skill_id].power;
+	//		Debug.Log(EnemyBehavior.monsterModel.hp);
+	//	}
+ //       else if(monsterModel.skillList[skill_id].skillType == SkillType.Heal) {
+	//		monsterModel.hp += monsterModel.skillList[skill_id].power;
+	//		Debug.Log(monsterModel.hp);
+	//	}
+ //       else if(monsterModel.skillList[skill_id].skillType == SkillType.Counter){
+ //           if (EnemyBehavior.isAttack)
+ //           {
+ //               EnemyBehavior.monsterModel.hp -=  EnemyBehavior.enemyPower * 2;
+ //               Debug.Log(EnemyBehavior.monsterModel.hp);
+ //           }
+ //           else
+ //               Debug.Log("MISS!!!!!!!!!!!!!!");
+ //       }
+ //       else if (monsterModel.skillList[skill_id].skillType == SkillType.Miss) {
+	//		Debug.Log("MISS!!!!!!!!!!!!!!!!");
+	//	}
 
-        EnemyBehavior.isAttack = false;
-	}
+ //       EnemyBehavior.isAttack = false;
+	//}
 
     public IEnumerator GetJumpimgOnuma(GameObject jumpObj, Vector3 targetPosition, float tAngle)
     {

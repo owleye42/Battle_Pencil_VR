@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterStateCounter : IState<MonsterContext> {
+///<summary>
+///モンスターのスキルステート
+/// </summary>>
+
+public class MonsterSkill : IState<MonsterContext> {
 
     public void ExecuteEntry(MonsterContext context)
     {
