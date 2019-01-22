@@ -18,8 +18,7 @@ public class MonsterStateAttack : IState<MonsterContext> {
         if (BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterAnimator.IsInTransition(0))
         {
             context.ChangeState(context.stateIdle);
-            BattleManager.Instance.SwitchAvtiveController();
-            BattleManager.Instance.BattleContext.ChangeState(BattleManager.Instance.BattleContext.stateFight);
+            BattleManager.Instance.BattleContext.isDone = true;
         }
 	}
 
