@@ -4,6 +4,8 @@ using UnityEngine;
 
 /// <summary>
 /// モンスターの待機ステート
+/// モンスターの召喚アニメーション
+/// 召喚アニメーションが終わったら次のステートへ
 /// </summary>
 public class MonsterStateAppear : IState<MonsterContext> {
 

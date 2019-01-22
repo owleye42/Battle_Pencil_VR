@@ -15,6 +15,7 @@ public class BattleStateFight : IState<BattleContext> {
 
 	public void ExecuteEntry(BattleContext context) {
 		Debug.Log("[Entry] Battle State : Fight");
+        BattleManager.Instance.IsFight = true;
 
 		BattleManager.Instance.StartThrowActiveController();
 
@@ -23,11 +24,12 @@ public class BattleStateFight : IState<BattleContext> {
 
 	public void ExecuteUpdate(BattleContext context) {
 
-		if(BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome != 0) {
-			context.isDone = true;
-		}
+        if (BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome != 0)
+        {
+            context.isDone = true;
+        }
 
-		if (isEnd) {
+        if (isEnd) {
 			context.ChangeState(context.stateResult);
 			return;
 		}
@@ -45,6 +47,8 @@ public class BattleStateFight : IState<BattleContext> {
 	}
 
 	public void ExecuteExit(BattleContext context) {
-		Debug.Log("[Exit] Battle State : Fight");
+        BattleManager.Instance.IsFight = false;
+
+        Debug.Log("[Exit] Battle State : Fight");
 	}
 }

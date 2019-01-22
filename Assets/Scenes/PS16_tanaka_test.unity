@@ -1784,9 +1784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef6f4523c3bab042b439b8e5e39222f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackObj: {fileID: 1658156534204564, guid: 34d30a785ff24224f9a9cce2df94dc08, type: 2}
-  healObj: {fileID: 1960961633299990, guid: 3fcc49b26c6d3114da41d27d17a50226, type: 2}
-  defenseObj: {fileID: 0}
 --- !u!4 &1513427800
 Transform:
   m_ObjectHideFlags: 0
@@ -2306,6 +2303,52 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1915596604}
   m_CullTransparentMesh: 0
+--- !u!1001 &1929815731
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400012, guid: 976dbeec5ff306549a76e3da2e2ea7cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 976dbeec5ff306549a76e3da2e2ea7cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 976dbeec5ff306549a76e3da2e2ea7cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 976dbeec5ff306549a76e3da2e2ea7cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 976dbeec5ff306549a76e3da2e2ea7cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 976dbeec5ff306549a76e3da2e2ea7cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 976dbeec5ff306549a76e3da2e2ea7cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 976dbeec5ff306549a76e3da2e2ea7cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 976dbeec5ff306549a76e3da2e2ea7cf, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f6a25c17711ed9e42af38c9e42d9692c, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 976dbeec5ff306549a76e3da2e2ea7cf, type: 3}
+  m_IsPrefabAsset: 0
 --- !u!1 &1937588653
 GameObject:
   m_ObjectHideFlags: 0

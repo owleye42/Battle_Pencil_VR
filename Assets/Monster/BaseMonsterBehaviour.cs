@@ -2,78 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseMonsterBehaviour : MonoBehaviour {
+public class BaseMonsterBehaviour : MonoBehaviour
+{
 
-	[SerializeField]
-	MonsterModel monsterModel;
-	public MonsterModel MonsterModel { get { return monsterModel; } }
+    [SerializeField]
+    MonsterModel monsterModel;
+    public MonsterModel MonsterModel { get { return monsterModel; } }
+    public BaseMonsterBehaviour EnemyBehavior { get; private set; }
 
-	public BaseMonsterBehaviour EnemyBehavior;
-
-	MonsterContext monsterContext = null;
+    MonsterContext monsterContext = null;
 
     // カウンター用
     public int enemyPower = 0;
     public bool isAttack = false;
 
     Transform standingTransform;
+    public Animator MonsterAnimator { get; private set; }
 
-	void Awake() {
-		monsterContext = new MonsterContext();
-	}
+    void Awake()
+    {
+        monsterContext = new MonsterContext();
+        MonsterAnimator = GetComponent<Animator>();
+    }
 
-	void Start() {
-		GetComponentInParent<OperatorController>().OperatorModel.monsterBehaviour = this;
-
-		if(gameObject.tag == "Player") {
-			MonsterManager.Instance.PlayerMonsterBehaviour = this;
-		}
-		else if(gameObject.tag == "CPU") {
-			MonsterManager.Instance.ComputerMonsterBehaviour = this;
-		}
-	}
-
-	void Update() {
-		monsterContext.ExecuteUpdate();
-	}
-
-	public void ActionSelect(int skill_id) {
-		if (monsterModel.skillList[skill_id].skillType == SkillType.Attack) {
-            isAttack = true;
-            enemyPower = monsterModel.skillList[skill_id].power;
-            EnemyBehavior.monsterModel.hp -= monsterModel.skillList[skill_id].power;
-			Debug.Log(EnemyBehavior.monsterModel.hp);
-		}
-        else if(monsterModel.skillList[skill_id].skillType == SkillType.Heal) {
-			monsterModel.hp += monsterModel.skillList[skill_id].power;
-			Debug.Log(monsterModel.hp);
-		}
-        else if(monsterModel.skillList[skill_id].skillType == SkillType.Counter){
-            if (EnemyBehavior.isAttack)
-            {
-                EnemyBehavior.monsterModel.hp -=  EnemyBehavior.enemyPower * 2;
-                Debug.Log(EnemyBehavior.monsterModel.hp);
-            }
-            else
-                Debug.Log("MISS!!!!!!!!!!!!!!");
+    void Start()
+    {
+        if (gameObject.tag == "Player")
+        {
+            MonsterManager.Instance.PlayerMonsterBehaviour = this;
+            EnemyBehavior = MonsterManager.Instance.ComputerMonsterBehaviour;
         }
-        else if (monsterModel.skillList[skill_id].skillType == SkillType.Miss) {
-			Debug.Log("MISS!!!!!!!!!!!!!!!!");
-		}
+        else if (gameObject.tag == "CPU")
+        {
+            MonsterManager.Instance.ComputerMonsterBehaviour = this;
+            EnemyBehavior = MonsterManager.Instance.PlayerMonsterBehaviour;
+        }
 
-        EnemyBehavior.isAttack = false;
-	}
+        GetComponentInParent<OperatorController>().OperatorModel.monsterBehaviour = this;
+    }
+
+    void FixedUpdate()
+    {
+        if (BattleManager.Instance.IsFight)
+            monsterContext.ExecuteUpdate();
+    }
 
     public IEnumerator GetJumpimgOnuma(GameObject jumpObj, Vector3 targetPosition, float tAngle)
     {
-        StartCoroutine(JumpingOnuma( jumpObj,  targetPosition, tAngle));
+        StartCoroutine(JumpingOnuma(jumpObj, targetPosition, tAngle));
         yield return null;
     }
 
-    IEnumerator JumpingOnuma(GameObject jumpObj,Vector3 targetPosition,float tAngle)
+    IEnumerator JumpingOnuma(GameObject jumpObj, Vector3 targetPosition, float tAngle)
     {
         Debug.Log("超エキサイティング！");
-        	// 標的の座標
+        // 標的の座標
         // 射出角度
         float angle = tAngle;
         Vector3 velocity = CalculateVelocity(jumpObj.transform.position, targetPosition, angle);
@@ -85,7 +68,7 @@ public class BaseMonsterBehaviour : MonoBehaviour {
         yield return null;
     }
 
-    
+
 
     private Vector3 CalculateVelocity(Vector3 pointA, Vector3 pointB, float angle)
     {

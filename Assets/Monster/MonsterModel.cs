@@ -8,5 +8,13 @@ public class MonsterModel {
 	public int id;
 	public string name;
 	public int hp;
+    public Type type;
 	public List<SkillModel> skillList;
+}
+
+[System.Serializable]
+public enum Type {
+    ATTACK,
+    DEFENCE,
+    HEAL
 }
