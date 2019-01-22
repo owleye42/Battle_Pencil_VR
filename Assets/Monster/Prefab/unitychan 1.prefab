@@ -739,6 +739,7 @@ GameObject:
   - component: {fileID: 11400002}
   - component: {fileID: 11400000}
   - component: {fileID: 11400004}
+  - component: {fileID: 114164501730920506}
   m_Layer: 0
   m_Name: unitychan 1
   m_TagString: Untagged
@@ -6565,3 +6566,46 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100096}
   m_IsPrefabAsset: 1
+--- !u!114 &114164501730920506
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4251622e5d926fe4db34c821d6833457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterModel:
+    id: 1
+    name: unitychan
+    hp: 1000
+    type: 0
+    skillList:
+    - skillType: 0
+      targetType: 0
+      power: 10
+      text: 
+    - skillType: 1
+      targetType: 0
+      power: 20
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 1
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 10
+      text: 
+    - skillType: 1
+      targetType: 0
+      power: 20
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 1
+      text: 
+  enemyPower: 0
+  isAttack: 0
