@@ -38,4 +38,8 @@ public class BattleContext {
 		isDone = false;
 		CurrentState.ExecuteEntry(this);
 	}
+
+	public void ToResult() {
+		(stateResult as BattleStateFight).IsEnd(true);
+	}
 }

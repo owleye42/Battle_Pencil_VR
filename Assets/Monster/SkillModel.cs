@@ -4,10 +4,9 @@ using UnityEngine;
 
 [System.Serializable]
 public enum SkillType {
-	Attack,
-	Heal,
-    Counter,
-    Miss,
+    ATTACK,
+    SKILL,
+    MISS
 }
 
 [System.Serializable]

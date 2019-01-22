@@ -5,7 +5,7 @@ using UnityEngine;
 public class OperatorStateThrow : IState<OperatorContext> {
 
 	public void ExecuteEntry(OperatorContext context) {
-
+		
 	}
 
 	public void ExecuteUpdate(OperatorContext context) {

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65438075746848184}
   - component: {fileID: 114979790952196702}
   m_Layer: 0
-  m_Name: green
+  m_Name: "Defence\uFF08\u4EEE\uFF09"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,6 +112,7 @@ MonoBehaviour:
     id: 3
     name: DefenseModel
     hp: 100
+    type: 0
     skillList:
     - skillType: 0
       targetType: 0
@@ -137,6 +138,5 @@ MonoBehaviour:
       targetType: 0
       power: 30
       text: "\u6575\u306E40\u4EE5\u4E0A\u306E\u30C0\u30E1\u30FC\u30B8\u3092\u9632\u304E\u300130\u306E\u30C0\u30E1\u30FC\u30B8"
-  EnemyBehavior: {fileID: 0}
-  isPlayer: 0
-  isCounter: 0
+  enemyPower: 0
+  isAttack: 0

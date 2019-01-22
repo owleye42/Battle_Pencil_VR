@@ -4,6 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// モンスターの待機ステート
+/// モンスターのHPがゼロになったら
 /// </summary>
 public class MonsterStateDeath : IState<MonsterContext> {
 
