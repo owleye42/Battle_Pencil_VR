@@ -10,6 +10,9 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 
 	public BattleContext BattleContext { get; private set; }
 
+    private bool isFight = false;
+    public bool IsFight { set { isFight = value; } get { return isFight; } }
+
 	protected override void Awake() {
 		base.Awake();
 

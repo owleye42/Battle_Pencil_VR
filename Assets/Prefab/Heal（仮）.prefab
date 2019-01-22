@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1782405676453994}
+  m_RootGameObject: {fileID: 1960961633299990}
   m_IsPrefabAsset: 1
---- !u!1 &1782405676453994
+--- !u!1 &1960961633299990
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4156248544763810}
-  - component: {fileID: 33418568538425492}
-  - component: {fileID: 23518227175328024}
-  - component: {fileID: 65438075746848184}
-  - component: {fileID: 114979790952196702}
+  - component: {fileID: 4692580369287156}
+  - component: {fileID: 33884722189290142}
+  - component: {fileID: 23772199384399146}
+  - component: {fileID: 65246254234920362}
+  - component: {fileID: 114933197417615048}
   m_Layer: 0
-  m_Name: green
+  m_Name: "Heal\uFF08\u4EEE\uFF09"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4156248544763810
+--- !u!4 &4692580369287156
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1782405676453994}
+  m_GameObject: {fileID: 1960961633299990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23518227175328024
+--- !u!23 &23772199384399146
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1782405676453994}
+  m_GameObject: {fileID: 1960961633299990}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 76460310d4fe960418fadad599da7080, type: 2}
+  - {fileID: 2100000, guid: cff530b8ff6c65f43a9cf0e7bcaf0366, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,65 +78,65 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33418568538425492
+--- !u!33 &33884722189290142
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1782405676453994}
+  m_GameObject: {fileID: 1960961633299990}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65438075746848184
+--- !u!65 &65246254234920362
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1782405676453994}
+  m_GameObject: {fileID: 1960961633299990}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114979790952196702
+--- !u!114 &114933197417615048
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1782405676453994}
+  m_GameObject: {fileID: 1960961633299990}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4251622e5d926fe4db34c821d6833457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monsterModel:
-    id: 3
-    name: DefenseModel
+    id: 2
+    name: HealModel
     hp: 100
+    type: 0
     skillList:
-    - skillType: 0
+    - skillType: 3
       targetType: 0
-      power: 20
-      text: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306B20\u306E\u30C0\u30E1\u30FC\u30B8"
-    - skillType: 0
-      targetType: 0
-      power: 10
-      text: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306B10\u306E\u30C0\u30E1\u30FC\u30B8"
-    - skillType: 2
-      targetType: 0
-      power: 30
-      text: "\u6575\u306E40\u4EE5\u4E0A\u306E\u30C0\u30E1\u30FC\u30B8\u3092\u9632\u304E\u300130\u306E\u30C0\u30E1\u30FC\u30B8"
-    - skillType: 0
-      targetType: 0
-      power: 20
-      text: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306B20\u306E\u30C0\u30E1\u30FC\u30B8"
+      power: 0
+      text: "\u30DF\u30B9"
     - skillType: 0
       targetType: 0
       power: 10
       text: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306B10\u306E\u30C0\u30E1\u30FC\u30B8"
-    - skillType: 2
+    - skillType: 1
+      targetType: 0
+      power: 10
+      text: "HP10\u304B\u3044\u3075\u304F"
+    - skillType: 0
       targetType: 0
       power: 30
-      text: "\u6575\u306E40\u4EE5\u4E0A\u306E\u30C0\u30E1\u30FC\u30B8\u3092\u9632\u304E\u300130\u306E\u30C0\u30E1\u30FC\u30B8"
-  EnemyBehavior: {fileID: 0}
-  isPlayer: 0
-  isCounter: 0
+      text: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306B30\u306E\u30C0\u30E1\u30FC\u30B8"
+    - skillType: 3
+      targetType: 0
+      power: 0
+      text: "\u30DF\u30B9"
+    - skillType: 1
+      targetType: 0
+      power: 30
+      text: "HP30\u304B\u3044\u3075\u304F"
+  enemyPower: 0
+  isAttack: 0

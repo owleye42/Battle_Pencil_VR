@@ -14,7 +14,6 @@ public class MonsterStateAppear : IState<MonsterContext> {
 	}
 
 	public void ExecuteUpdate(MonsterContext context) {
-
         context.ChangeState(context.stateIdle);
 	}
 

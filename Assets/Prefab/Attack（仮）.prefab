@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65082098658935094}
   - component: {fileID: 114134960676026358}
   m_Layer: 0
-  m_Name: blue
+  m_Name: "Attack\uFF08\u4EEE\uFF09"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

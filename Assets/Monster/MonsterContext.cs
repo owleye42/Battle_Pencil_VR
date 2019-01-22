@@ -6,7 +6,7 @@ public class MonsterContext {
 	public readonly IState<MonsterContext> stateAppear = new MonsterStateAppear();
 	public readonly IState<MonsterContext> stateIdle = new MonsterStateIdle();
 	public readonly IState<MonsterContext> stateAttack = new MonsterStateAttack();
-    public readonly IState<MonsterContext> stateSkill = new 
+    public readonly IState<MonsterContext> stateSkill = new MonsterStateSkill();
     public readonly IState<MonsterContext> stateDeath = new MonsterStateDeath();
 
 	IState<MonsterContext> currentState;
@@ -14,7 +14,7 @@ public class MonsterContext {
 	public bool isDone = false;
 
 	public MonsterContext() {
-		currentState = stateAppear;
+		currentState = stateIdle;
 		currentState.ExecuteEntry(this);
 	}
 
