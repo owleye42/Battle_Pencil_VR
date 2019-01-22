@@ -15,8 +15,9 @@ public class Pencil : MonoBehaviour {
 	// 召喚し終わったか
 	public bool IsSummoned { get; private set; }
 
-	// 召喚するモンスターのプレハブ
-	[SerializeField]
+    // 召喚するモンスターのプレハブ
+    [Header("召喚するモンスターのプレハブ")]
+    [SerializeField]
 	GameObject monsterPrefab;
 
 	void Init() {
