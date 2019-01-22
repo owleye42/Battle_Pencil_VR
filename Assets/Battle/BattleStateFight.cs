@@ -24,12 +24,7 @@ public class BattleStateFight : IState<BattleContext> {
 
 	public void ExecuteUpdate(BattleContext context) {
 
-        if (BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome != 0)
-        {
-            context.isDone = true;
-        }
-
-        if (isEnd) {
+		if (isEnd) {
 			context.ChangeState(context.stateResult);
 			return;
 		}
