@@ -63,9 +63,13 @@ public class BattleStateOffensiveDecision : IState<BattleContext> {
 	// 攻守決定
 	public void OffensiveDecision() {
 		if (OperatorManager.Instance.PlayerController.OperatorModel.pencil.Outcome
-			> OperatorManager.Instance.ComputerController.OperatorModel.pencil.Outcome)
+			> OperatorManager.Instance.ComputerController.OperatorModel.pencil.Outcome) {
 			BattleManager.Instance.ActiveController = OperatorManager.Instance.PlayerController;
-		else
+			BattleManager.Instance.NonActiveController = OperatorManager.Instance.ComputerController;
+		}
+		else {
 			BattleManager.Instance.ActiveController = OperatorManager.Instance.ComputerController;
+			BattleManager.Instance.NonActiveController = OperatorManager.Instance.PlayerController;
+		}
 	}
 }

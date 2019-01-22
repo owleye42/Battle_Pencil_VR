@@ -7,6 +7,7 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	[System.NonSerialized]
 	public List<OperatorController> ControllerList = new List<OperatorController>();
 	public OperatorController ActiveController { get; set; }
+	public OperatorController NonActiveController { get; set; }
 
 	public BattleContext BattleContext { get; private set; }
 
@@ -18,6 +19,7 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 
 		BattleContext = new BattleContext();
 		ActiveController = null;
+		NonActiveController = null;
 	}
 
 	void Update() {
@@ -64,10 +66,14 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 
 	// 攻守交代
 	public void SwitchAvtiveController() {
-		if (ActiveController == ControllerList[0])
+		if (ActiveController == ControllerList[0]) {
 			ActiveController = ControllerList[1];
-		else if (ActiveController == ControllerList[1])
+			NonActiveController = ControllerList[0];
+		}
+		else if (ActiveController == ControllerList[1]) {
 			ActiveController = ControllerList[0];
+			NonActiveController = ControllerList[1];
+		}
 	}
 
 	public void FinishGame() {
