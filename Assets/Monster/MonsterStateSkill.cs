@@ -26,17 +26,27 @@ public class MonsterStateSkill : IState<MonsterContext> {
 
     public void ExecuteExit(MonsterContext context)
     {
-        //if (BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.type == Type.ATTACK) {
-        //    BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.EnemyBehavior.MonsterModel.hp -=
-        //    BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
-        //    skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].power;
-        //}else if (BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.type == Type.DEFENCE) {
+        if (BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.type == Type.ATTACK)
+        {
+            BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp -=
+            BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
+            skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].power;
 
-        //}else if (BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.type == Type.HEAL) {
-        //    BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp +=
-        //    BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
-        //    skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].power;
-        //}
+            Debug.Log(BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp);
+
+        }
+        else if (BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.type == Type.DEFENCE)
+        {
+
+        }
+        else if (BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.type == Type.HEAL)
+        {
+            BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp +=
+            BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
+            skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].power;
+
+            Debug.Log(BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp);
+        }
 
 
         Debug.Log("[Exit] Monster State : Skill");
