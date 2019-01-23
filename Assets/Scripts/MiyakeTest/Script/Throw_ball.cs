@@ -8,7 +8,7 @@ public class Throw_ball : MonoBehaviour {
     [Header("投射時の目標地点")]
     [SerializeField] GameObject targetObj;
     [Header("投射角度")]
-    [SerializeField, Range(-30, 30)] float tAngle;
+    [SerializeField, Range(-50, 50)] float tAngle;
     [Header("投射の強さ")]
     [SerializeField, Range(0, 20)] float tRange;
 	[SerializeField] Judgment judgment;
