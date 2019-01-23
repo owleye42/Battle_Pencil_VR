@@ -131,6 +131,17 @@ public class Pencil : MonoBehaviour {
 			monsObj.tag = transform.parent.gameObject.tag;
 
 			IsSummoned = true;
-		}
+            if (monsObj.gameObject.tag == "Player")
+            {
+                StartCoroutine(monsObj.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(OperatorManager.Instance.PlayerController.MonsterStandPos.position));
+            }
+            else
+            {
+
+                StartCoroutine(monsObj.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(OperatorManager.Instance.ComputerController.MonsterStandPos.position));
+            }
+
+
+        }
 	}
 }
