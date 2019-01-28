@@ -15,7 +15,6 @@ public class MonsterStateIdle : IState<MonsterContext> {
     }
 
 	public void ExecuteUpdate(MonsterContext context) {
-        Debug.Log(BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome);
         if (BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome == 0) return;
 
 

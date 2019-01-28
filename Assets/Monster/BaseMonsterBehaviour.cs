@@ -8,7 +8,6 @@ public class BaseMonsterBehaviour : MonoBehaviour
     [SerializeField]
     MonsterModel monsterModel;
     public MonsterModel MonsterModel { get { return monsterModel; } }
-    public BaseMonsterBehaviour EnemyBehavior { get; private set; }
 
     MonsterContext monsterContext = null;
 
@@ -30,12 +29,10 @@ public class BaseMonsterBehaviour : MonoBehaviour
         if (gameObject.tag == "Player")
         {
             MonsterManager.Instance.PlayerMonsterBehaviour = this;
-            EnemyBehavior = MonsterManager.Instance.ComputerMonsterBehaviour;
         }
         else if (gameObject.tag == "CPU")
         {
             MonsterManager.Instance.ComputerMonsterBehaviour = this;
-            EnemyBehavior = MonsterManager.Instance.PlayerMonsterBehaviour;
         }
 
         GetComponentInParent<OperatorController>().OperatorModel.monsterBehaviour = this;

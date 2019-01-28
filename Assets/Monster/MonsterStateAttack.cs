@@ -23,6 +23,9 @@ public class MonsterStateAttack : IState<MonsterContext> {
 	}
 
 	public void ExecuteExit(MonsterContext context) {
+        //var nonActive = BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel;
+        //var active = BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel;
+
         BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp -=
             BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
             skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].power;
