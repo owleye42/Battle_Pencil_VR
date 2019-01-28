@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Throw_ball : MonoBehaviour {
-
-	[SerializeField] GameObject penPref;
-	[SerializeField] GameObject targetObj;
-	[SerializeField, Range(0, 20)] float tRange;
+    [Header("鉛筆のプレハブ")]
+    [SerializeField] GameObject penPref;
+    [Header("投射時の目標地点")]
+    [SerializeField] GameObject targetObj;
+    [Header("投射角度")]
+    [SerializeField, Range(-50, 50)] float tAngle;
+    [Header("投射の強さ")]
+    [SerializeField, Range(0, 20)] float tRange;
 	[SerializeField] Judgment judgment;
 
 	[SerializeField] GameObject pen = null;

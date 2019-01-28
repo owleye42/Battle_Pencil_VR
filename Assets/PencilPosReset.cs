@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PencilPosReset : MonoBehaviour {
+    [SerializeField] Pencil playerPencil;
+    [SerializeField] Pencil CpuPencil;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "Pencill"&&collision.gameObject.name== "Pencil(Player)")
+        {
+            collision.transform.position = playerPencil.InitPencilPos;
+        }
+        else if(collision.gameObject.tag == "Pencill" && collision.gameObject.name == "Pencil(CPU)") {
+            collision.transform.position = CpuPencil.InitPencilPos;
+        }
+    }
 }
