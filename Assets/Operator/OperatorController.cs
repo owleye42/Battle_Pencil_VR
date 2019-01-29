@@ -16,6 +16,8 @@ public class OperatorController : MonoBehaviour {
 	private void Start() {
 		operatorModel.pencil = GetComponentInChildren<Pencil>();
 
+		operatorContext.OperatorController = this;
+
 		if (operatorModel.eOperator == OperatorModel.EOperator.Player)
 			OperatorManager.Instance.PlayerController = this;
 		else if (operatorModel.eOperator == OperatorModel.EOperator.Computer)
@@ -26,6 +28,10 @@ public class OperatorController : MonoBehaviour {
 
 	void Update() {
 		operatorContext.ExecuteUpdate();
+	}
+
+	public void ForceThrowPencil() {
+		GetComponent<Throw_ball>().ThrowPencil();
 	}
 
 	public void StartThrow() {

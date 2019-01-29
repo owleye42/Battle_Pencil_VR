@@ -34,10 +34,7 @@ public class BattleStateFight : IState<BattleContext> {
 			return;
 		}
 
-		//if (count == 0) {
-		//	BattleManager.Instance.ForceThrowPencil();
-		//}
-
+		// 行動終了時
 		if (context.isDone) {
             context.ChangeState(context.stateFight);
 		}
