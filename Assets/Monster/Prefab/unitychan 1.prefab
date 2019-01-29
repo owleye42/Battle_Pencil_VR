@@ -6609,7 +6609,7 @@ MonoBehaviour:
       text: 
     - skillType: 0
       targetType: 0
-      power: 1
+      power: 10
       text: 
     - skillType: 0
       targetType: 0
@@ -6621,7 +6621,5 @@ MonoBehaviour:
       text: 
     - skillType: 0
       targetType: 0
-      power: 1
+      power: 10
       text: 
-  enemyPower: 0
-  isAttack: 0

@@ -69,7 +69,7 @@ public class Pencil : MonoBehaviour {
 		while (true) {
 			// 出目表示用の変数に格納
 			TmpOutcome = LuckDetermination();
-			Debug.Log(gameObject.name + "出目(仮)" + TmpOutcome);
+			//Debug.Log(gameObject.name + "出目(仮)" + TmpOutcome);
 
 			// 静止していたら
 			if (rigidbody.velocity.sqrMagnitude == 0) {

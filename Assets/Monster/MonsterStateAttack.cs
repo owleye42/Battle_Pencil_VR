@@ -10,24 +10,25 @@ public class MonsterStateAttack : IState<MonsterContext> {
 	public void ExecuteEntry(MonsterContext context) {
         Debug.Log("[Entry] Monster State : Attack");
 
-        BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterAnimator.SetTrigger("AttackTrigger");
+        BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour._animator.SetTrigger("AttackTrigger");
     }
 
 	public void ExecuteUpdate(MonsterContext context) {
 
-        if (BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterAnimator.IsInTransition(0))
+        if (BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour._animator.IsInTransition(0))
         {
-            context.ChangeState(context.stateIdle);
             BattleManager.Instance.BattleContext.isDone = true;
+            context.ChangeState(context.stateIdle);
         }
-	}
+    }
 
 	public void ExecuteExit(MonsterContext context) {
-        BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp -=
-            BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
-            skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].power;
+        var nonActive = BattleManager.Instance.NonActiveController.OperatorModel;
+        var active = BattleManager.Instance.ActiveController.OperatorModel;
 
-        Debug.Log(BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp);
+        nonActive.monsterBehaviour.MonsterModel.hp -=
+            active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
+        
         Debug.Log("[Exit] Monster State : Attack");
     }
 }
