@@ -12,7 +12,7 @@ public class MonsterContext {
 	IState<MonsterContext> currentState;
     
 	public MonsterContext() {
-		currentState = stateIdle;
+		currentState = stateAppear;
 		currentState.ExecuteEntry(this);
 	}
 

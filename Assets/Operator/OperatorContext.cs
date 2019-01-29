@@ -13,6 +13,10 @@ public class OperatorContext {
 
 	public IState<OperatorContext> CurrentState { get; private set; }
 
+	public OperatorController OperatorController { get; set; }
+
+	public bool isDone = false;
+
 	/// <summary>
 	/// 生成時
 	/// </summary>
@@ -35,6 +39,7 @@ public class OperatorContext {
 	public void ChangeState(IState<OperatorContext> state) {
 		CurrentState.ExecuteExit(this);
 		CurrentState = state;
+		isDone = false;
 		CurrentState.ExecuteEntry(this);
 	}
 

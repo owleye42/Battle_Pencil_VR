@@ -26,7 +26,6 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
-
     }
 
     public IEnumerator GetJumpimgOnuma(Vector3 targetPosition)
