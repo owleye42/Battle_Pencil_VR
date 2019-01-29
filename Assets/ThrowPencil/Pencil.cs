@@ -139,7 +139,7 @@ public class Pencil : MonoBehaviour {
 
 		monsObj.transform.position = new Vector3(transform.position.x, standPos.y, transform.position.z);
 
-		StartCoroutine(monsObj.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(standPos));
+		monsObj.GetComponent<BaseMonsterBehaviour>().GetSummonMotion(standPos);
 		
 		//monsObj.transform.LookAt(enemySpawnTransform, monsObj.transform.up);
 	}
