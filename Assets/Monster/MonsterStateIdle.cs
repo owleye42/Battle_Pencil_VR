@@ -11,12 +11,9 @@ public class MonsterStateIdle : IState<MonsterContext> {
 
 	public void ExecuteEntry(MonsterContext context) {
         Debug.Log("[Entry] Monster State : Idol");
-        
     }
 
 	public void ExecuteUpdate(MonsterContext context) {
-        if (BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome == 0) return;
-
 
         // ActiveControllerの中のスキルタイプによって行動変更
         if(BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
@@ -29,6 +26,7 @@ public class MonsterStateIdle : IState<MonsterContext> {
             skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].skillType == SkillType.MISS)
         {
             Debug.Log("MISS");
+            BattleManager.Instance.BattleContext.isDone = true;
         }
 
     }

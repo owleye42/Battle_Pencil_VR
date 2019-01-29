@@ -8,40 +8,25 @@ public class BaseMonsterBehaviour : MonoBehaviour
     [SerializeField]
     MonsterModel monsterModel;
     public MonsterModel MonsterModel { get { return monsterModel; } }
-
-    MonsterContext monsterContext = null;
-
-    // カウンター用
-    public int enemyPower = 0;
-    public bool isAttack = false;
+    public MonsterContext MonsterContext { private set; get; }
 
     Transform standingTransform;
-    public Animator MonsterAnimator { get; private set; }
-
+    public Animator _animator { get; private set; }
+    
     void Awake()
     {
-        monsterContext = new MonsterContext();
-        MonsterAnimator = GetComponent<Animator>();
+        MonsterContext = new MonsterContext();
+        _animator = GetComponent<Animator>();
     }
 
     void Start()
     {
-        if (gameObject.tag == "Player")
-        {
-            MonsterManager.Instance.PlayerMonsterBehaviour = this;
-        }
-        else if (gameObject.tag == "CPU")
-        {
-            MonsterManager.Instance.ComputerMonsterBehaviour = this;
-        }
-
         GetComponentInParent<OperatorController>().OperatorModel.monsterBehaviour = this;
     }
 
     void FixedUpdate()
     {
-        if (BattleManager.Instance.IsFight)
-            monsterContext.ExecuteUpdate();
+
     }
 
     public IEnumerator GetJumpimgOnuma(Vector3 targetPosition)
@@ -64,7 +49,7 @@ public class BaseMonsterBehaviour : MonoBehaviour
             while (distance >= 0.1f)
             {
                 distance = Vector3.Distance(this.transform.position, targetPos);
-                Debug.Log(distance);
+                //Debug.Log(distance);
                 Vector3 targetDir = new Vector3(targetPos.x, transform.position.y, targetPos.z) - transform.position;
                 Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 100, 0f);
                 transform.rotation = Quaternion.LookRotation(newDir);

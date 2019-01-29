@@ -10,9 +10,7 @@ public class MonsterContext {
     public readonly IState<MonsterContext> stateDeath = new MonsterStateDeath();
 
 	IState<MonsterContext> currentState;
-
-	public bool isDone = false;
-
+    
 	public MonsterContext() {
 		currentState = stateIdle;
 		currentState.ExecuteEntry(this);
@@ -25,7 +23,6 @@ public class MonsterContext {
 	public void ChangeState(IState<MonsterContext> state) {
 		currentState.ExecuteExit(this);
 		currentState = state;
-		isDone = false;
 		currentState.ExecuteEntry(this);
 	}
 }
