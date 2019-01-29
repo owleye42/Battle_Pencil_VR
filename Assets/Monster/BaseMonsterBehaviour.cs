@@ -9,14 +9,13 @@ public class BaseMonsterBehaviour : MonoBehaviour
     MonsterModel monsterModel;
     public MonsterModel MonsterModel { get { return monsterModel; } }
     public MonsterContext MonsterContext { private set; get; }
-
-    Transform standingTransform;
-    public Animator _animator { get; private set; }
+    
+    public Animator _Animator { get; private set; }
     
     void Awake()
     {
         MonsterContext = new MonsterContext();
-        _animator = GetComponent<Animator>();
+        _Animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -24,17 +23,18 @@ public class BaseMonsterBehaviour : MonoBehaviour
         GetComponentInParent<OperatorController>().OperatorModel.monsterBehaviour = this;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-
+        monsterModel.hp = Mathf.Clamp(monsterModel.hp, 0, 100);
     }
 
-    public IEnumerator GetJumpimgOnuma(Vector3 targetPosition)
+    // 召喚時のモーション
+    public void GetSummonMotion(Vector3 targetPosition)
     {
-        StartCoroutine(JumpingOnuma(targetPosition));
-        yield return null;
+        StartCoroutine(SummonMotion(targetPosition));
     }
-    IEnumerator JumpingOnuma(Vector3 targetPos)
+
+    IEnumerator SummonMotion(Vector3 targetPos)
     {
         while (true)
         {
@@ -45,10 +45,10 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
 
 
-            var distance = Vector3.Distance(this.transform.position, targetPos);
+            var distance = Vector3.Distance(transform.position, targetPos);
             while (distance >= 0.1f)
             {
-                distance = Vector3.Distance(this.transform.position, targetPos);
+                distance = Vector3.Distance(transform.position, targetPos);
                 //Debug.Log(distance);
                 Vector3 targetDir = new Vector3(targetPos.x, transform.position.y, targetPos.z) - transform.position;
                 Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 100, 0f);
@@ -62,17 +62,17 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
             if (distance < 0.1)
             {
-                if (this.gameObject.tag == "Player")
+                if (gameObject.tag == "Player")
                 {
 
-                     this.transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.ComputerController.MonsterStandPos.position - transform.position);
-                //    this.transform.rotation = Quaternion.LookRotation(GameObject.Find("ComputerMonsterPosition").transform.position - transform.position);
+                     transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.ComputerController.MonsterStandPos.position - transform.position);
+                //    transform.rotation = Quaternion.LookRotation(GameObject.Find("ComputerMonsterPosition").transform.position - transform.position);
                 }
-                else if (this.gameObject.tag == "CPU")
+                else if (gameObject.tag == "CPU")
                 {
 
-                     this.transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.PlayerController.MonsterStandPos.position - transform.position);
-                   // this.transform.rotation = Quaternion.LookRotation(GameObject.Find("PlayerMonsterPosition").transform.position - transform.position);
+                     transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.PlayerController.MonsterStandPos.position - transform.position);
+                   // transform.rotation = Quaternion.LookRotation(GameObject.Find("PlayerMonsterPosition").transform.position - transform.position);
 
                 }
             }

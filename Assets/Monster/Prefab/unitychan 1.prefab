@@ -6596,7 +6596,7 @@ MonoBehaviour:
   monsterModel:
     id: 1
     name: unitychan
-    hp: 1000
+    hp: 100
     type: 0
     skillList:
     - skillType: 0

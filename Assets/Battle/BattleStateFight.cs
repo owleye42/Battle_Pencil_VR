@@ -26,7 +26,7 @@ public class BattleStateFight : IState<BattleContext> {
         if (BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome != 0)
         {
             BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterContext.ExecuteUpdate();
-            Debug.Log(BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp);
+            Debug.Log(BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp);
         }
 
 		if (isEnd) {

@@ -127,21 +127,17 @@ public class Pencil : MonoBehaviour {
 		// 召喚されていないなら
 		if (IsSummoned == false) {
 			var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity, transform.parent.transform);
-
-			monsObj.tag = transform.parent.gameObject.tag;
+            monsObj.tag = transform.parent.gameObject.tag;
 
 			IsSummoned = true;
             if (monsObj.gameObject.tag == "Player")
             {
-                StartCoroutine(monsObj.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(OperatorManager.Instance.PlayerController.MonsterStandPos.position));
+                monsObj.GetComponent<BaseMonsterBehaviour>().GetSummonMotion(OperatorManager.Instance.PlayerController.MonsterStandPos.position);
             }
-            else
+            else if(monsObj.gameObject.tag == "CPU")
             {
-
-                StartCoroutine(monsObj.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(OperatorManager.Instance.ComputerController.MonsterStandPos.position));
+                monsObj.GetComponent<BaseMonsterBehaviour>().GetSummonMotion(OperatorManager.Instance.ComputerController.MonsterStandPos.position);
             }
-
-
         }
 	}
 }
