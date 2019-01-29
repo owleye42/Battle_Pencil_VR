@@ -120,16 +120,27 @@ public class Pencil : MonoBehaviour {
 
 	// モンスターの召喚
 	public void SummonMonster() {
-		// 召喚されていないなら
-	    var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity, transform.parent.transform);
-        monsObj.tag = transform.parent.gameObject.tag;
 
-		if (monsObj.gameObject.tag == "Player") {
-            monsObj.GetComponent<BaseMonsterBehaviour>().GetSummonMotion(OperatorManager.Instance.PlayerController.MonsterStandPos.position);
-        }
-        else if(monsObj.gameObject.tag == "CPU") {
-            monsObj.GetComponent<BaseMonsterBehaviour>().GetSummonMotion(OperatorManager.Instance.ComputerController.MonsterStandPos.position);
-        }
-        
+		Vector3 standPos;
+		Transform enemyStandPosTransform;
+
+		var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity, transform.parent.transform);
+
+		monsObj.tag = transform.parent.gameObject.tag;
+
+		if (monsObj.tag == "Player") {
+			standPos = OperatorManager.Instance.PlayerController.MonsterStandPos.position;
+			enemyStandPosTransform = OperatorManager.Instance.ComputerController.MonsterStandPos;
+		}
+		else {
+			standPos = OperatorManager.Instance.ComputerController.MonsterStandPos.position;
+			enemyStandPosTransform = OperatorManager.Instance.PlayerController.MonsterStandPos;
+		}
+
+		monsObj.transform.position = new Vector3(transform.position.x, standPos.y, transform.position.z);
+
+		monsObj.GetComponent<BaseMonsterBehaviour>().GetSummonMotion(standPos);
+		
+		//monsObj.transform.LookAt(enemySpawnTransform, monsObj.transform.up);
 	}
 }

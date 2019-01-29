@@ -16,11 +16,13 @@ public class OperatorContext {
 	public OperatorController OperatorController { get; set; }
 
 	public bool isDone = false;
+	public int timeLimit;
 
 	/// <summary>
 	/// 生成時
 	/// </summary>
-	public OperatorContext() {
+	public OperatorContext(int timeLimit) {
+		this.timeLimit = timeLimit;
 		CurrentState = stateInit;
 		CurrentState.ExecuteEntry(this);
 	}

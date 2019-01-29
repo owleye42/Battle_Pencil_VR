@@ -20,7 +20,7 @@ public class Throw_ball : MonoBehaviour {
 	}
 
 	public void ThrowPencil() {
-		var opeContext = GetComponent<OperatorController>().operatorContext;
+		var opeContext = GetComponent<OperatorController>().OperatorContext;
 
 		if (opeContext.CurrentState == opeContext.stateThrow) {
 			pen.transform.position = transform.position;
