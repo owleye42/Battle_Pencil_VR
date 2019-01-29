@@ -859,6 +859,7 @@ Transform:
   m_Children:
   - {fileID: 1623659299}
   - {fileID: 1893359215}
+  - {fileID: 814905087}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1631,8 +1632,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1325effbfe7b84a8a47c42d3bdc515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPencil: {fileID: 1872073505}
-  CpuPencil: {fileID: 925515423}
+  playerPencil: {fileID: 0}
+  CpuPencil: {fileID: 0}
 --- !u!54 &1626646403
 Rigidbody:
   m_ObjectHideFlags: 0

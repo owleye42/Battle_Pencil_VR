@@ -4,24 +4,12 @@ using UnityEngine;
 
 public class aaa : MonoBehaviour
 {
-    [SerializeField]
-    private AudioClip clip = null;
-    [SerializeField]
-    private AudioClip clip2 =  null;
-
-    private BGMModel bgmModel = new BGMModel();
-
-    // Use this for initialization
-    void Start()
+    public void AttackState()
     {
-        bgmModel.audioSource = SoundController.Instance.gameObject.AddComponent<AudioSource>();
-        bgmModel.audioSource.clip = clip;
-        SoundController.Instance.BGMModels.Add(bgmModel);
-    }
+        BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp -=
+            BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
+            skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].power;
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        Debug.Log(BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp);
     }
 }

@@ -10,11 +10,13 @@ public class OperatorController : MonoBehaviour {
 
 	[SerializeField]
 	Transform monsterStandPos;
-
+    public Transform MonsterStandPos { get { return monsterStandPos; } }
 	public readonly OperatorContext operatorContext = new OperatorContext();
 
 	private void Start() {
 		operatorModel.pencil = GetComponentInChildren<Pencil>();
+
+		operatorContext.OperatorController = this;
 
 		if (operatorModel.eOperator == OperatorModel.EOperator.Player)
 			OperatorManager.Instance.PlayerController = this;
@@ -26,6 +28,10 @@ public class OperatorController : MonoBehaviour {
 
 	void Update() {
 		operatorContext.ExecuteUpdate();
+	}
+
+	public void ForceThrowPencil() {
+		GetComponent<Throw_ball>().ThrowPencil();
 	}
 
 	public void StartThrow() {
