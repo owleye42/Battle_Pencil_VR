@@ -23,11 +23,11 @@ public class MonsterStateAttack : IState<MonsterContext> {
 	}
 
 	public void ExecuteExit(MonsterContext context) {
-        //BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.EnemyBehavior.MonsterModel.hp -=
-        //    BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
-        //    skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].power;
+        BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp -=
+            BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
+            skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].power;
 
-        //Debug.Log(BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.EnemyBehavior.MonsterModel.hp);
+        Debug.Log(BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp);
         Debug.Log("[Exit] Monster State : Attack");
     }
 }

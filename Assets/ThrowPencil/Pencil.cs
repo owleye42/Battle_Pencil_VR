@@ -13,6 +13,7 @@ public class Pencil : MonoBehaviour {
 	public int Outcome { get; private set; }
 
 	// 召喚するモンスターのプレハブ
+	[Header("召喚するモンスターのプレハブ")]
 	[SerializeField]
 	GameObject monsterPrefab;
 
@@ -122,5 +123,15 @@ public class Pencil : MonoBehaviour {
 		var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity, transform.parent.transform);
 
 		monsObj.tag = transform.parent.gameObject.tag;
+
+		if (monsObj.gameObject.tag == "Player") {
+			StartCoroutine(monsObj.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(OperatorManager.Instance.PlayerController.MonsterStandPos.position));
+		}
+		else {
+
+			StartCoroutine(monsObj.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(OperatorManager.Instance.ComputerController.MonsterStandPos.position));
+		}
+
+
 	}
 }

@@ -21,7 +21,7 @@ public class BattleStateFight : IState<BattleContext> {
 	}
 
 	public void ExecuteUpdate(BattleContext context) {
-
+		
 		// HP0になったら終了しリザルトへ
         if (isEnd) {
 			context.ChangeState(context.stateResult);

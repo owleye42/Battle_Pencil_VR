@@ -10,7 +10,7 @@ public class OperatorController : MonoBehaviour {
 
 	[SerializeField]
 	Transform monsterStandPos;
-
+    public Transform MonsterStandPos { get { return monsterStandPos; } }
 	public readonly OperatorContext operatorContext = new OperatorContext();
 
 	private void Start() {
