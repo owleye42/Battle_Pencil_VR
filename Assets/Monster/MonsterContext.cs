@@ -14,7 +14,7 @@ public class MonsterContext {
 	public bool isDone = false;
 
 	public MonsterContext() {
-		currentState = stateIdle;
+		currentState = stateAppear;
 		currentState.ExecuteEntry(this);
 	}
 

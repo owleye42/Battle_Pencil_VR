@@ -18,26 +18,17 @@ public class BattleStateFight : IState<BattleContext> {
         BattleManager.Instance.IsFight = true;
 
 		BattleManager.Instance.StartThrowActiveController();
-
-		count = 600;
 	}
 
 	public void ExecuteUpdate(BattleContext context) {
 
-        if (BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome != 0)
-        {
-            context.isDone = true;
-        }
-
+		// HP0になったら終了しリザルトへ
         if (isEnd) {
 			context.ChangeState(context.stateResult);
 			return;
 		}
 
-		if (count == 0) {
-			BattleManager.Instance.ForceThrowPencil();
-		}
-
+		// 行動終了時
 		if (context.isDone) {
 			BattleManager.Instance.SwitchAvtiveController();
 			context.ChangeState(context.stateFight);

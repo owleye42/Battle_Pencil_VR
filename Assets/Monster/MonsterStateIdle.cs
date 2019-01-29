@@ -15,7 +15,7 @@ public class MonsterStateIdle : IState<MonsterContext> {
     }
 
 	public void ExecuteUpdate(MonsterContext context) {
-        Debug.Log(BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome);
+        //Debug.Log(BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome);
         if (BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome == 0) return;
 
 
@@ -23,12 +23,13 @@ public class MonsterStateIdle : IState<MonsterContext> {
         if(BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
             skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].skillType == SkillType.ATTACK){
             context.ChangeState(context.stateAttack);
-        }else if(BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
+        }
+		else if(BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
             skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].skillType == SkillType.SKILL) {
             context.ChangeState(context.stateSkill);
-        }else if(BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
-            skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].skillType == SkillType.MISS)
-        {
+        }
+		else if(BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel.
+            skillList[BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome - 1].skillType == SkillType.MISS) {
             Debug.Log("MISS");
         }
 

@@ -43,8 +43,8 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (BattleManager.Instance.IsFight)
-            monsterContext.ExecuteUpdate();
+		//if (BattleManager.Instance.IsFight)
+			monsterContext.ExecuteUpdate();
     }
 
     public IEnumerator GetJumpimgOnuma(GameObject jumpObj, Vector3 targetPosition, float tAngle)

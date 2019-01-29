@@ -28,8 +28,8 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	}
 
 	// 勝手に鉛筆を投げる
-	public void ForceThrowPencil() {
-		ActiveController.GetComponent<Throw_ball>().ThrowPencil();
+	public void ForceThrowPencil(OperatorController oc) {
+		oc.GetComponent<Throw_ball>().ThrowPencil();
 	}
 
 	// 両者の投擲フェイズ開始

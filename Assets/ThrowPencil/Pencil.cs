@@ -12,17 +12,13 @@ public class Pencil : MonoBehaviour {
 	// 出目
 	public int Outcome { get; private set; }
 
-	// 召喚し終わったか
-	public bool IsSummoned { get; private set; }
-
 	// 召喚するモンスターのプレハブ
 	[SerializeField]
 	GameObject monsterPrefab;
 
-	void Init() {
+	public void Init() {
 		Outcome = 0;
 		TmpOutcome = 0;
-		IsSummoned = false;
 		//var rigidbody = GetComponent<Rigidbody>();
 		//rigidbody.velocity = Vector3.zero;
 		//rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
@@ -123,13 +119,8 @@ public class Pencil : MonoBehaviour {
 
 	// モンスターの召喚
 	public void SummonMonster() {
-		// 召喚されていないなら
-		if (IsSummoned == false) {
-			var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity, transform.parent.transform);
+		var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity, transform.parent.transform);
 
-			monsObj.tag = transform.parent.gameObject.tag;
-
-			IsSummoned = true;
-		}
+		monsObj.tag = transform.parent.gameObject.tag;
 	}
 }
