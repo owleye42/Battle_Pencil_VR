@@ -11,12 +11,17 @@ public class OperatorController : MonoBehaviour {
 	[SerializeField]
 	Transform monsterStandPos;
     public Transform MonsterStandPos { get { return monsterStandPos; } }
-	public readonly OperatorContext operatorContext = new OperatorContext();
+
+	public OperatorContext OperatorContext { get; private set; }
+
+	public int timeLimit;
 
 	private void Start() {
+		OperatorContext = new OperatorContext(timeLimit);
+
 		operatorModel.pencil = GetComponentInChildren<Pencil>();
 
-		operatorContext.OperatorController = this;
+		OperatorContext.OperatorController = this;
 
 		if (operatorModel.eOperator == OperatorModel.EOperator.Player)
 			OperatorManager.Instance.PlayerController = this;
@@ -27,7 +32,7 @@ public class OperatorController : MonoBehaviour {
 	}
 
 	void Update() {
-		operatorContext.ExecuteUpdate();
+		OperatorContext.ExecuteUpdate();
 	}
 
 	public void ForceThrowPencil() {
@@ -35,10 +40,10 @@ public class OperatorController : MonoBehaviour {
 	}
 
 	public void StartThrow() {
-		operatorContext.ChangeState(operatorContext.stateThrow);
+		OperatorContext.ChangeState(OperatorContext.stateThrow);
 	}
 
 	public void StopThrow() {
-		operatorContext.ChangeState(operatorContext.stateWait);
+		OperatorContext.ChangeState(OperatorContext.stateWait);
 	}
 }

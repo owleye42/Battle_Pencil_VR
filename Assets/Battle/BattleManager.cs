@@ -77,7 +77,7 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 
 	public void FinishGame() {
 		foreach (var oc in ControllerList) {
-			oc.operatorContext.ToResult();
+			oc.OperatorContext.ToResult();
 		}
 	}
 
