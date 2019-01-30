@@ -10,6 +10,8 @@ TagManager:
   - CPUTable
   - PlayerTable
   - table
+  - Controller
+  - Head
   layers:
   - Default
   - TransparentFX

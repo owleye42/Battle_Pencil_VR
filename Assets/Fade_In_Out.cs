@@ -29,17 +29,20 @@ public class Fade_In_Out : MonoBehaviour {
         a_color = 0;
     }
 
-    private void Update()
+    private void FadeIO()
     {
-
+        phase = 1;
 
         switch (phase)
         {
             case 1:
-                StartCoroutine(FadeOut());
+                StartCoroutine(FadeOut());//暗転
                 break;
             case 2:
-                StartCoroutine(FadeOut());
+                StartCoroutine(FadeKeep());//維持
+                break;
+            case 3:
+                StartCoroutine(FadeIn());//明転
                 break;
         }
 
@@ -54,31 +57,34 @@ public class Fade_In_Out : MonoBehaviour {
             //透明度が255になったら終了する。
             if (a_color >= 1)
             {
-                a_color = 0;
+                a_color = 1;
                 alfaFrag = false;
+                phase = 2;
+                break;
             }
             yield return null;
         }
+        yield return null;
     }
 
     IEnumerator FadeKeep()
     {
         while (true)
         {
-            GetComponent<Image>().color = new Color(red, green, blue, a_color);
-            a_color += speed * Time.deltaTime;
-            //透明度が255になったら終了する。
-            if (a_color >= 1)
+            TimeCount -= 1 * Time.deltaTime;
+            if (TimeCount <= 0)
             {
-                a_color = 0;
-                alfaFrag = false;
+                TimeCount = 0;
+                phase=3;
+                break;
             }
             yield return null;
         }
+        yield return null;
     }
     IEnumerator FadeIn()
     {
-        if (alfaFrag)
+        while (true)
         {
             GetComponent<Image>().color = new Color(red, green, blue, a_color);
             a_color -= speed * Time.deltaTime;
@@ -87,8 +93,10 @@ public class Fade_In_Out : MonoBehaviour {
             {
                 a_color = 0;
                 alfaFrag = false;
+                break;
             }
             yield return null;
         }
+        yield return null;
     }
 }
