@@ -10,12 +10,13 @@ public class MonsterStateAttack : IState<MonsterContext> {
 	public void ExecuteEntry(MonsterContext context) {
         Debug.Log("[Entry] Monster State : Attack");
 
-        BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour._animator.SetTrigger("AttackTrigger");
+        BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour._Animator.SetTrigger("AttackTrigger");
     }
 
 	public void ExecuteUpdate(MonsterContext context) {
+        var anim = BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour._Animator;
 
-        if (BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour._animator.IsInTransition(0))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("AttackState") && anim.IsInTransition(0))
         {
             BattleManager.Instance.BattleContext.isDone = true;
             context.ChangeState(context.stateIdle);

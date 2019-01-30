@@ -120,18 +120,27 @@ public class Pencil : MonoBehaviour {
 
 	// モンスターの召喚
 	public void SummonMonster() {
+
+		Vector3 standPos;
+		Transform enemyStandPosTransform;
+
 		var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity, transform.parent.transform);
 
 		monsObj.tag = transform.parent.gameObject.tag;
 
-		if (monsObj.gameObject.tag == "Player") {
-			StartCoroutine(monsObj.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(OperatorManager.Instance.PlayerController.MonsterStandPos.position));
+		if (monsObj.tag == "Player") {
+			standPos = OperatorManager.Instance.PlayerController.MonsterStandPos.position;
+			enemyStandPosTransform = OperatorManager.Instance.ComputerController.MonsterStandPos;
 		}
 		else {
-
-			StartCoroutine(monsObj.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(OperatorManager.Instance.ComputerController.MonsterStandPos.position));
+			standPos = OperatorManager.Instance.ComputerController.MonsterStandPos.position;
+			enemyStandPosTransform = OperatorManager.Instance.PlayerController.MonsterStandPos;
 		}
 
+		monsObj.transform.position = new Vector3(transform.position.x, standPos.y, transform.position.z);
 
+		monsObj.GetComponent<BaseMonsterBehaviour>().GetSummonMotion(standPos);
+		
+		//monsObj.transform.LookAt(enemySpawnTransform, monsObj.transform.up);
 	}
 }

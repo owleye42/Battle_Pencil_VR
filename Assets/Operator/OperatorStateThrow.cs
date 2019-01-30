@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class OperatorStateThrow : IState<OperatorContext> {
 
-	int count = 600;
+	int count;
 
 	public void ExecuteEntry(OperatorContext context) {
-		
-		count = 600;
+		count = context.timeLimit * 60;
 	}
 
 	public void ExecuteUpdate(OperatorContext context) {
