@@ -7,7 +7,7 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
     [SerializeField]
     MonsterModel monsterModel;
-    public MonsterModel MonsterModel { get { return monsterModel; } }
+    public MonsterModel MonsterModel { set{ monsterModel = value; } get { return monsterModel; } }
     public BaseMonsterBehaviour EnemyBehavior { get; private set; }
 
     MonsterContext monsterContext = null;
@@ -46,6 +46,15 @@ public class BaseMonsterBehaviour : MonoBehaviour
         if (BattleManager.Instance.IsFight)
             monsterContext.ExecuteUpdate();
     }
+
+
+    [SerializeField]
+    Vector3[] positinons;
+
+
+
+    
+    
 
     public IEnumerator GetJumpimgOnuma(Vector3 targetPosition)
     {

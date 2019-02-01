@@ -6623,5 +6623,7 @@ MonoBehaviour:
       targetType: 0
       power: 1
       text: 
+    pref: {fileID: 0}
   enemyPower: 0
   isAttack: 0
+  positinons: []
