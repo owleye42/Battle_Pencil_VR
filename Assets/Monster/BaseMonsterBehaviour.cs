@@ -9,9 +9,9 @@ public class BaseMonsterBehaviour : MonoBehaviour
     MonsterModel monsterModel;
     public MonsterModel MonsterModel { get { return monsterModel; } }
     public MonsterContext MonsterContext { private set; get; }
-    
+
     public Animator _Animator { get; private set; }
-    
+
     void Awake()
     {
         MonsterContext = new MonsterContext();
@@ -21,6 +21,8 @@ public class BaseMonsterBehaviour : MonoBehaviour
     void Start()
     {
         GetComponentInParent<OperatorController>().OperatorModel.monsterBehaviour = this;
+
+        monsterModel.maxHP = monsterModel.hp;
     }
 
     private void FixedUpdate()
@@ -65,14 +67,14 @@ public class BaseMonsterBehaviour : MonoBehaviour
                 if (gameObject.tag == "Player")
                 {
 
-                     transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.ComputerController.MonsterStandPos.position - transform.position);
-                //    transform.rotation = Quaternion.LookRotation(GameObject.Find("ComputerMonsterPosition").transform.position - transform.position);
+                    transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.ComputerController.MonsterStandPos.position - transform.position);
+                    //    transform.rotation = Quaternion.LookRotation(GameObject.Find("ComputerMonsterPosition").transform.position - transform.position);
                 }
                 else if (gameObject.tag == "CPU")
                 {
 
-                     transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.PlayerController.MonsterStandPos.position - transform.position);
-                   // transform.rotation = Quaternion.LookRotation(GameObject.Find("PlayerMonsterPosition").transform.position - transform.position);
+                    transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.PlayerController.MonsterStandPos.position - transform.position);
+                    // transform.rotation = Quaternion.LookRotation(GameObject.Find("PlayerMonsterPosition").transform.position - transform.position);
 
                 }
             }

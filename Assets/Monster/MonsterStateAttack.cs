@@ -8,16 +8,18 @@ using UnityEngine;
 public class MonsterStateAttack : IState<MonsterContext> {
 
 	public void ExecuteEntry(MonsterContext context) {
+        var active = BattleManager.Instance.ActiveController.OperatorModel;
         Debug.Log("[Entry] Monster State : Attack");
 
-        BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour._Animator.SetTrigger("AttackTrigger");
+        active.monsterBehaviour.MonsterModel.isAttack = true;
+        active.monsterBehaviour._Animator.SetTrigger("AttackTrigger");
     }
 
 	public void ExecuteUpdate(MonsterContext context) {
         var anim = BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour._Animator;
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("AttackState") && anim.IsInTransition(0))
-        {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("AttackState") &&
+            anim.IsInTransition(0)) {
             BattleManager.Instance.BattleContext.isDone = true;
             context.ChangeState(context.stateIdle);
         }
@@ -29,7 +31,14 @@ public class MonsterStateAttack : IState<MonsterContext> {
 
         nonActive.monsterBehaviour.MonsterModel.hp -=
             active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
-        
+
+        nonActive.monsterBehaviour.MonsterModel.counterPower =
+            active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
+
+        // HP制限
+        //nonActive.monsterBehaviour.MonsterModel.hp = Mathf.Clamp(nonActive.monsterBehaviour.MonsterModel.hp, 0, nonActive.monsterBehaviour.MonsterModel.maxHp);
+        Debug.Log("NonActiveMonsterのHP : " + nonActive.monsterBehaviour.MonsterModel.hp);
+
         Debug.Log("[Exit] Monster State : Attack");
     }
 }
