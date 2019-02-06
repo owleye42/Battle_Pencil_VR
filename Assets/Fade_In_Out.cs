@@ -29,7 +29,7 @@ public class Fade_In_Out : MonoBehaviour {
         a_color = 0;
     }
 
-    private void FadeIO()
+    public void FadeIO()
     {
         phase = 1;
 
