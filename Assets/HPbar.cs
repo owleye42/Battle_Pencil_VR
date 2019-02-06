@@ -12,7 +12,7 @@ public class HPbar : MonoBehaviour {
 
     [Header("変化前の体力")]
     private　int beforeHP=100;//初期値１００と仮定
-    [Header("体力バーの長さ")]
+    [Header("現在の体力バーの長さ")]
     private float barLengs=1.0f;//１と初期値とする
     [Header("変更後の体力バーの長さ")]
     private float afterBarLengs = 1.0f;//１と初期値とする
@@ -34,7 +34,8 @@ public class HPbar : MonoBehaviour {
         {
             PMflag = true;
         }
-        while (afterHP == beforeHP)
+        afterHP=beforeHP - afterHP;
+        while (barLengs == afterBarLengs)
         {
             GetComponent<Image>().color = new Color(red, green, blue, a_color);//色代入
 
