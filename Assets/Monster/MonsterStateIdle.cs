@@ -37,8 +37,6 @@ public class MonsterStateIdle : IState<MonsterContext> {
         nonActiveMonsterModel.hp = Mathf.Clamp(nonActiveMonsterModel.hp, 0, nonActiveMonsterModel.maxHP);
         activeMonsterModel.hp = Mathf.Clamp(activeMonsterModel.hp, 0, nonActiveMonsterModel.maxHP);
 
-        //Debug.Log("NonActiveMonsterのHP : " + nonActiveMonsterModel.hp);
-
         Debug.Log("[Exit] Monster State : Idol");
     }
 }

@@ -52,8 +52,7 @@ public class MonsterStateSkill : IState<MonsterContext> {
                 active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
 
             active.monsterBehaviour.MonsterModel.isAttack = false;
-            // HP制限
-            //active.monsterBehaviour.MonsterModel.hp = Mathf.Clamp(active.monsterBehaviour.MonsterModel.hp, 0, active.monsterBehaviour.MonsterModel.maxHp);
+
             Debug.Log("ActiveMonsterのHP : " + active.monsterBehaviour.MonsterModel.hp);
         }
 
