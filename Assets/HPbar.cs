@@ -12,7 +12,7 @@ public class HPbar : MonoBehaviour {
 
     [Header("変化前の体力")]
     private　int beforeHP=100;//初期値１００と仮定
-    [Header("体力バーの長さ")]
+    [Header("現在の体力バーの長さ")]
     private float barLengs=1.0f;//１と初期値とする
     [Header("変更後の体力バーの長さ")]
     private float afterBarLengs = 1.0f;//１と初期値とする
@@ -22,8 +22,10 @@ public class HPbar : MonoBehaviour {
     [SerializeField] float colorSpeed;
     [Header("増減フラグ")]
     [SerializeField] bool PMflag; //true増 false減
-    // Update is called once per frame
-    
+    [Header("体力差分")]
+    [SerializeField] int difference; //true増 false減
+                                  // Update is called once per frame
+
     public void BarUpdate(int afterHP/*変化後の体力*/)//体力値変更値時に呼ぶ関数
     {
         if (beforeHP < afterHP)
@@ -34,7 +36,8 @@ public class HPbar : MonoBehaviour {
         {
             PMflag = true;
         }
-        while (afterHP == beforeHP)
+        difference=beforeHP - afterHP;
+        while (barLengs == afterBarLengs)
         {
             GetComponent<Image>().color = new Color(red, green, blue, a_color);//色代入
 
@@ -78,7 +81,7 @@ public class HPbar : MonoBehaviour {
                     }
                     break;
             }
-            UIobj.fillAmount -= 1.0f / barSpeed * Time.deltaTime;
+            UIobj.fillAmount -= difference / barSpeed * Time.deltaTime;
             if (UIobj.fillAmount <= 0)
             {
                 //変更終了時の挙動 

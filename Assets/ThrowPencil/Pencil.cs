@@ -20,10 +20,23 @@ public class Pencil : MonoBehaviour {
 	public void Init() {
 		Outcome = 0;
 		TmpOutcome = 0;
+	//	IsSummoned = false;
+        //var rigidbody = GetComponent<Rigidbody>();
+        //rigidbody.velocity = Vector3.zero;
+        //rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
+        if (this.gameObject.tag == "Player")
+        {
+            monsterPrefab = DataManager.Instance.playerModel;
+        }
+        else
+        {
+            monsterPrefab = DataManager.Instance.computerModel;
+        }
+    }
 		//var rigidbody = GetComponent<Rigidbody>();
 		//rigidbody.velocity = Vector3.zero;
 		//rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
-	}
+	
 
 	private void Awake() {
 		Init();
