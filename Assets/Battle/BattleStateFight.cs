@@ -14,7 +14,7 @@ public class BattleStateFight : IState<BattleContext> {
 	int count = 600;
 
 	public void ExecuteEntry(BattleContext context) {
-		Debug.Log("[Entry] Battle State : Fight");
+		Debug.LogWarning("[Entry] Battle State : Fight");
         
 		BattleManager.Instance.StartThrowActiveController();
         
@@ -26,7 +26,6 @@ public class BattleStateFight : IState<BattleContext> {
         if (BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome != 0)
         {
             BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterContext.ExecuteUpdate();
-            Debug.Log(BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp);
         }
 
 		if (isEnd) {
@@ -45,6 +44,6 @@ public class BattleStateFight : IState<BattleContext> {
 	public void ExecuteExit(BattleContext context) {
         BattleManager.Instance.SwitchAvtiveController();
 
-        Debug.Log("[Exit] Battle State : Fight");
+        Debug.LogWarning("[Exit] Battle State : Fight");
 	}
 }

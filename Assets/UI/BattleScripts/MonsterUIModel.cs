@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class MonsterUIModel {
-    public int monsterMaxHP;
     public Text HPText;
-    public Image HPBar;
+    public Slider HPBar;
     public Text[] skillTexts;
     public Image frame;
     public Image characterImage = null;
