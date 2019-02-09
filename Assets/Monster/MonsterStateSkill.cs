@@ -10,8 +10,10 @@ public class MonsterStateSkill : IState<MonsterContext> {
 
     public void ExecuteEntry(MonsterContext context) {
         Debug.Log("[Entry] Monster State : Skill");
+        var active = BattleManager.Instance.ActiveController.OperatorModel;
 
-        BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour._Animator.SetTrigger("SkillTrigger");
+        active.monsterBehaviour.MonsterModel.isAttack = true;
+        active.monsterBehaviour._Animator.SetTrigger("SkillTrigger");
     }
 
     public void ExecuteUpdate(MonsterContext context) {
@@ -30,17 +32,31 @@ public class MonsterStateSkill : IState<MonsterContext> {
 
         if (active.monsterBehaviour.MonsterModel.type == Type.ATTACK) {
             nonActive.monsterBehaviour.MonsterModel.hp -=
-            active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
-            
-        } else if (active.monsterBehaviour.MonsterModel.type == Type.DEFENCE) {
+                active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
 
+            nonActive.monsterBehaviour.MonsterModel.counterPower =
+                active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
+        }
+        else if (active.monsterBehaviour.MonsterModel.type == Type.DEFENCE) {
+            if (nonActive.monsterBehaviour.MonsterModel.isAttack) {
+                nonActive.monsterBehaviour.MonsterModel.hp -= active.monsterBehaviour.MonsterModel.counterPower * 2;
+                nonActive.monsterBehaviour.MonsterModel.counterPower = active.monsterBehaviour.MonsterModel.counterPower * 2;
+            }
+            else {
+                Debug.Log("MISS");
+                active.monsterBehaviour.MonsterModel.isAttack = false;
+            }
         }
         else if (active.monsterBehaviour.MonsterModel.type == Type.HEAL) {
             active.monsterBehaviour.MonsterModel.hp += 
                 active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
 
-            Debug.Log(active.monsterBehaviour.MonsterModel.hp);
+            active.monsterBehaviour.MonsterModel.isAttack = false;
+
+            Debug.Log("ActiveMonsterのHP : " + active.monsterBehaviour.MonsterModel.hp);
         }
+
+        Debug.Log("NonActiveMonsterのHP : " + nonActive.monsterBehaviour.MonsterModel.hp);
         Debug.Log("[Exit] Monster State : Skill");
     }
 }

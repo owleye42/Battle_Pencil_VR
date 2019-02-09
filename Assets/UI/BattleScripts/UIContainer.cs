@@ -8,5 +8,4 @@ public class UIContainer : MonoBehaviour {
     public MonsterUIModel enemyUI;
 
     public Image[] characterImages = null;
-
 }
