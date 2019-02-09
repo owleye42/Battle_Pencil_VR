@@ -3,105 +3,67 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
+    static SoundManager instance;
+    AudioSource audioSource;
 
-    public static SoundManager Instance;
-
-    string nextBgmName;
-    
-    public AudioSource BgmSource;
-    public AudioSource SeSource;
-
-    //音源保存用
-    Dictionary<string, AudioClip> bgms;
-    Dictionary<string, AudioClip> ses;
 
     private void Awake()
     {
-        if (Instance == null)
+        if (instance = null)
         {
-            Instance = this;
-        }
-        if (Instance != this)
-        {
-            Destroy(this);
-        }
-    }
-
-    private void Start()
-    {
-        bgms = new Dictionary<string, AudioClip>();
-        ses = new Dictionary<string, AudioClip>();
-
-        object[] bgmList = Resources.LoadAll("Audio/BGM");
-        object[] seList = Resources.LoadAll("Audio/SE");
-
-        foreach (AudioClip bgm in bgmList)
-        {
-            bgms[bgm.name] = bgm;
-            Debug.Log(bgm.name);
-        }
-        foreach (AudioClip se in seList)
-        {
-            ses[se.name] = se;
-        }
-
-    }
-
-    
-    public void PlayeSE(string seName)
-    {
-        if (!ses.ContainsKey(seName))
-        {
-            Debug.Log("そのSEはありません。");
-            return;
-        }
-        SeSource.PlayOneShot(ses[seName]);
-    }
-
-    public void PlayeBgm(string bgmName)
-    {
-        if (!bgms.ContainsKey(bgmName))
-        {
-            Debug.Log("そのBGMはありません。");
-            
-            return;
-        }
-        nextBgmName = bgmName;
-        //違う曲名が再生されたらフェードアウト
-        if (BgmSource.clip.name != nextBgmName)
-        {
-            StartCoroutine(FeedOut());
+            instance = this;
         }
         else
         {
-            BgmSource.clip = bgms[nextBgmName] as AudioClip;
-            BgmSource.Play();
+            if (instance != this)
+            {
+                Destroy(this);
+            }
         }
     }
-    
-    IEnumerator FeedOut()
+
+
+
+
+    void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+
+
+    //フェードイン
+    public static IEnumerator FeedIn(AudioSource audioSource)
     {
-        while (BgmSource.volume>=0)
+        while (audioSource.volume < 1f)
         {
-            BgmSource.volume -= Time.deltaTime;
-            
-            if (BgmSource.volume <= 0)
+            audioSource.volume += Time.deltaTime / 0.1f;
+
+            if (audioSource.volume > 1)
             {
-                BgmSource.Stop();
-                BgmSource.volume = 1;
-                StartCoroutine(FeedIN());
-                yield break;
+                audioSource.volume = 1f;
             }
             yield return null;
         }
+        
     }
-
-    IEnumerator FeedIN()
+    //フェードアウト
+    public static IEnumerator FeedOut(AudioSource audioSource)
     {
-        BgmSource.clip = bgms[nextBgmName] as AudioClip;
-        BgmSource.Play();
-        yield return null;
+        while (audioSource.volume < 1f)
+        {
+            audioSource.volume -= Time.deltaTime / 0.1f;
 
+            if (audioSource.volume > 1)
+            {
+                audioSource.volume = 1f;
+            }
+            yield return null;
+        }
+        
     }
-    
 }

@@ -8,7 +8,7 @@ using UnityEngine;
 public class BattleStateInit : IState<BattleContext> {
 
 	public void ExecuteEntry(BattleContext context) {
-		Debug.Log("[Entry] Battle State : Init");
+		Debug.LogWarning("[Entry] Battle State : Init");
 	}
 
 	public void ExecuteUpdate(BattleContext context) {
@@ -21,7 +21,7 @@ public class BattleStateInit : IState<BattleContext> {
 	}
 
 	public void ExecuteExit(BattleContext context) {
-		Debug.Log("[Exit] Battle State : Init");
+		Debug.LogWarning("[Exit] Battle State : Init");
 	}
 
 	/// <summary>

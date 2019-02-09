@@ -13,7 +13,7 @@ public class BattleStateOffensiveDecision : IState<BattleContext> {
 	bool isReset = false;
 
 	public void ExecuteEntry(BattleContext context) {
-		Debug.Log("[Entry] Battle State : Offensive Decision");
+		Debug.LogWarning("[Entry] Battle State : Offensive Decision");
 		BattleManager.Instance.StartPencilsOutcomeDetection();
 	}
 
@@ -54,7 +54,7 @@ public class BattleStateOffensiveDecision : IState<BattleContext> {
 	}
 
 	public void ExecuteExit(BattleContext context) {
-		Debug.Log("[Exit] Battle State : Offensive Decision");
+		Debug.LogWarning("[Exit] Battle State : Offensive Decision");
 	}
 	
 	// 両者のモンスターを召喚

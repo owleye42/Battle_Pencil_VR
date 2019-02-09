@@ -7,23 +7,11 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
     [SerializeField]
     MonsterModel monsterModel;
-    public MonsterModel MonsterModel { set{ monsterModel = value; } get { return monsterModel; } }
-    public BaseMonsterBehaviour EnemyBehavior { get; private set; }
-
-    MonsterContext monsterContext = null;
-
-    // カウンター用
-    public int enemyPower = 0;
-    public bool isAttack = false;
-
-    Transform standingTransform;
-    public Animator MonsterAnimator { get; private set; }
-
-//    public MonsterModel MonsterModel { get { return monsterModel; } }
+    public MonsterModel MonsterModel { get { return monsterModel; } }
     public MonsterContext MonsterContext { private set; get; }
-    
+
     public Animator _Animator { get; private set; }
-    
+
     void Awake()
     {
         MonsterContext = new MonsterContext();
@@ -33,21 +21,14 @@ public class BaseMonsterBehaviour : MonoBehaviour
     void Start()
     {
         GetComponentInParent<OperatorController>().OperatorModel.monsterBehaviour = this;
+
+        monsterModel.maxHP = monsterModel.hp;
     }
 
     private void FixedUpdate()
     {
         monsterModel.hp = Mathf.Clamp(monsterModel.hp, 0, 100);
     }
-
-
-    [SerializeField]
-    Vector3[] positinons;
-
-
-
-    
-    
 
     // 召喚時のモーション
     public void GetSummonMotion(Vector3 targetPosition)
@@ -86,14 +67,14 @@ public class BaseMonsterBehaviour : MonoBehaviour
                 if (gameObject.tag == "Player")
                 {
 
-                     transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.ComputerController.MonsterStandPos.position - transform.position);
-                //    transform.rotation = Quaternion.LookRotation(GameObject.Find("ComputerMonsterPosition").transform.position - transform.position);
+                    transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.ComputerController.MonsterStandPos.position - transform.position);
+                    //    transform.rotation = Quaternion.LookRotation(GameObject.Find("ComputerMonsterPosition").transform.position - transform.position);
                 }
                 else if (gameObject.tag == "CPU")
                 {
 
-                     transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.PlayerController.MonsterStandPos.position - transform.position);
-                   // transform.rotation = Quaternion.LookRotation(GameObject.Find("PlayerMonsterPosition").transform.position - transform.position);
+                    transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.PlayerController.MonsterStandPos.position - transform.position);
+                    // transform.rotation = Quaternion.LookRotation(GameObject.Find("PlayerMonsterPosition").transform.position - transform.position);
 
                 }
             }
