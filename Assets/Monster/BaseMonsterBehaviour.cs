@@ -7,7 +7,19 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
     [SerializeField]
     MonsterModel monsterModel;
-    public MonsterModel MonsterModel { get { return monsterModel; } }
+    public MonsterModel MonsterModel { set{ monsterModel = value; } get { return monsterModel; } }
+    public BaseMonsterBehaviour EnemyBehavior { get; private set; }
+
+    MonsterContext monsterContext = null;
+
+    // カウンター用
+    public int enemyPower = 0;
+    public bool isAttack = false;
+
+    Transform standingTransform;
+    public Animator MonsterAnimator { get; private set; }
+
+//    public MonsterModel MonsterModel { get { return monsterModel; } }
     public MonsterContext MonsterContext { private set; get; }
     
     public Animator _Animator { get; private set; }
@@ -27,6 +39,15 @@ public class BaseMonsterBehaviour : MonoBehaviour
     {
         monsterModel.hp = Mathf.Clamp(monsterModel.hp, 0, 100);
     }
+
+
+    [SerializeField]
+    Vector3[] positinons;
+
+
+
+    
+    
 
     // 召喚時のモーション
     public void GetSummonMotion(Vector3 targetPosition)

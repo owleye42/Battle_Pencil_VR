@@ -6623,3 +6623,10 @@ MonoBehaviour:
       targetType: 0
       power: 10
       text: 
+<<<<<<< HEAD:Assets/Resources/Monster/unitychan 1.prefab
+    pref: {fileID: 0}
+  enemyPower: 0
+  isAttack: 0
+  positinons: []
+=======
+>>>>>>> update/master:Assets/Monster/Prefab/unitychan 1.prefab
