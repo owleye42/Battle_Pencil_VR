@@ -19,32 +19,25 @@ public class BaseMonsterBehaviour : MonoBehaviour
     Transform standingTransform;
     public Animator MonsterAnimator { get; private set; }
 
+//    public MonsterModel MonsterModel { get { return monsterModel; } }
+    public MonsterContext MonsterContext { private set; get; }
+    
+    public Animator _Animator { get; private set; }
+    
     void Awake()
     {
-        monsterContext = new MonsterContext();
-        MonsterAnimator = GetComponent<Animator>();
+        MonsterContext = new MonsterContext();
+        _Animator = GetComponent<Animator>();
     }
 
     void Start()
     {
-        if (gameObject.tag == "Player")
-        {
-            MonsterManager.Instance.PlayerMonsterBehaviour = this;
-            EnemyBehavior = MonsterManager.Instance.ComputerMonsterBehaviour;
-        }
-        else if (gameObject.tag == "CPU")
-        {
-            MonsterManager.Instance.ComputerMonsterBehaviour = this;
-            EnemyBehavior = MonsterManager.Instance.PlayerMonsterBehaviour;
-        }
-
         GetComponentInParent<OperatorController>().OperatorModel.monsterBehaviour = this;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (BattleManager.Instance.IsFight)
-            monsterContext.ExecuteUpdate();
+        monsterModel.hp = Mathf.Clamp(monsterModel.hp, 0, 100);
     }
 
 
@@ -56,12 +49,13 @@ public class BaseMonsterBehaviour : MonoBehaviour
     
     
 
-    public IEnumerator GetJumpimgOnuma(Vector3 targetPosition)
+    // 召喚時のモーション
+    public void GetSummonMotion(Vector3 targetPosition)
     {
-        StartCoroutine(JumpingOnuma(targetPosition));
-        yield return null;
+        StartCoroutine(SummonMotion(targetPosition));
     }
-    IEnumerator JumpingOnuma(Vector3 targetPos)
+
+    IEnumerator SummonMotion(Vector3 targetPos)
     {
         while (true)
         {
@@ -72,11 +66,11 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
 
 
-            var distance = Vector3.Distance(this.transform.position, targetPos);
+            var distance = Vector3.Distance(transform.position, targetPos);
             while (distance >= 0.1f)
             {
-                distance = Vector3.Distance(this.transform.position, targetPos);
-                Debug.Log(distance);
+                distance = Vector3.Distance(transform.position, targetPos);
+                //Debug.Log(distance);
                 Vector3 targetDir = new Vector3(targetPos.x, transform.position.y, targetPos.z) - transform.position;
                 Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 100, 0f);
                 transform.rotation = Quaternion.LookRotation(newDir);
@@ -89,17 +83,17 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
             if (distance < 0.1)
             {
-                if (this.gameObject.tag == "Player")
+                if (gameObject.tag == "Player")
                 {
 
-                     this.transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.ComputerController.MonsterStandPos.position - transform.position);
-                //    this.transform.rotation = Quaternion.LookRotation(GameObject.Find("ComputerMonsterPosition").transform.position - transform.position);
+                     transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.ComputerController.MonsterStandPos.position - transform.position);
+                //    transform.rotation = Quaternion.LookRotation(GameObject.Find("ComputerMonsterPosition").transform.position - transform.position);
                 }
-                else if (this.gameObject.tag == "CPU")
+                else if (gameObject.tag == "CPU")
                 {
 
-                     this.transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.PlayerController.MonsterStandPos.position - transform.position);
-                   // this.transform.rotation = Quaternion.LookRotation(GameObject.Find("PlayerMonsterPosition").transform.position - transform.position);
+                     transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.PlayerController.MonsterStandPos.position - transform.position);
+                   // transform.rotation = Quaternion.LookRotation(GameObject.Find("PlayerMonsterPosition").transform.position - transform.position);
 
                 }
             }

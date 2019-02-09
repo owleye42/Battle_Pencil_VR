@@ -12,18 +12,15 @@ public class Pencil : MonoBehaviour {
 	// 出目
 	public int Outcome { get; private set; }
 
-	// 召喚し終わったか
-	public bool IsSummoned { get; private set; }
-
-    // 召喚するモンスターのプレハブ
-    [Header("召喚するモンスターのプレハブ")]
-    [SerializeField]
+	// 召喚するモンスターのプレハブ
+	[Header("召喚するモンスターのプレハブ")]
+	[SerializeField]
 	GameObject monsterPrefab;
 
-	void Init() {
+	public void Init() {
 		Outcome = 0;
 		TmpOutcome = 0;
-		IsSummoned = false;
+	//	IsSummoned = false;
         //var rigidbody = GetComponent<Rigidbody>();
         //rigidbody.velocity = Vector3.zero;
         //rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
@@ -36,6 +33,10 @@ public class Pencil : MonoBehaviour {
             monsterPrefab = DataManager.Instance.computerModel;
         }
     }
+		//var rigidbody = GetComponent<Rigidbody>();
+		//rigidbody.velocity = Vector3.zero;
+		//rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
+	
 
 	private void Awake() {
 		Init();
@@ -81,7 +82,7 @@ public class Pencil : MonoBehaviour {
 		while (true) {
 			// 出目表示用の変数に格納
 			TmpOutcome = LuckDetermination();
-			Debug.Log(gameObject.name + "出目(仮)" + TmpOutcome);
+			//Debug.Log(gameObject.name + "出目(仮)" + TmpOutcome);
 
 			// 静止していたら
 			if (rigidbody.velocity.sqrMagnitude == 0) {
@@ -132,24 +133,27 @@ public class Pencil : MonoBehaviour {
 
 	// モンスターの召喚
 	public void SummonMonster() {
-		// 召喚されていないなら
-		if (IsSummoned == false) {
-			var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity, transform.parent.transform);
 
-			monsObj.tag = transform.parent.gameObject.tag;
+		Vector3 standPos;
+		Transform enemyStandPosTransform;
 
-			IsSummoned = true;
-            if (monsObj.gameObject.tag == "Player")
-            {
-                StartCoroutine(monsObj.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(OperatorManager.Instance.PlayerController.MonsterStandPos.position));
-            }
-            else
-            {
+		var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity, transform.parent.transform);
 
-                StartCoroutine(monsObj.GetComponent<BaseMonsterBehaviour>().GetJumpimgOnuma(OperatorManager.Instance.ComputerController.MonsterStandPos.position));
-            }
+		monsObj.tag = transform.parent.gameObject.tag;
 
+		if (monsObj.tag == "Player") {
+			standPos = OperatorManager.Instance.PlayerController.MonsterStandPos.position;
+			enemyStandPosTransform = OperatorManager.Instance.ComputerController.MonsterStandPos;
+		}
+		else {
+			standPos = OperatorManager.Instance.ComputerController.MonsterStandPos.position;
+			enemyStandPosTransform = OperatorManager.Instance.PlayerController.MonsterStandPos;
+		}
 
-        }
+		monsObj.transform.position = new Vector3(transform.position.x, standPos.y, transform.position.z);
+
+		monsObj.GetComponent<BaseMonsterBehaviour>().GetSummonMotion(standPos);
+		
+		//monsObj.transform.LookAt(enemySpawnTransform, monsObj.transform.up);
 	}
 }

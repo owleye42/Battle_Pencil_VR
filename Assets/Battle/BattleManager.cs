@@ -10,10 +10,7 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	public OperatorController NonActiveController { get; set; }
 
 	public BattleContext BattleContext { get; private set; }
-
-    private bool isFight = false;
-    public bool IsFight { set { isFight = value; } get { return isFight; } }
-
+    
 	protected override void Awake() {
 		base.Awake();
 
@@ -28,8 +25,8 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	}
 
 	// 勝手に鉛筆を投げる
-	public void ForceThrowPencil() {
-		ActiveController.GetComponent<Throw_ball>().ThrowPencil();
+	public void ForceThrowPencil(OperatorController oc) {
+		oc.GetComponent<Throw_ball>().ThrowPencil();
 	}
 
 	// 両者の投擲フェイズ開始
@@ -67,18 +64,20 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	// 攻守交代
 	public void SwitchAvtiveController() {
 		if (ActiveController == ControllerList[0]) {
+            var tmp = ActiveController;
 			ActiveController = ControllerList[1];
-			NonActiveController = ControllerList[0];
+			NonActiveController = tmp;
 		}
 		else if (ActiveController == ControllerList[1]) {
-			ActiveController = ControllerList[0];
-			NonActiveController = ControllerList[1];
+            var tmp = ActiveController;
+            ActiveController = ControllerList[0];
+			NonActiveController = tmp;
 		}
 	}
 
 	public void FinishGame() {
 		foreach (var oc in ControllerList) {
-			oc.operatorContext.ToResult();
+			oc.OperatorContext.ToResult();
 		}
 	}
 

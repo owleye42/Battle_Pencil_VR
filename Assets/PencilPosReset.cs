@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PencilPosReset : MonoBehaviour {
+    [Header("自分の鉛筆")]
     [SerializeField] Pencil playerPencil;
+    [Header("相手の鉛筆")]
     [SerializeField] Pencil CpuPencil;
 
     private void OnCollisionEnter(Collision collision)

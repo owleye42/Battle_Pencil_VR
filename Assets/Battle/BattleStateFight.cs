@@ -15,34 +15,35 @@ public class BattleStateFight : IState<BattleContext> {
 
 	public void ExecuteEntry(BattleContext context) {
 		Debug.Log("[Entry] Battle State : Fight");
-        BattleManager.Instance.IsFight = true;
-
+        
 		BattleManager.Instance.StartThrowActiveController();
-
+        
 		count = 600;
 	}
 
 	public void ExecuteUpdate(BattleContext context) {
+
+        if (BattleManager.Instance.ActiveController.OperatorModel.pencil.Outcome != 0)
+        {
+            BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterContext.ExecuteUpdate();
+            Debug.Log(BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel.hp);
+        }
 
 		if (isEnd) {
 			context.ChangeState(context.stateResult);
 			return;
 		}
 
-		if (count == 0) {
-			BattleManager.Instance.ForceThrowPencil();
-		}
-
+		// 行動終了時
 		if (context.isDone) {
-			BattleManager.Instance.SwitchAvtiveController();
-			context.ChangeState(context.stateFight);
+            context.ChangeState(context.stateFight);
 		}
 
 		count--;
 	}
 
 	public void ExecuteExit(BattleContext context) {
-        BattleManager.Instance.IsFight = false;
+        BattleManager.Instance.SwitchAvtiveController();
 
         Debug.Log("[Exit] Battle State : Fight");
 	}
