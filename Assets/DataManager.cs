@@ -27,11 +27,19 @@ public class DataManager :BaseSingletonMono<DataManager> {
         //object[] effectList = Resources.LoadAll("Effect");
 
 
-        computerModel = monsters[monsterNames[Random.RandomRange(0,1)]]as GameObject;
+        computerModel = monsters[monsterNames[Random.RandomRange(0,2)]]as GameObject;
     }
 
-    
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Fade_In_Out.Instance.FadeIO();
+
+        }
+
+    }
 
 
 }

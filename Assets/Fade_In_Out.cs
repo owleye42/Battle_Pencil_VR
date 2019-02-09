@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Fade_In_Out : MonoBehaviour {
+public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
 
     bool alfaFrag;
     float a_color;
@@ -13,7 +13,7 @@ public class Fade_In_Out : MonoBehaviour {
     public float speed;  //透明化の速さ
     bool once = true;
 
-    int phase=0;
+    int phase=1;
     
 
     [Header("何秒暗転するか")]
@@ -31,8 +31,7 @@ public class Fade_In_Out : MonoBehaviour {
 
     public void FadeIO()
     {
-        phase = 1;
-
+        
         switch (phase)
         {
             case 1:
@@ -47,6 +46,8 @@ public class Fade_In_Out : MonoBehaviour {
         }
 
     }
+
+    
 
     IEnumerator FadeOut()
     {
