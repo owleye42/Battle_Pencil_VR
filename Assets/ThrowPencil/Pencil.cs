@@ -120,7 +120,7 @@ public class Pencil : MonoBehaviour {
 
 	// モンスターの召喚
 	public void SummonMonster() {
-
+		
 		Vector3 standPos;
 		Transform enemyStandPosTransform;
 
