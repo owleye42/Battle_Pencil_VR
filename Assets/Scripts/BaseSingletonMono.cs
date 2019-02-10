@@ -16,16 +16,7 @@ public class BaseSingletonMono<T> : MonoBehaviour where T : MonoBehaviour {
 
 	protected BaseSingletonMono() { }
 
-	public static T Instance {
-		get {
-			if (instance == null) {
-				GameObject obj = new GameObject(typeof(T).ToString() + "(singleton)");
-				instance = obj.AddComponent<T>();
-			}
-
-			return instance;
-		}
-	}
+	public static T Instance { get { return instance; } }
 
 	/// <summary>
 	/// 継承先で Awake() を使う場合は Awake()内の先頭で base.Awake() を呼び出す
@@ -33,13 +24,15 @@ public class BaseSingletonMono<T> : MonoBehaviour where T : MonoBehaviour {
 	/// protected override void Awake() {
 	///		base.Awake();
 	///		
-	///		Awake処理
+	///		// Awake処理
 	/// }
 	/// </summary>
 	protected virtual void Awake() {
-		Debug.Log(typeof(T).ToString() + " awake!");
-		if (instance != null) Destroy(gameObject);
+		Debug.Log(typeof(T).ToString() + " Awake!");
+
+		if (instance == null) instance = this as T;
+		else if (instance != this as T) Destroy(gameObject);
+
 		DontDestroyOnLoad(gameObject);
-		instance = this as T;
 	}
 }
