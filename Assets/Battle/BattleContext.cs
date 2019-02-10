@@ -1,52 +1,45 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Battle {
-	public class BattleContext {
-		public readonly IBattleState stateInit = new BattleStateInit();
-		public readonly IBattleState stateOffensiveDecision = new BattleStateOffensiveDecision();
-		public readonly IBattleState stateIdle = new BattleStateIdle();
-		public readonly IBattleState stateActionSelect = new BattleStateActionSelect();
-		public readonly IBattleState stateDoAction = new BattleStateDoAction();
-		
-		public IBattleState CurrentState { get; private set; }
+public class BattleContext {
+	public readonly IState<BattleContext> stateInit = new BattleStateInit();
+	public readonly IState<BattleContext> stateOffensiveDecision = new BattleStateOffensiveDecision();
+	public readonly IState<BattleContext> stateFight = new BattleStateFight();
+	public readonly IState<BattleContext> stateResult = new BattleStateResult();
 
-		public List<BattleContext> enemyContexts = new List<BattleContext>();
-		public List<BattleContext> friendlyContexts = new List<BattleContext>();
+	public IState<BattleContext> CurrentState { get; private set; }
 
-		public bool isOffense = false;
+	public bool isDone = false;
 
-		/// <summary>
-		/// 生成時
-		/// </summary>
-		public BattleContext() {
-			CurrentState = stateInit;
-			CurrentState.ExecuteEntry(this);
-		}
+	/// <summary>
+	/// 生成時
+	/// </summary>
+	public BattleContext() {
+		CurrentState = stateInit;
+		CurrentState.ExecuteEntry(this);
+	}
 
-		/// <summary>
-		/// 毎フレーム実行
-		/// </summary>
-		public void ExecuteUpdate() {
-			CurrentState.ExecuteUpdate(this);
-		}
+	/// <summary>
+	/// 滞在中のステートの ExecuteUpdate() を実行
+	/// </summary>
+	public void ExecuteUpdate() {
+		CurrentState.ExecuteUpdate(this);
+	}
 
-		/// <summary>
-		/// ステート遷移
-		/// </summary>
-		/// <param name="state">遷移先のステート</param>
-		public void ChangeState(IBattleState state) {
-			CurrentState.ExecuteExit(this);
-			CurrentState = state;
-			CurrentState.ExecuteEntry(this);
-		}
+	/// <summary>
+	/// ステート遷移
+	/// </summary>
+	/// <param name="state">遷移先のステート</param>
+	public void ChangeState(IState<BattleContext> state) {
+		CurrentState.ExecuteExit(this);
+		CurrentState = state;
+		isDone = false;
+		CurrentState.ExecuteEntry(this);
+	}
 
-		/// <summary>
-		/// 攻守交替させる
-		/// </summary>
-		public void ChangeOffense() {
-			isOffense = !isOffense;
-		}
+	public void ToResult() {
+		(stateResult as BattleStateFight).IsEnd(true);
 	}
 }

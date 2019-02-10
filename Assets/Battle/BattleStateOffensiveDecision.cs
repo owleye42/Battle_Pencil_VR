@@ -1,40 +1,78 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using System;
 
-namespace Battle {
-	/// <summary>
-	/// バトルの攻守決定ステート
-	/// </summary>
-	public class BattleStateOffensiveDecision : IBattleState {
+/// <summary>
+/// バトルの攻守決定ステート
+/// </summary>
+public class BattleStateOffensiveDecision : IState<BattleContext> {
 
-		bool isDecision = false;
+	const int waitSeconds = 3;
+	bool isReset = false;
 
-		// ステート開始時 の処理
-		public void ExecuteEntry(BattleContext context) {
-			Debug.Log("[Entry] Offensive Decision Battle State");
+	public void ExecuteEntry(BattleContext context) {
+		Debug.LogWarning("[Entry] Battle State : Offensive Decision");
+		BattleManager.Instance.StartPencilsOutcomeDetection();
+	}
 
-			isDecision = false;
-		}
+	public void ExecuteUpdate(BattleContext context) {
 
-		// ステート滞在中 の処理
-		public void ExecuteUpdate(BattleContext context) {
+		// 全ての処理が終わっていないなら
+		if (!context.isDone) {
+
+			// どちらの出目も０でないなら
+			if (!BattleManager.Instance.CheckOutcomesContainZero()) {
 			
-			// ステート遷移
-			if (isDecision) {
-				if (context.isOffense) context.ChangeState(context.stateActionSelect);
-				else context.ChangeState(context.stateIdle);
+				// 互いの出目が異なる値なら
+				if (BattleManager.Instance.CheckEachOutcomeDifferent()) {
+
+					// 両者のモンスターを召喚
+					SummonMonsters();
+
+					// 攻守決定
+					OffensiveDecision();
+
+					// 出目を初期化
+					BattleManager.Instance.ControllerList.ForEach(oc => oc.OperatorModel.pencil.Init());
+
+					// n秒後にステート遷移
+					Observable.Timer(TimeSpan.FromSeconds(waitSeconds)).Subscribe(_ =>
+						context.ChangeState(context.stateFight)
+					);
+
+					context.isDone = true;
+				}
+				// 互いの出目が同値なら
+				else if (BattleManager.Instance.CheckEachOutcomeSame()) {
+					BattleManager.Instance.StartPencilsOutcomeDetection();
+				}
 			}
 		}
 
-		// ステート終了時 の処理
-		public void ExecuteExit(BattleContext context) {
-			Debug.Log("[Entry] Offensive Decision Battle State");
+	}
+
+	public void ExecuteExit(BattleContext context) {
+		Debug.LogWarning("[Exit] Battle State : Offensive Decision");
+	}
+	
+	// 両者のモンスターを召喚
+	public void SummonMonsters() {
+		OperatorManager.Instance.PlayerController.OperatorModel.pencil.SummonMonster();
+		OperatorManager.Instance.ComputerController.OperatorModel.pencil.SummonMonster();
+	}
+
+	// 攻守決定
+	public void OffensiveDecision() {
+		if (OperatorManager.Instance.PlayerController.OperatorModel.pencil.Outcome
+			> OperatorManager.Instance.ComputerController.OperatorModel.pencil.Outcome) {
+			BattleManager.Instance.ActiveController = OperatorManager.Instance.PlayerController;
+			BattleManager.Instance.NonActiveController = OperatorManager.Instance.ComputerController;
 		}
-
-		// 攻守決定処理
-		void OffensiveDecision() {
-
+		else {
+			BattleManager.Instance.ActiveController = OperatorManager.Instance.ComputerController;
+			BattleManager.Instance.NonActiveController = OperatorManager.Instance.PlayerController;
 		}
 	}
 }

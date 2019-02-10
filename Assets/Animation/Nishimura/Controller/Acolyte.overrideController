@@ -6,5 +6,15 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Acolyte
-  m_Controller: {fileID: 9100000, guid: 211d2fd0d8a12594689966ea0005f8b7, type: 2}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: ff4ebcd69468fda44969d9f7eaa98861, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: a790ccc4249f7c34bbccd31889ec4b96, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a790ccc4249f7c34bbccd31889ec4b96, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: fb99cbd8b8073b14a938c18a57c84139, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fb99cbd8b8073b14a938c18a57c84139, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9c5348b2269795d4bb6fc89616cd4d67, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9c5348b2269795d4bb6fc89616cd4d67, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e2538d48c03da46a8b0c3b59d39a4cab, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: e2538d48c03da46a8b0c3b59d39a4cab, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: e1384170afb40604f8594ab0f8029e2c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e0709a7d4fd647f4cbd8b28b4614ada8, type: 2}
