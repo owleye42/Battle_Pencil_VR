@@ -35,8 +35,8 @@ public class DataManager :BaseSingletonMono<DataManager> {
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                StartCoroutine(Fade_In_Out.Instance.FadeOut(1f));
-                yield return new WaitForSeconds(1);
+                StartCoroutine(Fade_In_Out.Instance.FadeOut(1.5f));
+                yield return new WaitForSeconds(1.5f);
 
                 cameraPosition.position = playPosition.position;
                 cameraPosition.rotation = playPosition.rotation;

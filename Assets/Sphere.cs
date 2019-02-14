@@ -24,7 +24,7 @@ public class Sphere : MonoBehaviour {
     {
         if (other.gameObject.tag == "Head")
         {
-           // DataManager.Instance.playerModel = DataManager.Instance.monsters[monsterObj.name];
+           DataManager.Instance.playerModel = DataManager.Instance.monsters[monsterObj.name];
             Debug.Log(monsterObj.name);  
         }
         if (other.gameObject.tag == "Controller")
