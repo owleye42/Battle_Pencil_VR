@@ -14,7 +14,7 @@ public class DataManager :BaseSingletonMono<DataManager> {
     List<string> monsterNames;
     private void Start()
     {
-        StartCoroutine(Update());
+        StartCoroutine(UpdateCoroutine());
         monsterNames = new List<string>();
         monsters = new Dictionary<string, GameObject>();
 
@@ -29,7 +29,7 @@ public class DataManager :BaseSingletonMono<DataManager> {
     }
 
 
-    IEnumerator Update()
+    IEnumerator UpdateCoroutine()
     {
         while (true)
         {
