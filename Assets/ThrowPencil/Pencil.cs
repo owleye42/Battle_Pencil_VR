@@ -26,11 +26,11 @@ public class Pencil : MonoBehaviour {
         //rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
         if (this.gameObject.tag == "Player")
         {
-            monsterPrefab = DataManager.Instance.playerModel;
+            //  monsterPrefab = DataManager.Instance.playerModel;//保存しないで戻すこと
         }
         else
         {
-            monsterPrefab = DataManager.Instance.computerModel;
+           // monsterPrefab = DataManager.Instance.computerModel;///保存しないで戻すこと
         }
     }
 		//var rigidbody = GetComponent<Rigidbody>();
