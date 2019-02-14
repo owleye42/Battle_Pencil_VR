@@ -14,7 +14,7 @@ public class DataManager :BaseSingletonMono<DataManager> {
     List<string> monsterNames;
     private void Start()
     {
-        StartCoroutine(CrossFade());
+        StartCoroutine(UpdateCoroutine());
         monsterNames = new List<string>();
         monsters = new Dictionary<string, GameObject>();
 
@@ -29,25 +29,21 @@ public class DataManager :BaseSingletonMono<DataManager> {
     }
 
 
-    IEnumerator CrossFade()
+    IEnumerator UpdateCoroutine()
     {
         while (true)
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                StartCoroutine(Fade_In_Out.Instance.FadeOut(1f));
-                yield return new WaitForSeconds(1);
+                StartCoroutine(Fade_In_Out.Instance.FadeOut(1.5f));
+                yield return new WaitForSeconds(1.5f);
 
                 cameraPosition.position = playPosition.position;
                 cameraPosition.rotation = playPosition.rotation;
                 StartCoroutine(Fade_In_Out.Instance.FadeIn(1f));
 
-            }
-            
-
+            }   
             yield return null;
-
         }
-        
     }
 }
