@@ -44,6 +44,11 @@ public class Pencil : MonoBehaviour {
 	}
 
 	private void Start() {
+        // CPUのモンスター格納
+        if (gameObject.layer == /*CPU = */9)
+        {
+            monsterPrefab = DataManager.Instance.computerModel;
+        }
 	}
 
 	public void StartOutcomeDetection() {
