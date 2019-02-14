@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Fade_In_Out : MonoBehaviour {
+public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
 
     bool alfaFrag;
     float a_color;
@@ -13,7 +13,7 @@ public class Fade_In_Out : MonoBehaviour {
     public float speed;  //透明化の速さ
     bool once = true;
 
-    int phase=0;
+    int phase=1;
     
 
     [Header("何秒暗転するか")]
@@ -39,11 +39,15 @@ public class Fade_In_Out : MonoBehaviour {
 
     public void FadeIO()
     {
+
         phase = 1;
         StartCoroutine(StartFade());//暗転
-
+    
 
     }
+
+    
+
 
     IEnumerator StartFade()
     {
@@ -52,25 +56,27 @@ public class Fade_In_Out : MonoBehaviour {
             switch (phase)
             {
                 case 1:
-                    StartCoroutine(FadeOut());//暗転
+                  //  StartCoroutine(FadeOut());//暗転
                     break;
                 case 2:
                     StartCoroutine(FadeKeep());//維持
                     break;
                 case 3:
-                    StartCoroutine(FadeIn());//明転
+              //      StartCoroutine(FadeIn());//明転
                     break;
             }
             yield return null;
         }
     }
 
-    IEnumerator FadeOut()
+    
+
+    public IEnumerator FadeOut(float _speed )
     {
         while (true)
         {
             GetComponent<Image>().color = new Color(red, green, blue, a_color);
-            a_color += speed * Time.deltaTime;
+            a_color += _speed * Time.deltaTime;
             //透明度が255になったら終了する。
             if (a_color >= 1)
             {
@@ -102,12 +108,12 @@ public class Fade_In_Out : MonoBehaviour {
         }
         yield return null;
     }
-    IEnumerator FadeIn()
+    public IEnumerator FadeIn(float _speed)
     {
         while (true)
         {
             GetComponent<Image>().color = new Color(red, green, blue, a_color);
-            a_color -= speed * Time.deltaTime;
+            a_color -= _speed * Time.deltaTime;
             //透明度が255になったら終了する。
             if (a_color <= 0)
             {
