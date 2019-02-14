@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DataManager :BaseSingletonMono<DataManager> {
-    
+
+    public Transform cameraPosition;
+    public Transform playPosition;
 
     public GameObject playerModel;
     public GameObject computerModel;
@@ -12,7 +14,7 @@ public class DataManager :BaseSingletonMono<DataManager> {
     List<string> monsterNames;
     private void Start()
     {
-
+        StartCoroutine(Update());
         monsterNames = new List<string>();
         monsters = new Dictionary<string, GameObject>();
 
@@ -23,23 +25,29 @@ public class DataManager :BaseSingletonMono<DataManager> {
             monsterNames.Add(obj.name);
           
         }
-
-        //object[] effectList = Resources.LoadAll("Effect");
-
-
-        computerModel = monsters[monsterNames[Random.RandomRange(0,2)]]as GameObject;
+        computerModel = monsters[monsterNames[Random.RandomRange(0,monsterNames.Count)]]as GameObject;
     }
 
 
-    private void Update()
+    IEnumerator Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        while (true)
         {
-            Fade_In_Out.Instance.FadeIO();
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                StartCoroutine(Fade_In_Out.Instance.FadeOut(1f));
+                yield return new WaitForSeconds(1);
+
+                cameraPosition.position = playPosition.position;
+                cameraPosition.rotation = playPosition.rotation;
+                StartCoroutine(Fade_In_Out.Instance.FadeIn(1f));
+
+            }
+            
+
+            yield return null;
 
         }
-
+        
     }
-
-
 }
