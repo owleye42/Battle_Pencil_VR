@@ -13,7 +13,7 @@ public class selectObject : MonoBehaviour {
         //仮処理
         if (collision.gameObject.tag == "Obj")
         {
-            DataManager.Instance.playerModel = DataManager.Instance.monsters[monsterName];
+            DataManager.Instance.prefPlayerPencil = DataManager.Instance.monsters[monsterName];
         }
 
         

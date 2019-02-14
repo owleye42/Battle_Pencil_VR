@@ -16,7 +16,7 @@ public class BattleStateInit : IState<BattleContext> {
 		// 初期化完了したなら
 		if (Init()) {
 			// 攻守決定ステートへ遷移
-			context.ChangeState(context.stateOffensiveDecision);
+			context.ChangeState(context.stateFight);
 		}
 	}
 
@@ -29,8 +29,14 @@ public class BattleStateInit : IState<BattleContext> {
 	/// </summary>
 	bool Init() {
 
-		if (OperatorManager.Instance.PlayerController && OperatorManager.Instance.ComputerController) {
+		if (BattleManager.Instance.ActiveController && BattleManager.Instance.NonActiveController) {
 			return true;
+		}
+		else if (OperatorManager.Instance.PlayerController) {
+			BattleManager.Instance.ActiveController = OperatorManager.Instance.PlayerController;
+		}
+		else if (OperatorManager.Instance.ComputerController) { 
+			BattleManager.Instance.NonActiveController = OperatorManager.Instance.ComputerController;
 		}
 
 		return false;

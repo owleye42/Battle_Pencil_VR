@@ -17,16 +17,18 @@ public class OperatorController : MonoBehaviour {
 	public int timeLimit;
 
 	private void Start() {
-		OperatorContext = new OperatorContext(timeLimit);
+		OperatorContext = new OperatorContext(timeLimit) {
+			OperatorController = this
+		};
 
-		operatorModel.pencil = GetComponentInChildren<Pencil>();
-
-		OperatorContext.OperatorController = this;
-
-		if (operatorModel.eOperator == OperatorModel.EOperator.Player)
+		if (operatorModel.eOperator == OperatorModel.EOperator.Player) {
 			OperatorManager.Instance.PlayerController = this;
-		else if (operatorModel.eOperator == OperatorModel.EOperator.Computer)
+			operatorModel.pencil = DataManager.Instance.prefPlayerPencil.GetComponent<Pencil>();
+		}
+		else if (operatorModel.eOperator == OperatorModel.EOperator.Computer) {
 			OperatorManager.Instance.ComputerController = this;
+			operatorModel.pencil = DataManager.Instance.prefComputerPencil.GetComponent<Pencil>();
+		}
 
 		BattleManager.Instance.ControllerList.Add(this);
 	}

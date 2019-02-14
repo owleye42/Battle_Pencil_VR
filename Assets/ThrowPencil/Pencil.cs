@@ -20,23 +20,10 @@ public class Pencil : MonoBehaviour {
 	public void Init() {
 		Outcome = 0;
 		TmpOutcome = 0;
-	//	IsSummoned = false;
         //var rigidbody = GetComponent<Rigidbody>();
         //rigidbody.velocity = Vector3.zero;
         //rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
-        if (this.gameObject.tag == "Player")
-        {
-            monsterPrefab = DataManager.Instance.playerModel;
-        }
-        else
-        {
-            monsterPrefab = DataManager.Instance.computerModel;
-        }
     }
-		//var rigidbody = GetComponent<Rigidbody>();
-		//rigidbody.velocity = Vector3.zero;
-		//rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
-	
 
 	private void Awake() {
 		Init();
@@ -134,26 +121,26 @@ public class Pencil : MonoBehaviour {
 	// モンスターの召喚
 	public void SummonMonster() {
 		
-		Vector3 standPos;
+		Transform standPosTransform;
 		Transform enemyStandPosTransform;
 
-		var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity, transform.parent.transform);
-
-		monsObj.tag = transform.parent.gameObject.tag;
-
-		if (monsObj.tag == "Player") {
-			standPos = OperatorManager.Instance.PlayerController.MonsterStandPos.position;
+		if (transform.parent.tag == "Player") {
+			standPosTransform = OperatorManager.Instance.PlayerController.MonsterStandPos;
 			enemyStandPosTransform = OperatorManager.Instance.ComputerController.MonsterStandPos;
 		}
 		else {
-			standPos = OperatorManager.Instance.ComputerController.MonsterStandPos.position;
+			standPosTransform = OperatorManager.Instance.ComputerController.MonsterStandPos;
 			enemyStandPosTransform = OperatorManager.Instance.PlayerController.MonsterStandPos;
 		}
 
-		monsObj.transform.position = new Vector3(transform.position.x, standPos.y, transform.position.z);
+		var monsObj = Instantiate(monsterPrefab, transform.position, Quaternion.identity, standPosTransform);
 
-		monsObj.GetComponent<BaseMonsterBehaviour>().GetSummonMotion(standPos);
+		monsObj.tag = transform.parent.gameObject.tag;
+
+		monsObj.transform.position = standPosTransform.position;
+
+		//monsObj.GetComponent<BaseMonsterBehaviour>().GetSummonMotion(standPos);
 		
-		//monsObj.transform.LookAt(enemySpawnTransform, monsObj.transform.up);
+		monsObj.transform.LookAt(enemyStandPosTransform, monsObj.transform.up);
 	}
 }
