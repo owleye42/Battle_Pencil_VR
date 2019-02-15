@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManager :BaseSingletonMono<DataManager> {
+public class DataManager : BaseSingletonMono<DataManager>
+{
 
     public Transform cameraPosition;
     public Transform playPosition;
@@ -12,20 +13,28 @@ public class DataManager :BaseSingletonMono<DataManager> {
     public Dictionary<string, GameObject> monsters;
 
     List<string> monsterNames;
-    private void Start()
+
+    protected override void  Awake()
     {
-        StartCoroutine(UpdateCoroutine());
+        base.Awake();
+
         monsterNames = new List<string>();
         monsters = new Dictionary<string, GameObject>();
 
         object[] objList = Resources.LoadAll("Monster");
         foreach (GameObject obj in objList)
         {
-            monsters[obj.name] =obj;
+            monsters[obj.name] = obj;
             monsterNames.Add(obj.name);
-          
+
         }
-        computerModel = monsters[monsterNames[Random.RandomRange(0,monsterNames.Count)]]as GameObject;
+
+        computerModel = monsters[monsterNames[Random.Range(0, monsterNames.Count)]] as GameObject;
+    }
+
+    private void Start()
+    {
+        StartCoroutine(UpdateCoroutine());
     }
 
 
@@ -43,11 +52,7 @@ public class DataManager :BaseSingletonMono<DataManager> {
                 StartCoroutine(Fade_In_Out.Instance.FadeIn(1f));
 
             }
-            
-
             yield return null;
-
         }
-        
     }
 }
