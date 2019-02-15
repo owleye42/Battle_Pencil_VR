@@ -31,12 +31,6 @@ public class BattleStateOffensiveDecision : IState<BattleContext> {
 					// 両者のモンスターを召喚
 					SummonMonsters();
 
-					// 攻守決定
-					OffensiveDecision();
-
-					// 出目を初期化
-					BattleManager.Instance.ControllerList.ForEach(oc => oc.OperatorModel.pencil.Init());
-
 					// n秒後にステート遷移
 					Observable.Timer(TimeSpan.FromSeconds(waitSeconds)).Subscribe(_ =>
 						context.ChangeState(context.stateFight)
@@ -54,7 +48,13 @@ public class BattleStateOffensiveDecision : IState<BattleContext> {
 	}
 
 	public void ExecuteExit(BattleContext context) {
-		Debug.LogWarning("[Exit] Battle State : Offensive Decision");
+        // 攻守決定
+        OffensiveDecision();
+
+        // 出目を初期化
+        BattleManager.Instance.ControllerList.ForEach(oc => oc.OperatorModel.pencil.Init());
+
+        Debug.LogWarning("[Exit] Battle State : Offensive Decision");
 	}
 	
 	// 両者のモンスターを召喚

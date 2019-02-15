@@ -27,16 +27,16 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        monsterModel.hp = Mathf.Clamp(monsterModel.hp, 0, 100);
+        
     }
 
     // 召喚時のモーション
-    public void GetSummonMotion(Vector3 targetPosition)
+    public void GetSummonMotion(Vector3 targetPos, Vector3 enemyPos)
     {
-        StartCoroutine(SummonMotion(targetPosition));
+        StartCoroutine(SummonMotion(targetPos,enemyPos));
     }
 
-    IEnumerator SummonMotion(Vector3 targetPos)
+    IEnumerator SummonMotion(Vector3 targetPos, Vector3 enemyPos)
     {
         while (true)
         {
@@ -47,41 +47,27 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
 
 
-            var distance = Vector3.Distance(transform.position, targetPos);
-            while (distance >= 0.1f)
+            //var distance = Vector3.Distance(transform.position, targetPos);
+            //while (distance >= 0.1f)
+            //{
+            //    distance = Vector3.Distance(transform.position, targetPos);
+            //    Vector3 targetDir = new Vector3(targetPos.x, transform.position.y, targetPos.z) - transform.position;
+            //    Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 100, 0f);
+            //    transform.rotation = Quaternion.LookRotation(newDir);
+
+            //    var rb = GetComponent<Rigidbody>();
+
+            //    rb.AddForce(transform.forward * 2);
+            //    yield return null;
+            //}
+
+            //if (distance < 0.1)
             {
-                distance = Vector3.Distance(transform.position, targetPos);
-                //Debug.Log(distance);
-                Vector3 targetDir = new Vector3(targetPos.x, transform.position.y, targetPos.z) - transform.position;
-                Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 100, 0f);
-                transform.rotation = Quaternion.LookRotation(newDir);
-
-                var rb = GetComponent<Rigidbody>();
-
-                rb.AddForce(transform.forward * 2);
-                yield return null;
+                transform.rotation = Quaternion.LookRotation(enemyPos - transform.position);  
             }
-
-            if (distance < 0.1)
-            {
-                if (gameObject.tag == "Player")
-                {
-
-                    transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.ComputerController.MonsterStandPos.position - transform.position);
-                    //    transform.rotation = Quaternion.LookRotation(GameObject.Find("ComputerMonsterPosition").transform.position - transform.position);
-                }
-                else if (gameObject.tag == "CPU")
-                {
-
-                    transform.rotation = Quaternion.LookRotation(OperatorManager.Instance.PlayerController.MonsterStandPos.position - transform.position);
-                    // transform.rotation = Quaternion.LookRotation(GameObject.Find("PlayerMonsterPosition").transform.position - transform.position);
-
-                }
-            }
-
-
+            
             break;
         }
-
+        yield return null;
     }
 }
