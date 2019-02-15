@@ -5,21 +5,13 @@ using UnityEngine.UI;
 
 public class BattleUIManager : MonoBehaviour
 {
-    UIContainer container;
     MonsterUIModel uiModel;
     BaseMonsterBehaviour monsterBehavior;
 
     private void Start()
     {
         monsterBehavior = GetComponent<OperatorController>().OperatorModel.monsterBehaviour;
-
-        if (gameObject.tag == "Player")
-        {
-            uiModel = container.playerUI;
-        }else if(gameObject.tag == "CPU")
-        {
-            uiModel = container.enemyUI;
-        }
+        
     }
 
     // 生成されるタイミングで一回呼ぶ
