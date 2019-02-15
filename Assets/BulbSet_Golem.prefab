@@ -2545,7 +2545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onHand: 0
   defaultPos: {fileID: 1632614303967682}
-  monsterObj: {fileID: 0}
+  monsterObj: {fileID: 1533301721022816}
   headpos: {fileID: 0}
 --- !u!135 &135461942578355374
 SphereCollider:

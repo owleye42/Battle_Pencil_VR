@@ -22,7 +22,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		void Awake()
 		{
-			Button button = GetComponent<Button>();
+			 Button button = GetComponent<Button>();
 			if ( button )
 			{
 				button.onClick.AddListener( OnButtonClick );
