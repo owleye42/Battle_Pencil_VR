@@ -23,6 +23,15 @@ public class Pencil : MonoBehaviour {
         //var rigidbody = GetComponent<Rigidbody>();
         //rigidbody.velocity = Vector3.zero;
         //rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
+
+        if (this.gameObject.tag == "Player")
+        {
+            //  monsterPrefab = DataManager.Instance.playerModel;//保存しないで戻すこと
+        }
+        else
+        {
+           // monsterPrefab = DataManager.Instance.computerModel;///保存しないで戻すこと
+        }
     }
 
 	private void Awake() {
@@ -31,6 +40,11 @@ public class Pencil : MonoBehaviour {
 	}
 
 	private void Start() {
+        // CPUのモンスター格納
+        if (gameObject.layer == /*CPU = */9)
+        {
+            monsterPrefab = DataManager.Instance.computerModel;
+        }
 	}
 
 	public void StartOutcomeDetection() {
@@ -138,7 +152,7 @@ public class Pencil : MonoBehaviour {
 		monsObj.tag = transform.parent.gameObject.tag;
 
 		monsObj.transform.position = standPosTransform.position;
-
+		
 		//monsObj.GetComponent<BaseMonsterBehaviour>().GetSummonMotion(standPos);
 		
 		monsObj.transform.LookAt(enemyStandPosTransform, monsObj.transform.up);

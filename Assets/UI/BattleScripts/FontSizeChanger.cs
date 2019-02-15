@@ -12,7 +12,7 @@ public class FontSizeChanger : MonoBehaviour {
     public void Start()
     {
         thisCountText = this.GetComponent<Text>();
-        thisCountText.text = " ";
+        thisCountText.text = "テスト文";
     }
     public void SizeSetting()
     {

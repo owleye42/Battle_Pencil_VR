@@ -23,11 +23,9 @@ public class OperatorController : MonoBehaviour {
 
 		if (operatorModel.eOperator == OperatorModel.EOperator.Player) {
 			OperatorManager.Instance.PlayerController = this;
-			operatorModel.pencil = DataManager.Instance.prefPlayerPencil.GetComponent<Pencil>();
 		}
 		else if (operatorModel.eOperator == OperatorModel.EOperator.Computer) {
 			OperatorManager.Instance.ComputerController = this;
-			operatorModel.pencil = DataManager.Instance.prefComputerPencil.GetComponent<Pencil>();
 		}
 
 		BattleManager.Instance.ControllerList.Add(this);
