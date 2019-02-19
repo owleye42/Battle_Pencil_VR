@@ -48,7 +48,6 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
 
     
 
-
     IEnumerator StartFade()
     {
         while (once)
@@ -84,6 +83,7 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
                 alfaFrag = false;
                 phase = 2;
                 Debug.Log("OUT");
+                
                 break;
             }
             yield return null;

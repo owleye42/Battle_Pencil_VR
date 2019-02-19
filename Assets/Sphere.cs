@@ -24,8 +24,8 @@ public class Sphere : MonoBehaviour {
     {
         if (other.gameObject.tag == "Head")
         {
-           DataManager.Instance.playerModel = DataManager.Instance.monsters[monsterObj.name];
-            Debug.Log(monsterObj.name);  
+            StartCoroutine(FadeGame());
+
         }
         if (other.gameObject.tag == "Controller")
         {
@@ -62,5 +62,19 @@ public class Sphere : MonoBehaviour {
            
         }
 
+    }
+
+    public IEnumerator FadeGame()
+    {
+        DataManager.Instance.playerModel = DataManager.Instance.monsters[monsterObj.name];
+        Debug.Log(monsterObj.name);
+        StartCoroutine(Fade_In_Out.Instance.FadeOut(1.5f));
+        yield return new WaitForSeconds(1.5f);
+
+        DataManager.Instance.cameraPosition.position = DataManager.Instance.playPosition.position;
+        DataManager.Instance.cameraPosition.rotation = DataManager.Instance.playPosition.rotation;
+        StartCoroutine(Fade_In_Out.Instance.FadeIn(1f));
+
+        yield return null;
     }
 }
