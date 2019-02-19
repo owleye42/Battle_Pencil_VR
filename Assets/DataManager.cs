@@ -14,7 +14,6 @@ public class DataManager :BaseSingletonMono<DataManager> {
     List<string> monsterNames;
     private void Start()
     {
-        StartCoroutine(Update());
         monsterNames = new List<string>();
         monsters = new Dictionary<string, GameObject>();
 
