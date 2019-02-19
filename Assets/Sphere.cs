@@ -19,6 +19,7 @@ public class Sphere : MonoBehaviour {
 
     [SerializeField] GameObject headpos;
 
+    public GameObject gameObject;
 
     private void OnTriggerEnter(Collider other)
     {

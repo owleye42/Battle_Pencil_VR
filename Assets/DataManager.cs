@@ -12,6 +12,9 @@ public class DataManager :BaseSingletonMono<DataManager> {
     public Dictionary<string, GameObject> monsters;
 
     List<string> monsterNames;
+
+    public Canvas canvas;
+
     private void Start()
     {
         monsterNames = new List<string>();
