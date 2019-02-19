@@ -153,8 +153,6 @@ public class Pencil : MonoBehaviour {
 
 		monsObj.transform.position = standPosTransform.position;
 		
-		//monsObj.GetComponent<BaseMonsterBehaviour>().GetSummonMotion(standPos);
-		
 		monsObj.transform.LookAt(enemyStandPosTransform, monsObj.transform.up);
 	}
 }
