@@ -18,9 +18,6 @@ public class selectObject : MonoBehaviour {
         {
             DataManager.Instance.playerModel = DataManager.Instance.monsters[monsterName];
             Fade_In_Out.Instance.FadeIO();
-
-
-            
         }
 
         
