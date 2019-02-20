@@ -100,7 +100,8 @@ public class Pencil : MonoBehaviour {
 
 		if (Physics.Raycast(ray, out hit, 10)) {
 			if (hit.collider.tag == "numbers") {
-				num = hit.collider.gameObject.GetComponent<number>().num;
+                num = int.Parse(hit.collider.gameObject.name);
+				//num = hit.collider.gameObject.GetComponent<number>().num;
 
 				//Debug.Log(gameObject.name + "出目" + num);
 			}

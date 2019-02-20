@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: 4530037273520866}
   - component: {fileID: 95648335769336426}
   - component: {fileID: 114823877293681772}
+  - component: {fileID: 114872163640344208}
   m_Layer: 0
   m_Name: Magical_girl
   m_TagString: Untagged
@@ -2929,7 +2930,7 @@ Animator:
   m_GameObject: {fileID: 1279795156499504}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 343f19f2fb1a70642a43478bc771e3ac, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: be9a83a7810f23149863850daf5503c4, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3212,6 +3213,23 @@ MonoBehaviour:
   - {fileID: 114455644836848192}
   - {fileID: 114565228200203190}
   - {fileID: 114965868722507758}
+--- !u!114 &114872163640344208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279795156499504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4251622e5d926fe4db34c821d6833457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterModel:
+    id: 0
+    name: 
+    hp: 0
+    type: 0
+    skillList: []
 --- !u!114 &114965868722507758
 MonoBehaviour:
   m_ObjectHideFlags: 1
