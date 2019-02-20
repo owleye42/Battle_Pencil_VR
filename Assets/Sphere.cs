@@ -19,8 +19,7 @@ public class Sphere : MonoBehaviour {
 
     [SerializeField] GameObject headpos;
 
-    public GameObject gameObject;
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Head")
@@ -54,7 +53,7 @@ public class Sphere : MonoBehaviour {
         //transform.eulerAngles = new Vector3(0, angle, 0);
         if (!onHand)
         {
-            Vector3 targetPos = followTfm.TransformPoint(new Vector3(0f, 0f, 0f));
+Vector3 targetPos = followTfm.TransformPoint(new Vector3(0f, 0f, 0f));
 
             // 移動
             transform.position =
@@ -72,10 +71,14 @@ public class Sphere : MonoBehaviour {
         StartCoroutine(Fade_In_Out.Instance.FadeOut(1.5f));
         yield return new WaitForSeconds(1.5f);
 
+
+        StartCoroutine(DataManager.Instance.ChengeCanvas());
         DataManager.Instance.cameraPosition.position = DataManager.Instance.playPosition.position;
         DataManager.Instance.cameraPosition.rotation = DataManager.Instance.playPosition.rotation;
         StartCoroutine(Fade_In_Out.Instance.FadeIn(1f));
 
         yield return null;
+
+        
     }
 }
