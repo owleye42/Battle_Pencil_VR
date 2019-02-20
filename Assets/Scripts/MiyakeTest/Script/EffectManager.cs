@@ -2,27 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectManager : MonoBehaviour {
+public class EffectManager : BaseSingletonMono<EffectManager> {
 
-    public static EffectManager Instance;
-
+    
     string nextBgmName;
 
    
     //Effect保存用
     Dictionary<string, GameObject> effects;
  
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        if (Instance != this)
-        {
-            Destroy(this);
-        }
-    }
+    
 
     private void Start()
     {
@@ -37,19 +26,17 @@ public class EffectManager : MonoBehaviour {
         }
     }
 
-     public IEnumerator CreateEffect(string effectName,Vector3 createPosition,float destryTime)
+     public void CreateEffect(string effectName,Vector3 createPosition,float destryTime)
     {
         if (!effects.ContainsKey(effectName))
         {
             Debug.Log("その名前のエフェクはありません。");
-            yield return null;
-        }
+          }
 
         var effect = Instantiate<GameObject>(effects[effectName]as GameObject);
         effect.transform.position = createPosition;
         Destroy(effect,destryTime);
-        yield return null;
-    }
+     }
 
     
     
