@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DataManager : BaseSingletonMono<DataManager>
 {
-
     public Transform cameraPosition;
     public Transform playPosition;
 
     public GameObject playerModel;
     public GameObject computerModel;
+
     public Dictionary<string, GameObject> monsters;
 
     List<string> monsterNames;
@@ -17,7 +17,7 @@ public class DataManager : BaseSingletonMono<DataManager>
     protected override void  Awake()
     {
         base.Awake();
-
+		
         monsterNames = new List<string>();
         monsters = new Dictionary<string, GameObject>();
 
@@ -36,7 +36,7 @@ public class DataManager : BaseSingletonMono<DataManager>
     {
         StartCoroutine(UpdateCoroutine());
     }
-
+	
 
     IEnumerator UpdateCoroutine()
     {
@@ -46,7 +46,7 @@ public class DataManager : BaseSingletonMono<DataManager>
             {
                 StartCoroutine(Fade_In_Out.Instance.FadeOut(1.5f));
                 yield return new WaitForSeconds(1.5f);
-
+				
                 cameraPosition.position = playPosition.position;
                 cameraPosition.rotation = playPosition.rotation;
                 StartCoroutine(Fade_In_Out.Instance.FadeIn(1f));
