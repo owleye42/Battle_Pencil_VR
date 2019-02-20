@@ -37,7 +37,7 @@ public class BattleStateInit : IState<BattleContext> {
 		}
 		if (OperatorManager.Instance.ComputerController != null) { 
 			BattleManager.Instance.NonActiveController = OperatorManager.Instance.ComputerController;
-		}
+        }
 
 		return false;
 	}

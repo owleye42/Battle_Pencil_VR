@@ -12,5 +12,5 @@ public class OperatorModel {
 	public EOperator eOperator;
 	public Pencil pencil;
 	public BaseMonsterBehaviour monsterBehaviour;
-    public MonsterUIModel monsterUI;
+    public MonsterUIController monsterUI;
 }

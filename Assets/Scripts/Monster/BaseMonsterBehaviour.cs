@@ -11,6 +11,8 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
     public Animator _Animator { get; private set; }
 
+    private OperatorModel operatorModel;
+
     void Awake()
     {
         MonsterContext = new MonsterContext();
@@ -19,7 +21,9 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
     void Start()
     {
-        GetComponentInParent<OperatorController>().OperatorModel.monsterBehaviour = this;
+        operatorModel = GetComponentInParent<OperatorController>().OperatorModel;
+        operatorModel.monsterBehaviour = this;
+        operatorModel.monsterUI.Init();
 
         monsterModel.maxHP = monsterModel.hp;
     }

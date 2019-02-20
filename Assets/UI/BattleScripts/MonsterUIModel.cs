@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class MonsterUIModel {
+    public Text monsterName;
     public Text HPText;
     public Slider HPBar;
     public Text[] skillTexts;
