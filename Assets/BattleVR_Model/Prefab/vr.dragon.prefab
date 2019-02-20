@@ -125,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4503914540811646}
   - component: {fileID: 95546447580707296}
+  - component: {fileID: 114929504370444730}
   m_Layer: 0
   m_Name: vr.dragon
   m_TagString: Untagged
@@ -1820,7 +1821,7 @@ Animator:
   m_GameObject: {fileID: 1130155235274188}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 3cf732364d2286b4ea1bd759c521c2ae, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 7137b086d707fca40bcb8d7b267ce100, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1829,6 +1830,47 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114929504370444730
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1130155235274188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4251622e5d926fe4db34c821d6833457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterModel:
+    id: 0
+    name: 
+    hp: 0
+    type: 0
+    skillList:
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
 --- !u!137 &137753901036870392
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
