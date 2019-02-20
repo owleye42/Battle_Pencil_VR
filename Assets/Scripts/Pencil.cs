@@ -23,28 +23,11 @@ public class Pencil : MonoBehaviour {
         //var rigidbody = GetComponent<Rigidbody>();
         //rigidbody.velocity = Vector3.zero;
         //rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
-
-        if (this.gameObject.tag == "Player")
-        {
-            //  monsterPrefab = DataManager.Instance.playerModel;//保存しないで戻すこと
-        }
-        else
-        {
-           // monsterPrefab = DataManager.Instance.computerModel;///保存しないで戻すこと
-        }
-    }
+	}
 
 	private void Awake() {
 		Init();
 		InitPencilPos = transform.position;
-	}
-
-	private void Start() {
-        // CPUのモンスター格納
-        if (gameObject.layer == /*CPU = */9)
-        {
-            monsterPrefab = DataManager.Instance.computerModel;
-        }
 	}
 
 	public void StartOutcomeDetection() {

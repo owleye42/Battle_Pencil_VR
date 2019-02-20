@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BaseMonsterBehaviour : MonoBehaviour
 {
-
     [SerializeField]
     MonsterModel monsterModel;
     public MonsterModel MonsterModel { get { return monsterModel; } }
