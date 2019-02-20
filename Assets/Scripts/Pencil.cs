@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Pencil : MonoBehaviour {
 
+	[SerializeField]
+	int id = 0;
+	public int ID { get { return id; } }
+
 	// 初期位置
 	public Vector3 InitPencilPos { get; private set; }
 
