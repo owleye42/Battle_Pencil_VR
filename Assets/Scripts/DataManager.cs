@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class DataManager : BaseSingletonMono<DataManager>
 {
+    public Canvas titleCanvas;
+    public Canvas gameCanvas;
+
+    public Transform canvasPos;
+
     public Transform cameraPosition;
     public Transform playPosition;
 
@@ -34,25 +39,23 @@ public class DataManager : BaseSingletonMono<DataManager>
 
     private void Start()
     {
-        StartCoroutine(UpdateCoroutine());
     }
-	
-
-    IEnumerator UpdateCoroutine()
+    private void Update()
     {
-        while (true)
+        //仮処理
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                StartCoroutine(Fade_In_Out.Instance.FadeOut(1.5f));
-                yield return new WaitForSeconds(1.5f);
-				
-                cameraPosition.position = playPosition.position;
-                cameraPosition.rotation = playPosition.rotation;
-                StartCoroutine(Fade_In_Out.Instance.FadeIn(1f));
-
-            }
-            yield return null;
+            StartCoroutine(ChengeCanvas());
         }
     }
+    
+    public IEnumerator ChengeCanvas()
+    {
+        Destroy(titleCanvas.gameObject);
+        var canvas=GameObject.Instantiate<Canvas>(gameCanvas);
+        canvas.transform.position = canvasPos.position;
+        yield return null;
+    }
+    
+
 }
