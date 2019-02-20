@@ -30,21 +30,6 @@ public class Pencil : MonoBehaviour {
 		InitPencilPos = transform.position;
 	}
 
-	private void Start() {
-        // CPUのモンスター格納
-        if (gameObject.layer == /*CPU = */9)
-        {
-            monsterPrefab = DataManager.Instance.computerModel;
-		}
-
-		if (this.gameObject.tag == "Player") {
-			monsterPrefab = DataManager.Instance.playerModel;//保存しないで戻すこと
-		}
-		else {
-			monsterPrefab = DataManager.Instance.computerModel;///保存しないで戻すこと
-		}
-	}
-
 	public void StartOutcomeDetection() {
 		Debug.Log("StartOutcomeDetection : " + transform.parent.name);
 
