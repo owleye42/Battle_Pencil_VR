@@ -2,60 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManager : BaseSingletonMono<DataManager>
-{
-    public Canvas titleCanvas;
-    public Canvas gameCanvas;
+public class DataManager : BaseSingletonMono<DataManager> {
+	public Canvas titleCanvas;
+	public Canvas gameCanvas;
 
-    public Transform canvasPos;
+	public Transform canvasPos;
 
-    public Transform cameraPosition;
-    public Transform playPosition;
+	public Transform cameraPosition;
+	public Transform playPosition;
 
-    public GameObject playerModel;
-    public GameObject computerModel;
+	public GameObject prefPlayerPencil;
+	public GameObject prefComputerPencil;
 
-    public Dictionary<string, GameObject> monsters;
+	public List<GameObject> prefPencils = new List<GameObject>();
 
-    List<string> monsterNames;
+	protected override void Awake() {
+		base.Awake();
 
-    protected override void  Awake()
-    {
-        base.Awake();
-		
-        monsterNames = new List<string>();
-        monsters = new Dictionary<string, GameObject>();
+		prefComputerPencil = prefPencils[Random.Range(0, prefPencils.Count)];
+	}
 
-        object[] objList = Resources.LoadAll("Monster");
-        foreach (GameObject obj in objList)
-        {
-            monsters[obj.name] = obj;
-            monsterNames.Add(obj.name);
+	private void Update() {
+		//仮処理
+		if (Input.GetKeyDown(KeyCode.A)) {
+			StartCoroutine(ChengeCanvas());
+		}
+	}
 
-        }
+	public IEnumerator ChengeCanvas() {
+		Destroy(titleCanvas.gameObject);
+		var canvas = Instantiate(gameCanvas);
+		canvas.transform.position = canvasPos.position;
+		yield return null;
+	}
 
-        computerModel = monsters[monsterNames[Random.Range(0, monsterNames.Count)]] as GameObject;
-    }
-
-    private void Start()
-    {
-    }
-    private void Update()
-    {
-        //仮処理
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            StartCoroutine(ChengeCanvas());
-        }
-    }
-    
-    public IEnumerator ChengeCanvas()
-    {
-        Destroy(titleCanvas.gameObject);
-        var canvas=GameObject.Instantiate<Canvas>(gameCanvas);
-        canvas.transform.position = canvasPos.position;
-        yield return null;
-    }
-    
-
+	public void SetPlayerPencil(int id) {
+		prefPlayerPencil = prefPencils[id];
+	}
 }
