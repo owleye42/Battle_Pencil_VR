@@ -5,6 +5,6 @@ AnimatorOverrideController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Soldier
+  m_Name: Healer
   m_Controller: {fileID: 9100000, guid: ff4ebcd69468fda44969d9f7eaa98861, type: 2}
   m_Clips: []
