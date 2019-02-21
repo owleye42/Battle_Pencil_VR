@@ -35,7 +35,7 @@ public class MonsterUIController : MonoBehaviour
                 if (monsterBehavior.MonsterModel.type == Type.ATTACK)
                     uiModel.skillTexts[i].text = "あいてに" + monsterBehavior.MonsterModel.skillList[i].power + "ダメージ";
                 else if (monsterBehavior.MonsterModel.type == Type.DEFENCE)
-                    uiModel.skillTexts[i].text = "" + monsterBehavior.MonsterModel.skillList[i].power;
+                    uiModel.skillTexts[i].text = "";
                 else if (monsterBehavior.MonsterModel.type == Type.HEAL)
                     uiModel.skillTexts[i].text = "たいりょくを" + monsterBehavior.MonsterModel.skillList[i].power + "かいふく";
             }

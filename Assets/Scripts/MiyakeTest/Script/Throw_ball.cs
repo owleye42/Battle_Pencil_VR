@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class Throw_ball : MonoBehaviour {
 
-    [Header("投射時の目標地点")]
-    [SerializeField] GameObject targetObj;
-    [Header("投射角度")]
-    [SerializeField, Range(-50, 50)] float tAngle;
-    [Header("投射の強さ")]
-    [SerializeField, Range(0, 20)] float tRange;
+	[Header("投射時の目標地点")]
+	[SerializeField] GameObject targetObj;
+	[Header("投射角度")]
+	[SerializeField, Range(-50, 50)] float tAngle;
+	[Header("投射の強さ")]
+	[SerializeField, Range(0, 20)] float tRange;
 
 	[SerializeField] GameObject pen = null;
 
-	private void Update() {
-		//Debug.Log(targetObj.transform.position);
-	}
-
 	public void ThrowPencil() {
+		if (pen != null) {
+			pen = GetComponentInChildren<Pencil>().gameObject;
+		}
+
+		if (pen == null) return;
+
 		var opeContext = GetComponent<OperatorController>().OperatorContext;
 
 		if (opeContext.CurrentState == opeContext.stateThrow) {

@@ -7,6 +7,8 @@ public class OperatorStateThrow : IState<OperatorContext> {
 	int count;
 
 	public void ExecuteEntry(OperatorContext context) {
+		Debug.LogWarning("entry throw");
+
 		count = context.timeLimit * 60;
 	}
 
@@ -27,6 +29,6 @@ public class OperatorStateThrow : IState<OperatorContext> {
 	}
 
 	public void ExecuteExit(OperatorContext context) {
-
+		Debug.LogWarning("exit throw");
 	}
 }

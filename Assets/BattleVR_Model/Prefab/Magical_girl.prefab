@@ -2930,10 +2930,10 @@ Animator:
   m_GameObject: {fileID: 1279795156499504}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 343f19f2fb1a70642a43478bc771e3ac, type: 3}
-  m_Controller: {fileID: 22100000, guid: be9a83a7810f23149863850daf5503c4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3e8a8906edf2bd847b582f35094449a0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -3190,14 +3190,50 @@ MonoBehaviour:
   stiffnessForce: 0
   stiffnessCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   dragForce: 0
   dragCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -3225,11 +3261,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterModel:
-    id: 0
+    id: 3
     name: 
-    hp: 0
+    hp: 100
     type: 0
-    skillList: []
+    skillList:
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
 --- !u!114 &114965868722507758
 MonoBehaviour:
   m_ObjectHideFlags: 1
