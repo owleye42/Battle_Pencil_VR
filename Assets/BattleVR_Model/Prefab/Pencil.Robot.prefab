@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  monsterPrefab: {fileID: 1061051235491522, guid: 44f096f10042a614681ef0505ad877ac,
+  monsterPrefab: {fileID: 1080683720702862, guid: 44f096f10042a614681ef0505ad877ac,
     type: 2}
 --- !u!114 &114238880421951812
 MonoBehaviour:

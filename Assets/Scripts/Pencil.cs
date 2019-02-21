@@ -35,9 +35,7 @@ public class Pencil : MonoBehaviour {
 	}
 
 	public void StartOutcomeDetection() {
-		Debug.Log("StartOutcomeDetection : " + transform.parent.name);
-
-		GetComponentInParent<OperatorController>().StartThrow();
+		Debug.Log("StartOutcomeDetection : " + transform.parent.parent.name);
 
 		Init();
 		StartCoroutine(OutcomeDetectionCoroutine());

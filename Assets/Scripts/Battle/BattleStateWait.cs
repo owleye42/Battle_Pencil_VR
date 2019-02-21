@@ -5,10 +5,10 @@ using UnityEngine;
 /// <summary>
 /// バトルの初期化ステート
 /// </summary>
-public class BattleStateInit : IState<BattleContext> {
+public class BattleStateWait : IState<BattleContext> {
 
 	public void ExecuteEntry(BattleContext context) {
-		Debug.LogWarning("[Entry] Battle State : Init");
+		Debug.LogWarning("[Entry] Battle State : Wait");
 
 		DataManager.Instance.SetPlayerPencil(0); // 仮置き
 		DataManager.Instance.SetComputerPencilRandom();
@@ -17,14 +17,14 @@ public class BattleStateInit : IState<BattleContext> {
 	public void ExecuteUpdate(BattleContext context) {
 
 		// 初期化完了したなら
-		if (Init()) {
+		if (context.isDone) {
 			// 攻守決定ステートへ遷移
 			context.ChangeState(context.stateFight);
 		}
 	}
 
 	public void ExecuteExit(BattleContext context) {
-		Debug.LogWarning("[Exit] Battle State : Init");
+		Debug.LogWarning("[Exit] Battle State : Wait");
 	}
 
 	/// <summary>

@@ -63,6 +63,8 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 
 	// 攻守交代
 	public void SwitchAvtiveController() {
+		ActiveController.StopThrow();
+
 		if (ActiveController == ControllerList[0]) {
             var tmp = ActiveController;
 			ActiveController = ControllerList[1];
@@ -73,6 +75,8 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
             ActiveController = ControllerList[0];
 			NonActiveController = tmp;
 		}
+
+		ActiveController.StartThrow();
 	}
 
 	public void FinishGame() {
@@ -82,6 +86,6 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	}
 
 	public void StartThrowActiveController() {
-		ActiveController.OperatorModel.pencil.StartOutcomeDetection();
+		ActiveController.StartThrow();
 	}
 }

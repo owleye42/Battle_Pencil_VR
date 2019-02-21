@@ -51,6 +51,7 @@ public class OperatorController : MonoBehaviour {
 
 	public void StartThrow() {
 		OperatorContext.ChangeState(OperatorContext.stateThrow);
+		operatorModel.pencil.StartOutcomeDetection();
 	}
 
 	public void StopThrow() {
