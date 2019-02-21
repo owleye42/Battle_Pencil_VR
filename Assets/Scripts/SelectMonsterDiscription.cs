@@ -5,34 +5,28 @@ using UnityEngine;
 public class SelectMonsterDiscription : MonoBehaviour {
 
     [Header("モンスターの説明")]
-    [SerializeField] GameObject DescriptionObj;
-    [Header("他モンスターの説明1")]
-    [SerializeField] GameObject otherObj1;
-    [Header("他モンスターの説明2")]
-    [SerializeField] GameObject otherObj2;
-    
+    [SerializeField]int monsterID;
+
     private void Start()
     {
-        DescriptionObj.GetComponent<DiscriptionUITextAlpha>();
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Laser")
+        if (monsterID==0)
         {
-            otherObj1.GetComponent<DiscriptionUITextAlpha>().Disappear();
-            otherObj2.GetComponent<DiscriptionUITextAlpha>().Disappear();
-            DescriptionObj.GetComponent<DiscriptionUITextAlpha>().Appear();
-
-            Debug.Log(DescriptionObj.name);
+            SelectUiController.Instance.Attack();
         }
- 
+        if (monsterID == 1)
+        {
+            SelectUiController.Instance.Defense();
+        }
+        if (monsterID == 2)
+        {
+            SelectUiController.Instance.Recovery();
+        }
+
     }
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Laser")
-    //    {
-    //        DescriptionObj.GetComponent<DiscriptionUITextAlpha>().Disappear();
-    //    }
-    //}
+    
 }
