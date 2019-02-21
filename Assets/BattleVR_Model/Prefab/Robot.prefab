@@ -1474,7 +1474,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1764370590179434}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: d7cdb723af88b624bbb34487661c46e7, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 22100000, guid: 85e28f882f64e1a459e21c4c4cba8506, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -1500,7 +1500,31 @@ MonoBehaviour:
     name: 
     hp: 0
     type: 0
-    skillList: []
+    skillList:
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 0
+      text: 
 --- !u!137 &137175354440489136
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
