@@ -297,7 +297,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 322071ad3cacaaa4b9d1f4913b51a57b, type: 3}
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  monsterPrefab: {fileID: 1774965308558876, guid: 713c41813f28ed547b9e53f9f6aeb728,
+  monsterPrefab: {fileID: 1173726449261100, guid: f33e1c5593cbe3e4c86f207f4dca1302,
     type: 2}
 --- !u!114 &114589808378788158
 MonoBehaviour:
