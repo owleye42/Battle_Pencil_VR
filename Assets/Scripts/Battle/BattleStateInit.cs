@@ -34,6 +34,8 @@ public class BattleStateInit : IState<BattleContext> {
 
 		if (BattleManager.Instance.ActiveController != null && BattleManager.Instance.NonActiveController != null) {
 
+			DataManager.Instance.SetPlayerPencil(0); // 仮置き
+			DataManager.Instance.SetComputerPencilRandom();
 
 			return true;
 		}

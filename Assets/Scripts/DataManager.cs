@@ -16,12 +16,6 @@ public class DataManager : BaseSingletonMono<DataManager> {
 
 	public List<GameObject> prefPencils = new List<GameObject>();
 
-	protected override void Awake() {
-		base.Awake();
-
-		prefabComputerPencil = prefPencils[Random.Range(0, prefPencils.Count)];
-	}
-
 	private void Update() {
 		//仮処理
 		if (Input.GetKeyDown(KeyCode.A)) {
@@ -38,5 +32,9 @@ public class DataManager : BaseSingletonMono<DataManager> {
 
 	public void SetPlayerPencil(int id) {
 		prefabPlayerPencil = prefPencils[id];
+	}
+
+	public void SetComputerPencilRandom() {
+		prefabComputerPencil = prefPencils[Random.Range(0, prefPencils.Count)];
 	}
 }

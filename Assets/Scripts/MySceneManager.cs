@@ -31,7 +31,6 @@ public class MySceneManager : BaseSingletonMono<MySceneManager> {
 	}
 
 	private void Start() {
-		DataManager.Instance.SetPlayerPencil(0);
 	}
 
 	private void Update() {
