@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 23527343294829826}
   - component: {fileID: 135336542116499486}
   - component: {fileID: 54129235806479128}
-  - component: {fileID: 114453388850574678}
+  - component: {fileID: 114264454237233492}
   - component: {fileID: 114469550380913656}
   m_Layer: 0
   m_Name: Glass bulb
@@ -1979,7 +1979,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114453388850574678
+--- !u!114 &114264454237233492
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1990,9 +1990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07ac8bb878a685840a80624a98b1bb5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DescriptionObj: {fileID: 0}
-  otherObj1: {fileID: 0}
-  otherObj2: {fileID: 0}
+  monsterID: 0
 --- !u!114 &114469550380913656
 MonoBehaviour:
   m_ObjectHideFlags: 1
