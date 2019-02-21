@@ -22,6 +22,9 @@ public class BattleStateInit : IState<BattleContext> {
 
 	public void ExecuteExit(BattleContext context) {
 		Debug.LogWarning("[Exit] Battle State : Init");
+
+		OperatorManager.Instance.PlayerController.OperatorModel.pencil.SummonMonster();
+		OperatorManager.Instance.ComputerController.OperatorModel.pencil.SummonMonster();
 	}
 
 	/// <summary>

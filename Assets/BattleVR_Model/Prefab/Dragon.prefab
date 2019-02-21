@@ -1849,25 +1849,25 @@ MonoBehaviour:
     skillList:
     - skillType: 0
       targetType: 0
+      power: 20
+      text: 
+    - skillType: 2
+      targetType: 0
       power: 0
       text: 
-    - skillType: 0
+    - skillType: 1
+      targetType: 0
+      power: 40
+      text: 
+    - skillType: 2
       targetType: 0
       power: 0
       text: 
     - skillType: 0
       targetType: 0
-      power: 0
+      power: 20
       text: 
-    - skillType: 0
-      targetType: 0
-      power: 0
-      text: 
-    - skillType: 0
-      targetType: 0
-      power: 0
-      text: 
-    - skillType: 0
+    - skillType: 2
       targetType: 0
       power: 0
       text: 

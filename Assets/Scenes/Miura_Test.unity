@@ -985,8 +985,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1325effbfe7b84a8a47c42d3bdc515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPencil: {fileID: 0}
-  CpuPencil: {fileID: 0}
 --- !u!54 &1626646403
 Rigidbody:
   m_ObjectHideFlags: 0

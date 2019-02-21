@@ -15,9 +15,6 @@ public class BattleStateFight : IState<BattleContext> {
 
 	public void ExecuteEntry(BattleContext context) {
 		Debug.LogWarning("[Entry] Battle State : Fight");
-		
-		OperatorManager.Instance.PlayerController.OperatorModel.pencil.SummonMonster();
-		OperatorManager.Instance.ComputerController.OperatorModel.pencil.SummonMonster();
 
 		BattleManager.Instance.StartThrowActiveController();
         

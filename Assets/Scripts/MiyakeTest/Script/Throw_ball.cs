@@ -14,13 +14,13 @@ public class Throw_ball : MonoBehaviour {
 	[SerializeField] GameObject pen = null;
 
 	public void ThrowPencil() {
-		if (pen != null) {
-			pen = GetComponentInChildren<Pencil>().gameObject;
+		if (pen == null) {
+			pen = transform.parent.GetComponentInChildren<Pencil>().gameObject;
 		}
 
 		if (pen == null) return;
 
-		var opeContext = GetComponent<OperatorController>().OperatorContext;
+		var opeContext = GetComponentInParent<OperatorController>().OperatorContext;
 
 		if (opeContext.CurrentState == opeContext.stateThrow) {
 			pen.transform.position = transform.position;

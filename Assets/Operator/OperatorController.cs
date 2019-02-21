@@ -46,7 +46,7 @@ public class OperatorController : MonoBehaviour {
 	}
 
 	public void ForceThrowPencil() {
-		GetComponent<Throw_ball>().ThrowPencil();
+		GetComponentInChildren<Throw_ball>().ThrowPencil();
 	}
 
 	public void StartThrow() {
