@@ -30,6 +30,8 @@ public class BattleStateInit : IState<BattleContext> {
 	bool Init() {
 
 		if (BattleManager.Instance.ActiveController != null && BattleManager.Instance.NonActiveController != null) {
+
+
 			return true;
 		}
 		if (OperatorManager.Instance.PlayerController != null) {

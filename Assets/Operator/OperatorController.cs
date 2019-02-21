@@ -12,6 +12,9 @@ public class OperatorController : MonoBehaviour {
 	Transform monsterStandPos;
     public Transform MonsterStandPos { get { return monsterStandPos; } }
 
+	[SerializeField]
+	Transform pencilSpawnPos;
+
 	public OperatorContext OperatorContext { get; private set; }
 
 	public int timeLimit;
@@ -21,12 +24,19 @@ public class OperatorController : MonoBehaviour {
 			OperatorController = this
 		};
 
+		var pencilPrefab = DataManager.Instance.prefabPlayerPencil;
+
 		if (operatorModel.eOperator == OperatorModel.EOperator.Player) {
 			OperatorManager.Instance.PlayerController = this;
+			pencilPrefab = DataManager.Instance.prefabPlayerPencil;
 		}
 		else if (operatorModel.eOperator == OperatorModel.EOperator.Computer) {
 			OperatorManager.Instance.ComputerController = this;
+			pencilPrefab = DataManager.Instance.prefabComputerPencil;
 		}
+
+		var pen = Instantiate(pencilPrefab, pencilSpawnPos.position, Quaternion.identity, pencilSpawnPos);
+		operatorModel.pencil = pen.GetComponent<Pencil>();
 
 		BattleManager.Instance.ControllerList.Add(this);
 	}

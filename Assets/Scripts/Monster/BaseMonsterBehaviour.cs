@@ -23,7 +23,7 @@ public class BaseMonsterBehaviour : MonoBehaviour
     {
         operatorModel = GetComponentInParent<OperatorController>().OperatorModel;
         operatorModel.monsterBehaviour = this;
-        operatorModel.monsterUI.Init();
+        //operatorModel.monsterUI.Init();
 
         monsterModel.maxHP = monsterModel.hp;
     }

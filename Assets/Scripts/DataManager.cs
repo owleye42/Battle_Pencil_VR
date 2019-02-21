@@ -11,15 +11,15 @@ public class DataManager : BaseSingletonMono<DataManager> {
 	public Transform cameraPosition;
 	public Transform playPosition;
 
-	public GameObject prefPlayerPencil;
-	public GameObject prefComputerPencil;
+	public GameObject prefabPlayerPencil;
+	public GameObject prefabComputerPencil;
 
 	public List<GameObject> prefPencils = new List<GameObject>();
 
 	protected override void Awake() {
 		base.Awake();
 
-		prefComputerPencil = prefPencils[Random.Range(0, prefPencils.Count)];
+		prefabComputerPencil = prefPencils[Random.Range(0, prefPencils.Count)];
 	}
 
 	private void Update() {
@@ -37,6 +37,6 @@ public class DataManager : BaseSingletonMono<DataManager> {
 	}
 
 	public void SetPlayerPencil(int id) {
-		prefPlayerPencil = prefPencils[id];
+		prefabPlayerPencil = prefPencils[id];
 	}
 }
