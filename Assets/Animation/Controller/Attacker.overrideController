@@ -5,7 +5,7 @@ AnimatorOverrideController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Acolyte
+  m_Name: Attacker
   m_Controller: {fileID: 9100000, guid: ff4ebcd69468fda44969d9f7eaa98861, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: a790ccc4249f7c34bbccd31889ec4b96, type: 2}

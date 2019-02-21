@@ -2,57 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManager : BaseSingletonMono<DataManager>
-{
-    public Transform cameraPosition;
-    public Transform playPosition;
+public class DataManager : BaseSingletonMono<DataManager> {
+	public Canvas titleCanvas;
+	public Canvas gameCanvas;
 
-    public GameObject playerModel;
-    public GameObject computerModel;
+	public Transform canvasPos;
 
-    public Dictionary<string, GameObject> monsters;
+	public Transform cameraPosition;
+	public Transform playPosition;
 
-    List<string> monsterNames;
+	public GameObject prefPlayerPencil;
+	public GameObject prefComputerPencil;
 
-    protected override void  Awake()
-    {
-        base.Awake();
-		
-        monsterNames = new List<string>();
-        monsters = new Dictionary<string, GameObject>();
+	public List<GameObject> prefPencils = new List<GameObject>();
 
-        object[] objList = Resources.LoadAll("Monster");
-        foreach (GameObject obj in objList)
-        {
-            monsters[obj.name] = obj;
-            monsterNames.Add(obj.name);
+	protected override void Awake() {
+		base.Awake();
 
-        }
+		prefComputerPencil = prefPencils[Random.Range(0, prefPencils.Count)];
+	}
 
-        computerModel = monsters[monsterNames[Random.Range(0, monsterNames.Count)]] as GameObject;
-    }
+	private void Update() {
+		//仮処理
+		if (Input.GetKeyDown(KeyCode.A)) {
+			StartCoroutine(ChengeCanvas());
+		}
+	}
 
-    private void Start()
-    {
-        StartCoroutine(UpdateCoroutine());
-    }
-	
+	public IEnumerator ChengeCanvas() {
+		Destroy(titleCanvas.gameObject);
+		var canvas = Instantiate(gameCanvas);
+		canvas.transform.position = canvasPos.position;
+		yield return null;
+	}
 
-    IEnumerator UpdateCoroutine()
-    {
-        while (true)
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                StartCoroutine(Fade_In_Out.Instance.FadeOut(1.5f));
-                yield return new WaitForSeconds(1.5f);
-				
-                cameraPosition.position = playPosition.position;
-                cameraPosition.rotation = playPosition.rotation;
-                StartCoroutine(Fade_In_Out.Instance.FadeIn(1f));
-
-            }
-            yield return null;
-        }
-    }
+	public void SetPlayerPencil(int id) {
+		prefPlayerPencil = prefPencils[id];
+	}
 }

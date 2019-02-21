@@ -29,15 +29,15 @@ public class BattleStateInit : IState<BattleContext> {
 	/// </summary>
 	bool Init() {
 
-		if (BattleManager.Instance.ActiveController && BattleManager.Instance.NonActiveController) {
+		if (BattleManager.Instance.ActiveController != null && BattleManager.Instance.NonActiveController != null) {
 			return true;
 		}
-		else if (OperatorManager.Instance.PlayerController) {
+		if (OperatorManager.Instance.PlayerController != null) {
 			BattleManager.Instance.ActiveController = OperatorManager.Instance.PlayerController;
 		}
-		else if (OperatorManager.Instance.ComputerController) { 
+		if (OperatorManager.Instance.ComputerController != null) { 
 			BattleManager.Instance.NonActiveController = OperatorManager.Instance.ComputerController;
-		}
+        }
 
 		return false;
 	}

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class BaseMonsterBehaviour : MonoBehaviour
 {
-
     [SerializeField]
     MonsterModel monsterModel;
     public MonsterModel MonsterModel { get { return monsterModel; } }
     public MonsterContext MonsterContext { private set; get; }
 
     public Animator _Animator { get; private set; }
+
+    private OperatorModel operatorModel;
 
     void Awake()
     {
@@ -20,7 +21,9 @@ public class BaseMonsterBehaviour : MonoBehaviour
 
     void Start()
     {
-        GetComponentInParent<OperatorController>().OperatorModel.monsterBehaviour = this;
+        operatorModel = GetComponentInParent<OperatorController>().OperatorModel;
+        operatorModel.monsterBehaviour = this;
+        operatorModel.monsterUI.Init();
 
         monsterModel.maxHP = monsterModel.hp;
     }
