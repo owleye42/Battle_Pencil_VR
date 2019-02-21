@@ -59,8 +59,8 @@ namespace UnityChan
 
 		private void UpdateParameters ()
 		{
-			UpdateParameter ("stiffnessForce", stiffnessForce, stiffnessCurve);
-			UpdateParameter ("dragForce", dragForce, dragCurve);
+			//UpdateParameter ("stiffnessForce", stiffnessForce, stiffnessCurve);
+			//UpdateParameter ("dragForce", dragForce, dragCurve);
 		}
 	
 		private void UpdateParameter (string fieldName, float baseValue, AnimationCurve curve)
