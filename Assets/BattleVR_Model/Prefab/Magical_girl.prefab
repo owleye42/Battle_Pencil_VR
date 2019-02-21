@@ -3262,33 +3262,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterModel:
     id: 3
-    name: 
+    name: MagicalGirl
     hp: 100
-    type: 0
+    type: 2
     skillList:
     - skillType: 0
       targetType: 0
-      power: 0
+      power: 20
       text: 
-    - skillType: 0
+    - skillType: 2
       targetType: 0
       power: 0
       text: 
-    - skillType: 0
+    - skillType: 1
       targetType: 0
-      power: 0
+      power: 30
       text: 
     - skillType: 0
       targetType: 0
-      power: 0
+      power: 20
       text: 
-    - skillType: 0
+    - skillType: 2
       targetType: 0
       power: 0
       text: 
-    - skillType: 0
+    - skillType: 1
       targetType: 0
-      power: 0
+      power: 30
       text: 
 --- !u!114 &114965868722507758
 MonoBehaviour:
