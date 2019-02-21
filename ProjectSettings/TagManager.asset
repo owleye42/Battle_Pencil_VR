@@ -12,6 +12,7 @@ TagManager:
   - table
   - Controller
   - Head
+  - Laser
   layers:
   - Default
   - TransparentFX
