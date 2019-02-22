@@ -7,7 +7,7 @@ public class PencilPosReset : MonoBehaviour {
 	private void OnCollisionEnter(Collision collision) {
 		Debug.Log(collision.gameObject.tag);
 
-		if (collision.gameObject.tag == "Pencill") {
+		if (collision.gameObject.tag == "Pencil") {
 			if (collision.transform.parent.tag == "Player") {
 				collision.transform.position = OperatorManager.Instance.PlayerController.OperatorModel.pencil.InitPencilPos;
 			}

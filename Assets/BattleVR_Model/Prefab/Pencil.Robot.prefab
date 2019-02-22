@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 114024972196118180}
   m_Layer: 0
   m_Name: Pencil.Robot
-  m_TagString: Pencill
+  m_TagString: Pencil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
