@@ -1851,7 +1851,7 @@ MonoBehaviour:
       targetType: 0
       power: 20
       text: 
-    - skillType: 0
+    - skillType: 2
       targetType: 0
       power: 0
       text: 
@@ -1861,15 +1861,15 @@ MonoBehaviour:
       text: 
     - skillType: 0
       targetType: 0
-      power: 0
-      text: 
-    - skillType: 0
-      targetType: 0
       power: 20
       text: 
-    - skillType: 0
+    - skillType: 2
       targetType: 0
       power: 0
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 30
       text: 
 --- !u!137 &137473749833409426
 SkinnedMeshRenderer:
