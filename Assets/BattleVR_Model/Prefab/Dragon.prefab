@@ -1820,7 +1820,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1335647528777602}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 7d624543a5106b64baa35ed520dac0be, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 0b7a83cd482a9584f8f9e421dbf959e5, type: 3}
   m_Controller: {fileID: 9100000, guid: ff4ebcd69468fda44969d9f7eaa98861, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -1851,7 +1851,7 @@ MonoBehaviour:
       targetType: 0
       power: 20
       text: 
-    - skillType: 2
+    - skillType: 0
       targetType: 0
       power: 0
       text: 
@@ -1859,7 +1859,7 @@ MonoBehaviour:
       targetType: 0
       power: 40
       text: 
-    - skillType: 2
+    - skillType: 1
       targetType: 0
       power: 0
       text: 

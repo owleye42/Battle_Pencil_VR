@@ -266,12 +266,12 @@ Prefab:
     - target: {fileID: 114117429200530184, guid: 4bc78ac00db90b248b5e9c8d94313d81,
         type: 2}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114117429200530184, guid: 4bc78ac00db90b248b5e9c8d94313d81,
         type: 2}
       propertyPath: m_Color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114117429200530184, guid: 4bc78ac00db90b248b5e9c8d94313d81,
         type: 2}
@@ -1324,5 +1324,5 @@ Transform:
   m_LocalScale: {x: 25, y: 1, z: 25}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
