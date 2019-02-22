@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4300955808432238}
   - component: {fileID: 114715004109839488}
+  - component: {fileID: 114151193997618060}
   m_Layer: 0
   m_Name: CPU
   m_TagString: CPU
@@ -199,6 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4013834175277122}
   - component: {fileID: 114984677749028840}
+  - component: {fileID: 114412229138810326}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -574,6 +576,48 @@ MonoBehaviour:
   tAngle: 0
   tRange: 10
   pen: {fileID: 0}
+--- !u!114 &114151193997618060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1204117026466814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351a497537c251f488b68fa4f991065c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiModel:
+    monsterName: {fileID: 0}
+    HPText: {fileID: 0}
+    HPBar: {fileID: 0}
+    skillTexts: []
+    frame: {fileID: 0}
+    characterImage: {fileID: 0}
+--- !u!114 &114412229138810326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1813897554942820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351a497537c251f488b68fa4f991065c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiModel:
+    monsterName: {fileID: 0}
+    HPText: {fileID: 0}
+    HPBar: {fileID: 0}
+    skillTexts:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    frame: {fileID: 0}
+    characterImage: {fileID: 0}
 --- !u!114 &114715004109839488
 MonoBehaviour:
   m_ObjectHideFlags: 1
