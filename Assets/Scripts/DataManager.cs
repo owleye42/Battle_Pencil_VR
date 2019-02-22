@@ -16,6 +16,8 @@ public class DataManager : BaseSingletonMono<DataManager> {
 
 	public List<GameObject> prefPencils = new List<GameObject>();
 
+    public MonsterUIModel[] uiModel;
+
 	private void Update() {
 		//仮処理
 		if (Input.GetKeyDown(KeyCode.A)) {
