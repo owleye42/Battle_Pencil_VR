@@ -7,18 +7,15 @@ public class MonsterUIController : MonoBehaviour
 {
     [SerializeField]
     MonsterUIModel uiModel;
-    BaseMonsterBehaviour monsterBehavior;
 
+    [SerializeField]
+    Sprite[] standingSprite;
+    
     OperatorModel operatorModel;
 
     private void Start()
     {
         operatorModel = GetComponent<OperatorController>().OperatorModel;
-        if (operatorModel.eOperator == OperatorModel.EOperator.Player)
-            uiModel = DataManager.Instance.uiModel[0];
-        else if (operatorModel.eOperator == OperatorModel.EOperator.Computer)
-            uiModel = DataManager.Instance.uiModel[1];
-
         operatorModel.monsterUI = this;
 
         SkillSelect(0);
@@ -27,36 +24,42 @@ public class MonsterUIController : MonoBehaviour
     // 生成されるタイミングで一回呼ぶ
     public void Init()
     {
-        monsterBehavior = operatorModel.monsterBehaviour;
+        var maxHP = operatorModel.monsterBehaviour.MonsterModel.hp;
 
-        var maxHP = monsterBehavior.MonsterModel.hp;
+        uiModel.HPText.text = operatorModel.monsterBehaviour.MonsterModel.hp + "/" + maxHP;
+        uiModel.monsterName.text = operatorModel.monsterBehaviour.MonsterModel.name;
 
-        uiModel.HPText.text = monsterBehavior.MonsterModel.hp + "/" + maxHP;
-        uiModel.monsterName.text = monsterBehavior.MonsterModel.name;
-
-        for (int i = 0; i < monsterBehavior.MonsterModel.skillList.Count; ++i)
+        for (int i = 0; i < operatorModel.monsterBehaviour.MonsterModel.skillList.Count; ++i)
         {
             uiModel.skillTexts[i].name = "Skill" + i;
 
             // タイプによってテキスト変更
-            if (monsterBehavior.MonsterModel.skillList[i].skillType == SkillType.ATTACK)
+            if (operatorModel.monsterBehaviour.MonsterModel.skillList[i].skillType == SkillType.ATTACK)
             {
-                uiModel.skillTexts[i].text = "あいてに" + monsterBehavior.MonsterModel.skillList[i].power + "ダメージ";
+                uiModel.skillTexts[i].text = "あいてに" + operatorModel.monsterBehaviour.MonsterModel.skillList[i].power + "ダメージ";
             }
-            else if (monsterBehavior.MonsterModel.skillList[i].skillType == SkillType.SKILL)
+            else if (operatorModel.monsterBehaviour.MonsterModel.skillList[i].skillType == SkillType.SKILL)
             {
-                if (monsterBehavior.MonsterModel.type == Type.ATTACK)
-                    uiModel.skillTexts[i].text = "あいてに" + monsterBehavior.MonsterModel.skillList[i].power + "ダメージ";
-                else if (monsterBehavior.MonsterModel.type == Type.DEFENCE)
+                if (operatorModel.monsterBehaviour.MonsterModel.type == Type.ATTACK)
+                    uiModel.skillTexts[i].text = "あいてに" + operatorModel.monsterBehaviour.MonsterModel.skillList[i].power + "ダメージ";
+                else if (operatorModel.monsterBehaviour.MonsterModel.type == Type.DEFENCE)
                     uiModel.skillTexts[i].text = "カウンター";
-                else if (monsterBehavior.MonsterModel.type == Type.HEAL)
-                    uiModel.skillTexts[i].text = "たいりょくを" + monsterBehavior.MonsterModel.skillList[i].power + "かいふく";
+                else if (operatorModel.monsterBehaviour.MonsterModel.type == Type.HEAL)
+                    uiModel.skillTexts[i].text = "たいりょくを" + operatorModel.monsterBehaviour.MonsterModel.skillList[i].power + "かいふく";
             }
-            else if (monsterBehavior.MonsterModel.skillList[i].skillType == SkillType.MISS)
+            else if (operatorModel.monsterBehaviour.MonsterModel.skillList[i].skillType == SkillType.MISS)
             {
                 uiModel.skillTexts[i].text = "ミス";
             }
         }
+
+        if(operatorModel.monsterBehaviour.MonsterModel.id == 1)
+            uiModel.characterImage.sprite = standingSprite[0];
+        else if(operatorModel.monsterBehaviour.MonsterModel.id == 2)
+            uiModel.characterImage.sprite = standingSprite[1];
+        else if(operatorModel.monsterBehaviour.MonsterModel.id == 3)
+            uiModel.characterImage.sprite = standingSprite[2];
+
     }
 
     public void SkillSelect(int num)
