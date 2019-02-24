@@ -24,15 +24,15 @@ public class OperatorController : MonoBehaviour {
 			OperatorController = this
 		};
 
-		var pencilPrefab = DataManager.Instance.prefabPlayerPencil;
+		var pencilPrefab = DataManager.Instance.PrefabPlayerPencil;
 
 		if (operatorModel.eOperator == OperatorModel.EOperator.Player) {
 			OperatorManager.Instance.PlayerController = this;
-			pencilPrefab = DataManager.Instance.prefabPlayerPencil;
+			pencilPrefab = DataManager.Instance.PrefabPlayerPencil;
 		}
 		else if (operatorModel.eOperator == OperatorModel.EOperator.Computer) {
 			OperatorManager.Instance.ComputerController = this;
-			pencilPrefab = DataManager.Instance.prefabComputerPencil;
+			pencilPrefab = DataManager.Instance.PrefabComputerPencil;
 		}
 
 		var pen = Instantiate(pencilPrefab, pencilSpawnPos.position, Quaternion.identity, pencilSpawnPos);
