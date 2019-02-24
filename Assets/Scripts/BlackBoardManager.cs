@@ -20,7 +20,7 @@ public class BlackBoardManager : BaseSingletonMono<BlackBoardManager> {
 
 	GameObject activeCanvas = null;
 
-	protected void Awake() {
+	protected override void Awake() {
 		base.Awake();
 
 		SwitchCanvas(ECanvasType.Title);
