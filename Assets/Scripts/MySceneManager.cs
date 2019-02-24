@@ -4,30 +4,21 @@ using UnityEngine;
 
 public class MySceneManager : BaseSingletonMono<MySceneManager> {
 
+	[System.Serializable]
+	public class ScenePrefabs {
+		public List<GameObject> prefabs;
+	}
+
 	[Header("Prefab of Manager")]
 	[SerializeField]
-	List<GameObject> TitleScenePrefabs = new List<GameObject>();
-
-	[SerializeField]
-	List<GameObject> SelectScenePrefabs = new List<GameObject>();
-
-	[SerializeField]
-	List<GameObject> GameScenePrefabs = new List<GameObject>();
-
-	int sceneNum = 0;
-
-	List<List<GameObject>> PrefabListEachScene = new List<List<GameObject>>();
-
+	List<ScenePrefabs> PrefabsEachScene = new List<ScenePrefabs>();
+	
 	List<GameObject> ActiveObjects = null;
 
 	protected override void Awake() {
 		base.Awake();
 
-		PrefabListEachScene.Add(TitleScenePrefabs);
-		PrefabListEachScene.Add(SelectScenePrefabs);
-		PrefabListEachScene.Add(GameScenePrefabs);
-
-		ActiveObjects = PrefabListEachScene[0];
+		PrefabsEachScene[0].prefabs.ForEach(prefab => Instantiate(prefab));
 	}
 
 	private void Start() {
@@ -35,22 +26,17 @@ public class MySceneManager : BaseSingletonMono<MySceneManager> {
 
 	private void Update() {
 		// debug
-		if (Input.GetKeyDown(KeyCode.Space)) {
-			StartCoroutine(TransNextScene());
+		if (Input.GetKeyDown(KeyCode.B)) {
+			Debug.Log("Space");
+			StartCoroutine(TransNextScene(true));
 		}
 	}
 
-	public IEnumerator TransNextScene() {
-		if(ActiveObjects != null) {
+	public IEnumerator TransNextScene(bool willDestroyActives) {
+		if(willDestroyActives && ActiveObjects != null) {
 			ActiveObjects.ForEach(manager => Destroy(manager));
 			ActiveObjects.Clear();
 		}
-
-		sceneNum++;
-
-		foreach(var manager in PrefabListEachScene[sceneNum % PrefabListEachScene.Count]) {
-			ActiveObjects.Add(Instantiate(manager));
-			yield return new WaitForEndOfFrame();
-		}
+		yield return null;
 	}
 }
