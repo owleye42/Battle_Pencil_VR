@@ -34,11 +34,10 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
 		var cor = StartCoroutine(FadeOut(outSpeed));
 		yield return cor;
 
-		cor = StartCoroutine(FadeKeep(keepTime));
+		cor = StartCoroutine(FadeKeep(keepTime / 2));
 		yield return cor;
 
 		corInKeep();
-		yield return cor;
 		yield return new WaitForEndOfFrame();
 
 		cor = StartCoroutine(FadeKeep(keepTime / 2));

@@ -9,8 +9,7 @@ public class BattleStateInit : IState<BattleContext> {
 
 	public void ExecuteEntry(BattleContext context) {
 		Debug.LogWarning("[Entry] Battle State : Init");
-
-		DataManager.Instance.SetPlayerPencil(0); // 仮置き
+		
 		DataManager.Instance.SetComputerPencilRandom();
 	}
 
