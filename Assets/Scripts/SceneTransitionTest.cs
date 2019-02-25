@@ -26,12 +26,14 @@ public class SceneTransitionTest : MonoBehaviour {
 		BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Title);
 		select.gameObject.SetActive(true);
 		MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Title);
+		PositionManager.Instance.ChangePosition(0, 0);
 
 		title.OnClickAsObservable().Subscribe(_ => {
 			BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Title);
 			select.gameObject.SetActive(true);
 			MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Title);
 			title.gameObject.SetActive(false);
+			PositionManager.Instance.ChangePosition(0, 0);
 		});
 
 		select.OnClickAsObservable().Subscribe(_ => {
@@ -46,6 +48,7 @@ public class SceneTransitionTest : MonoBehaviour {
 			result.gameObject.SetActive(true);
 			MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Battle);
 			battle.gameObject.SetActive(false);
+			PositionManager.Instance.ChangePosition(0, 1);
 		});
 
 		result.OnClickAsObservable().Subscribe(_ => {
