@@ -12,12 +12,15 @@ public class TurnUI : MonoBehaviour {
 	void Start () {
         turnText.color = new Color(0f, 0f, 0f, 0f);
 
-        ChangeText();
+       
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ChangeText();
+        }
 	}
 
     public void ChangeText()

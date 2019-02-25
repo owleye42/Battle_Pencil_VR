@@ -17,6 +17,8 @@ public class HTC_Controller : MonoBehaviour {
 
     Vector3 PenRotate = new Vector3(12.0f, 0, 0);
     Vector3 PenVector = new Vector3(0, 0, 1f);
+
+
     private SteamVR_Controller.Device Controller
     {
         get { return SteamVR_Controller.Input((int)trackedObj.index); }
@@ -60,6 +62,7 @@ public class HTC_Controller : MonoBehaviour {
     {
         objectInHand = collidingObject;
         collidingObject = null;
+        objectInHand.transform.rotation = Quaternion.Euler(0, 0, -90f);
         var joint = AddFixedJoint();
         joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
     }
@@ -79,7 +82,7 @@ public class HTC_Controller : MonoBehaviour {
             GetComponent<FixedJoint>().connectedBody = null;
             Destroy(GetComponent<FixedJoint>());
 
-            objectInHand.GetComponent<Rigidbody>().velocity = Controller.velocity;
+            objectInHand.GetComponent<Rigidbody>().velocity = Controller.velocity/**forceDiameter*/;
             objectInHand.GetComponent<Rigidbody>().angularVelocity = Controller.angularVelocity*rotationDiameter+PenRotate;
             objectInHand.GetComponent<Rigidbody>().AddTorque(PenRotate, ForceMode.Impulse);
             objectInHand.GetComponent<Rigidbody>().AddForce(PenVector*forceDiameter, ForceMode.Impulse);
