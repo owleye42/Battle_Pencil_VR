@@ -16,6 +16,9 @@ public class MonsterUIController : MonoBehaviour
     MonsterUIModel uiModel;
     
     OperatorModel operatorModel;
+    
+    public bool IsDecision { get; set; }
+    float elapsedTime = 0f;
 
     private IEnumerator Start() {
 		while (OperatorManager.Instance == null
@@ -44,13 +47,11 @@ public class MonsterUIController : MonoBehaviour
 
         SkillSelect(0);
     }
-
+    
     // 生成されるタイミングで一回呼ぶ
     public void Init()
     {
-        var maxHP = operatorModel.monsterBehaviour.MonsterModel.hp;
-
-        uiModel.HPText.text = operatorModel.monsterBehaviour.MonsterModel.hp + "/" + maxHP;
+        uiModel.HPText.text = operatorModel.monsterBehaviour.MonsterModel.hp + "/" + operatorModel.monsterBehaviour.MonsterModel.maxHP;
         uiModel.monsterName.text = operatorModel.monsterBehaviour.MonsterModel.name;
 
         for (int i = 0; i < operatorModel.monsterBehaviour.MonsterModel.skillList.Count; ++i)
@@ -94,6 +95,38 @@ public class MonsterUIController : MonoBehaviour
 
     public void SkillDecision()
     {
-        uiModel.frame.color = new Color(1f, 1f, 1f, Mathf.Clamp(Mathf.Cos(30f * Time.time), 0f, 1f));
+        IsDecision = false;
+        
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime <= 1f)
+        {
+            uiModel.frame.color = new Color(1f, 1f, 1f, Mathf.Abs(Mathf.Cos(10f * elapsedTime)));
+        }
+        else
+        {
+            IsDecision = true;
+            elapsedTime = 0f;
+            uiModel.frame.color = new Color(1f, 1f, 1f);
+        }
+    }
+
+    public void AAA(int damage)
+    {
+        while (damage != 0)
+        {
+            //　ダメージ量を10で割った商をHPから減らす
+            var tempDamage = damage / 10;
+            //　商が0になったら余りを減らす
+            if (tempDamage == 0)
+            {
+                tempDamage = damage % 10;
+            }
+
+            Debug.Log(tempDamage);
+            operatorModel.monsterBehaviour.MonsterModel.hp -= tempDamage;
+            uiModel.HPText.text = operatorModel.monsterBehaviour.MonsterModel.hp + "/" + operatorModel.monsterBehaviour.MonsterModel.maxHP;
+            uiModel.HPBar.value = operatorModel.monsterBehaviour.MonsterModel.hp;
+            damage -= tempDamage;
+        }
     }
 }

@@ -32,7 +32,7 @@ public class Pencil : MonoBehaviour {
 	private void Awake() {
 		Init();
 		InitPencilPos = transform.position;
-	}
+    }
 
 	public void StartOutcomeDetection() {
 		Debug.Log("StartOutcomeDetection : " + transform.parent.parent.name);
@@ -87,7 +87,7 @@ public class Pencil : MonoBehaviour {
 		Outcome = LuckDetermination();
 		Debug.Log(gameObject.name + "出目(確定)" + Outcome);
 
-		GetComponentInParent<OperatorController>().StopThrow();
+        GetComponentInParent<OperatorController>().StopThrow();
 
 		yield return null;
 	}
@@ -105,8 +105,6 @@ public class Pencil : MonoBehaviour {
 			if (hit.collider.tag == "numbers") {
                 num = int.Parse(hit.collider.gameObject.name);
 				//num = hit.collider.gameObject.GetComponent<number>().num;
-
-				//Debug.Log(gameObject.name + "出目" + num);
 			}
 		}
 

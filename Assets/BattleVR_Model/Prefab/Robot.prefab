@@ -1498,12 +1498,12 @@ MonoBehaviour:
   monsterModel:
     id: 2
     name: Robot
-    hp: 100
+    hp: 1000
     type: 1
     skillList:
     - skillType: 0
       targetType: 0
-      power: 20
+      power: 200
       text: 
     - skillType: 2
       targetType: 0
@@ -1511,7 +1511,7 @@ MonoBehaviour:
       text: 
     - skillType: 0
       targetType: 0
-      power: 30
+      power: 300
       text: 
     - skillType: 1
       targetType: 0
@@ -1519,7 +1519,7 @@ MonoBehaviour:
       text: 
     - skillType: 0
       targetType: 0
-      power: 30
+      power: 300
       text: 
     - skillType: 2
       targetType: 0

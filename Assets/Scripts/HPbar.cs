@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HPbar : MonoBehaviour {
+public class HPbar : MonoBehaviour
+{
     public Image UIobj;
 
     int color_Step = 0;//100% 0 50% 1 25%2
@@ -31,15 +32,15 @@ public class HPbar : MonoBehaviour {
         green = 255f;
         blue = 0;
         difference = 0f;
-        
+
 
     }
     public void BarUpdate(int afterHP/*変化後の体力*/)//体力値変更値時に呼ぶ関数//100,(0,255,0) 50(255,255,0) 20(255,0,0)
     {
-     
-        difference=(beforeHP - afterHP)/100;
+
+        difference = (beforeHP - afterHP) / 100;
         afterBarLengs -= difference;
-        while (!Mathf.Approximately(barLengs , afterBarLengs))
+        while (!Mathf.Approximately(barLengs, afterBarLengs))
         {
             GetComponent<Image>().color = new Color(red, green, blue, a_color);//色代入
 
@@ -51,11 +52,11 @@ public class HPbar : MonoBehaviour {
             {
                 color_Step = 0;
             }
-            else if (barLengs>0.25f)
+            else if (barLengs > 0.25f)
             {
                 color_Step = 1;
             }
-            else if(barLengs<=0.25f)
+            else if (barLengs <= 0.25f)
             {
                 color_Step = 2;
             }
@@ -74,14 +75,14 @@ public class HPbar : MonoBehaviour {
                 case 2:
                     red = 255f;
                     green = 0f;
-                    blue = 0f ;
+                    blue = 0f;
                     break;
-               
+
             }
-            barLengs -= 1.0f / difference * Time.deltaTime*barSpeed;
+            barLengs -= 1.0f / difference * Time.deltaTime * barSpeed;
             UIobj.fillAmount = barLengs;
         }
-        
+
     }
 
     private void Start()
@@ -90,8 +91,8 @@ public class HPbar : MonoBehaviour {
         green = GetComponent<Image>().color.g;
         blue = GetComponent<Image>().color.b;
         a_color = GetComponent<Image>().color.a;
-       
+
     }
 
-    
+
 }
