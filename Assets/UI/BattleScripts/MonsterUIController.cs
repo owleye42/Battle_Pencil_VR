@@ -88,7 +88,7 @@ public class MonsterUIController : MonoBehaviour
 
     public void SkillSelect(int num)
     {
-        if (num - 1 >= 0)
+        if (uiModel != null && num - 1 >= 0)
             uiModel.frame.transform.position = uiModel.skillTexts[num - 1].transform.position;
     }
 
