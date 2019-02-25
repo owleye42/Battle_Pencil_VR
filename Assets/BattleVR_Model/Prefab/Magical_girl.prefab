@@ -3263,12 +3263,12 @@ MonoBehaviour:
   monsterModel:
     id: 3
     name: MagicalGirl
-    hp: 100
+    hp: 1000
     type: 2
     skillList:
     - skillType: 0
       targetType: 0
-      power: 20
+      power: 200
       text: 
     - skillType: 2
       targetType: 0
@@ -3276,11 +3276,11 @@ MonoBehaviour:
       text: 
     - skillType: 1
       targetType: 0
-      power: 30
+      power: 300
       text: 
     - skillType: 0
       targetType: 0
-      power: 20
+      power: 200
       text: 
     - skillType: 2
       targetType: 0
@@ -3288,7 +3288,7 @@ MonoBehaviour:
       text: 
     - skillType: 1
       targetType: 0
-      power: 30
+      power: 300
       text: 
 --- !u!114 &114965868722507758
 MonoBehaviour:
