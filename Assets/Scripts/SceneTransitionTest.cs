@@ -42,6 +42,7 @@ public class SceneTransitionTest : MonoBehaviour {
 
 		battle.OnClickAsObservable().Subscribe(_ => {
 			DataManager.Instance.SetPlayerPencil(1);
+			BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Battle);
 			result.gameObject.SetActive(true);
 			MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Battle);
 			battle.gameObject.SetActive(false);

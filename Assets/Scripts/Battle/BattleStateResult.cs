@@ -20,6 +20,8 @@ public class BattleStateResult : IState<BattleContext> {
 		if (stayTime <= 0) {
 			context.ChangeState(context.stateWait);
 		}
+
+		stayTime--;
 	}
 
 	public void ExecuteExit(BattleContext context) {

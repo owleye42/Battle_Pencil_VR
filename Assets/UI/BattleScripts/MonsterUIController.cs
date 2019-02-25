@@ -5,18 +5,42 @@ using UnityEngine.UI;
 
 public class MonsterUIController : MonoBehaviour
 {
-    [SerializeField]
-    MonsterUIModel uiModel;
+	public enum EOperatorUI {
+		PlayerUI, ComputerUI
+	}
+
+	[SerializeField]
+	EOperatorUI operatorUI;
 
     [SerializeField]
-    Sprite[] standingSprite;
+    MonsterUIModel uiModel;
     
     OperatorModel operatorModel;
 
-    private void Start()
-    {
-        operatorModel = GetComponent<OperatorController>().OperatorModel;
-        operatorModel.monsterUI = this;
+    private IEnumerator Start() {
+		while (OperatorManager.Instance == null
+			|| OperatorManager.Instance == null) {
+			yield return null;
+		}
+
+		while (OperatorManager.Instance.PlayerController == null
+			|| OperatorManager.Instance.ComputerController == null) {
+			yield return null;
+		}
+
+		while (OperatorManager.Instance.PlayerController.OperatorModel == null
+			|| OperatorManager.Instance.ComputerController.OperatorModel == null) {
+			yield return null;
+		}
+
+		if (operatorUI == EOperatorUI.PlayerUI) {
+			operatorModel = OperatorManager.Instance.PlayerController.OperatorModel;
+		}
+		else if (operatorUI == EOperatorUI.ComputerUI) {
+			operatorModel = OperatorManager.Instance.ComputerController.OperatorModel;
+		}
+
+		operatorModel.monsterUI = this;
 
         SkillSelect(0);
     }
@@ -54,11 +78,11 @@ public class MonsterUIController : MonoBehaviour
         }
 
         if(operatorModel.monsterBehaviour.MonsterModel.id == 1)
-            uiModel.characterImage.sprite = standingSprite[0];
+            uiModel.characterImage.sprite = BlackBoardManager.Instance.StandingSprite[0];
         else if(operatorModel.monsterBehaviour.MonsterModel.id == 2)
-            uiModel.characterImage.sprite = standingSprite[1];
+            uiModel.characterImage.sprite = BlackBoardManager.Instance.StandingSprite[1];
         else if(operatorModel.monsterBehaviour.MonsterModel.id == 3)
-            uiModel.characterImage.sprite = standingSprite[2];
+            uiModel.characterImage.sprite = BlackBoardManager.Instance.StandingSprite[2];
 
     }
 

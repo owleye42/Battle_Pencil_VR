@@ -9,7 +9,8 @@ public class DataManager : BaseSingletonMono<DataManager> {
 
 	public bool isPlayerWinner = false;
 
-	public List<GameObject> prefPencils = new List<GameObject>();
+	[SerializeField]
+	List<GameObject> prefPencils = new List<GameObject>();
 
 	public void SetPlayerPencil(int id) {
 		PrefabPlayerPencil = prefPencils[id];

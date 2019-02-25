@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BlackBoardManager : BaseSingletonMono<BlackBoardManager> {
+	
+	[SerializeField]
+	List<Sprite> standingSprite = new List<Sprite>();
+	public List<Sprite> StandingSprite { get { return standingSprite; } }
 
 	[System.Serializable]
 	public enum ECanvasType {
-		Title, Select, Result
+		Title, Select, Battle, Result
 	}
 
 	[System.Serializable]
