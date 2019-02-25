@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Pencil : MonoBehaviour {
 
+	[SerializeField]
+	int id = 0;
+	public int ID { get { return id; } }
+
 	// 初期位置
 	public Vector3 InitPencilPos { get; private set; }
 
@@ -23,34 +27,15 @@ public class Pencil : MonoBehaviour {
         //var rigidbody = GetComponent<Rigidbody>();
         //rigidbody.velocity = Vector3.zero;
         //rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
-
-        if (this.gameObject.tag == "Player")
-        {
-            //  monsterPrefab = DataManager.Instance.playerModel;//保存しないで戻すこと
-        }
-        else
-        {
-           // monsterPrefab = DataManager.Instance.computerModel;///保存しないで戻すこと
-        }
-    }
+	}
 
 	private void Awake() {
 		Init();
 		InitPencilPos = transform.position;
 	}
 
-	private void Start() {
-        // CPUのモンスター格納
-        if (gameObject.layer == /*CPU = */9)
-        {
-            monsterPrefab = DataManager.Instance.computerModel;
-        }
-	}
-
 	public void StartOutcomeDetection() {
-		Debug.Log("StartOutcomeDetection : " + transform.parent.name);
-
-		GetComponentInParent<OperatorController>().StartThrow();
+		Debug.Log("StartOutcomeDetection : " + transform.parent.parent.name);
 
 		Init();
 		StartCoroutine(OutcomeDetectionCoroutine());
@@ -83,7 +68,8 @@ public class Pencil : MonoBehaviour {
 		while (true) {
 			// 出目表示用の変数に格納
 			TmpOutcome = LuckDetermination();
-			//Debug.Log(gameObject.name + "出目(仮)" + TmpOutcome);
+            //Debug.Log(gameObject.name + "出目(仮)" + TmpOutcome);
+            BattleManager.Instance.ActiveController.OperatorModel.monsterUI.SkillSelect(TmpOutcome);
 
 			// 静止していたら
 			if (rigidbody.velocity.sqrMagnitude == 0) {
@@ -117,7 +103,8 @@ public class Pencil : MonoBehaviour {
 
 		if (Physics.Raycast(ray, out hit, 10)) {
 			if (hit.collider.tag == "numbers") {
-				num = hit.collider.gameObject.GetComponent<number>().num;
+                num = int.Parse(hit.collider.gameObject.name);
+				//num = hit.collider.gameObject.GetComponent<number>().num;
 
 				//Debug.Log(gameObject.name + "出目" + num);
 			}

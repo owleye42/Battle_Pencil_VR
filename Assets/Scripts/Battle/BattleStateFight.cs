@@ -15,7 +15,7 @@ public class BattleStateFight : IState<BattleContext> {
 
 	public void ExecuteEntry(BattleContext context) {
 		Debug.LogWarning("[Entry] Battle State : Fight");
-        
+
 		BattleManager.Instance.StartThrowActiveController();
         
 		count = 600;
@@ -27,11 +27,6 @@ public class BattleStateFight : IState<BattleContext> {
         {
             BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterContext.ExecuteUpdate();
         }
-
-		if (isEnd) {
-			context.ChangeState(context.stateResult);
-			return;
-		}
 
 		// 行動終了時
 		if (context.isDone) {

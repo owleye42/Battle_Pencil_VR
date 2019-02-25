@@ -8,7 +8,14 @@ public class HTC_Controller : MonoBehaviour {
     private GameObject collidingObject;
 
     private GameObject objectInHand;
+    [Header("伝達倍率（force）")]
+    [SerializeField] float forceDiameter=1.0f;
+    [Header("伝達倍率（rotation）")]
+    [SerializeField] float rotationDiameter=1.0f;
 
+
+
+    Vector3 PenRotate = new Vector3(2000f, 0, 0);
     private SteamVR_Controller.Device Controller
     {
         get { return SteamVR_Controller.Input((int)trackedObj.index); }
@@ -59,8 +66,8 @@ public class HTC_Controller : MonoBehaviour {
     private FixedJoint AddFixedJoint()
     {
         FixedJoint fx = gameObject.AddComponent<FixedJoint>();
-        fx.breakForce = 20000;
-        fx.breakTorque = 20000;
+        fx.breakForce = 2000;
+        fx.breakTorque = 2000;
         return fx;
     }
 
@@ -71,8 +78,9 @@ public class HTC_Controller : MonoBehaviour {
             GetComponent<FixedJoint>().connectedBody = null;
             Destroy(GetComponent<FixedJoint>());
 
-            objectInHand.GetComponent<Rigidbody>().velocity = Controller.velocity;
-            objectInHand.GetComponent<Rigidbody>().angularVelocity = Controller.angularVelocity;
+            objectInHand.GetComponent<Rigidbody>().velocity = Controller.velocity*forceDiameter;
+            objectInHand.GetComponent<Rigidbody>().angularVelocity = Controller.angularVelocity*rotationDiameter+PenRotate;
+            objectInHand.GetComponent<Rigidbody>().AddTorque(PenRotate, ForceMode.Impulse);
         }
 
         objectInHand = null;

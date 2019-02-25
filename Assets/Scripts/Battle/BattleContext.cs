@@ -6,6 +6,7 @@ using UnityEngine;
 public class BattleContext {
 	public readonly IState<BattleContext> stateInit = new BattleStateInit();
 	//public readonly IState<BattleContext> stateOffensiveDecision = new BattleStateOffensiveDecision();
+	public readonly IState<BattleContext> stateWait = new BattleStateWait();
 	public readonly IState<BattleContext> stateFight = new BattleStateFight();
 	public readonly IState<BattleContext> stateResult = new BattleStateResult();
 
