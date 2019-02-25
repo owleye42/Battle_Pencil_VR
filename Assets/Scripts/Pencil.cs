@@ -32,7 +32,9 @@ public class Pencil : MonoBehaviour {
 	private void Awake() {
 		Init();
 		InitPencilPos = transform.position;
-	}
+
+        gameObject.tag = transform.parent.gameObject.tag;
+    }
 
 	public void StartOutcomeDetection() {
 		Debug.Log("StartOutcomeDetection : " + transform.parent.parent.name);
@@ -87,7 +89,9 @@ public class Pencil : MonoBehaviour {
 		Outcome = LuckDetermination();
 		Debug.Log(gameObject.name + "出目(確定)" + Outcome);
 
-		GetComponentInParent<OperatorController>().StopThrow();
+        BattleManager.Instance.ActiveController.OperatorModel.monsterUI.IsDecision = true;
+        
+        GetComponentInParent<OperatorController>().StopThrow();
 
 		yield return null;
 	}
