@@ -29,7 +29,7 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
         a_color = 0;
     }
 
-    public IEnumerator FadeIO(float outSpeed, float keepTime, float inSpeed, IEnumerator corInKeep)
+    public IEnumerator FadeIO(float outSpeed, float keepTime, float inSpeed, System.Action corInKeep)
     {
 		var cor = StartCoroutine(FadeOut(outSpeed));
 		yield return cor;
@@ -37,7 +37,7 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
 		cor = StartCoroutine(FadeKeep(keepTime));
 		yield return cor;
 
-		var cor2 = StartCoroutine(corInKeep);
+		corInKeep();
 		yield return cor;
 		yield return new WaitForEndOfFrame();
 
@@ -48,7 +48,7 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
 		yield return cor;
 	}
 
-    public void StartFade(float outTime, float keepTime, float inTime, IEnumerator corInKeep)
+    public void StartFade(float outTime, float keepTime, float inTime, System.Action corInKeep)
     {
 		StartCoroutine(FadeIO(outTime, keepTime, inTime, corInKeep));
     }
