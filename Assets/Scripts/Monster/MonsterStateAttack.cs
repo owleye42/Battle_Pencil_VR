@@ -37,9 +37,7 @@ public class MonsterStateAttack : IState<MonsterContext>
         //nonActive.monsterBehaviour.MonsterModel.hp -=
         //    active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
 
-        //SlowlyDecrease(nonActive, active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power);
-
-        //nonActive.monsterUI.SlowlyDecrease(active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power);
+        //nonActive.monsterUI.AAA(active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power);
 
         nonActive.monsterBehaviour.MonsterModel.counterPower =
             active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
@@ -48,24 +46,4 @@ public class MonsterStateAttack : IState<MonsterContext>
 
         Debug.Log("[Exit] Monster State : Attack");
     }
-
-    //public void SlowlyDecrease(OperatorModel nonActive,int damage)
-    //{
-    //    while (damage != 0)
-    //    {
-    //        Debug.Log(damage);
-
-    //        var tempDamage = damage / 100;
-    //        if (tempDamage == 0)
-    //        {
-    //            tempDamage = damage % 100;
-    //        }
-
-    //        nonActive.monsterBehaviour.MonsterModel.hp -= tempDamage;
-    //        Debug.Log(nonActive.monsterBehaviour.MonsterModel.hp);
-    //        damage -= tempDamage;
-
-    //        Debug.Log(damage);
-    //    }
-    //}
 }
