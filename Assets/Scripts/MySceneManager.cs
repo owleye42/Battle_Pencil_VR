@@ -4,39 +4,46 @@ using UnityEngine;
 
 public class MySceneManager : BaseSingletonMono<MySceneManager> {
 
+	public enum ESceneType {
+		Title, Battle
+	}
+
 	[System.Serializable]
 	public class ScenePrefabs {
+		public ESceneType type;
 		public List<GameObject> prefabs;
 	}
 
-	[Header("Prefab of Manager")]
 	[SerializeField]
-	List<ScenePrefabs> PrefabsEachScene = new List<ScenePrefabs>();
-	
-	List<GameObject> ActiveObjects = null;
+	List<ScenePrefabs> prefabsEachScene = new List<ScenePrefabs>();
+
+	List<GameObject> activeObjects = new List<GameObject>();
 
 	protected override void Awake() {
 		base.Awake();
-
-		PrefabsEachScene[0].prefabs.ForEach(prefab => Instantiate(prefab));
 	}
 
 	private void Start() {
 	}
 
-	private void Update() {
-		// debug
-		if (Input.GetKeyDown(KeyCode.B)) {
-			Debug.Log("Space");
-			StartCoroutine(TransNextScene(true));
+	public void ChangeScene(ESceneType type) {
+		if (activeObjects != null) {
+			activeObjects.ForEach(obj => Destroy(obj));
+			activeObjects.Clear();
 		}
+
+		StartCoroutine(CreateObjects(type));
 	}
 
-	public IEnumerator TransNextScene(bool willDestroyActives) {
-		if(willDestroyActives && ActiveObjects != null) {
-			ActiveObjects.ForEach(manager => Destroy(manager));
-			ActiveObjects.Clear();
+	IEnumerator CreateObjects(ESceneType type) {
+		foreach(var sp in prefabsEachScene) {
+			if (type == sp.type) {
+				foreach(var prefab in sp.prefabs) {
+					var obj = Instantiate(prefab);
+					activeObjects.Add(obj);
+					yield return new WaitForEndOfFrame();
+				}
+			}
 		}
-		yield return null;
 	}
 }

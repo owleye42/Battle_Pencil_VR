@@ -12,7 +12,7 @@ public class ResultUIController : MonoBehaviour {
 	string playerLosesText;
 
 	void Start() {
-		if (OperatorManager.Instance.PlayerController.OperatorModel.monsterBehaviour.MonsterModel.hp > 0)
+		if (DataManager.Instance.isPlayerWinner)
 			GetComponent<Text>().text = playerWinsText;
 		else
 			GetComponent<Text>().text = playerLosesText;

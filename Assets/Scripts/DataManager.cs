@@ -7,6 +7,8 @@ public class DataManager : BaseSingletonMono<DataManager> {
 	public GameObject PrefabPlayerPencil { get; private set; }
 	public GameObject PrefabComputerPencil { get; private set; }
 
+	public bool isPlayerWinner = false;
+
 	public List<GameObject> prefPencils = new List<GameObject>();
 
 	public void SetPlayerPencil(int id) {
