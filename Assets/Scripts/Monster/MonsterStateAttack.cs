@@ -39,7 +39,7 @@ public class MonsterStateAttack : IState<MonsterContext>
 
         //SlowlyDecrease(nonActive, active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power);
 
-        nonActive.monsterUI.SlowlyDecrease(active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power);
+        //nonActive.monsterUI.SlowlyDecrease(active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power);
 
         nonActive.monsterBehaviour.MonsterModel.counterPower =
             active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;

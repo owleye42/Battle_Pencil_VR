@@ -28,11 +28,6 @@ public class BattleStateFight : IState<BattleContext> {
             BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterContext.ExecuteUpdate();
         }
 
-		if (isEnd) {
-			context.ChangeState(context.stateResult);
-			return;
-		}
-
 		// 行動終了時
 		if (context.isDone) {
             context.ChangeState(context.stateFight);

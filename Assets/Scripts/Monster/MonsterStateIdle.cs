@@ -25,6 +25,9 @@ public class MonsterStateIdle : IState<MonsterContext> {
     public void ExecuteUpdate(MonsterContext context) {
         var active = BattleManager.Instance.ActiveController.OperatorModel;
 
+        active.monsterUI.SkillDecision();
+
+        if(active.monsterUI.IsDecision)
         // ActiveControllerの中のスキルタイプによって行動変更
         if (active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].skillType == SkillType.ATTACK) {
             context.ChangeState(context.stateAttack);

@@ -79,7 +79,9 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 		ActiveController.StartThrow();
 	}
 
-	public void FinishGame() {
+	public void GameFinish() {
+		BattleContext.ChangeState(BattleContext.stateResult);
+
 		foreach (var oc in ControllerList) {
 			oc.OperatorContext.ToResult();
 		}

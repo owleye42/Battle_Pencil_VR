@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Pencill
   - numbers
   - CPU
   - CPUTable
@@ -13,6 +12,7 @@ TagManager:
   - Controller
   - Head
   - Laser
+  - Pencil
   layers:
   - Default
   - TransparentFX
