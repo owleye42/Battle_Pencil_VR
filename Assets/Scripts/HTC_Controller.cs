@@ -58,8 +58,10 @@ public class HTC_Controller : MonoBehaviour {
 
     private void GrabObject()
     {
+       
         objectInHand = collidingObject;
         collidingObject = null;
+        objectInHand.GetComponent<MeshCollider>().enabled = false;//めり込み防止用　コライダーオフ
         var joint = AddFixedJoint();
         joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
     }
@@ -78,7 +80,7 @@ public class HTC_Controller : MonoBehaviour {
         {
             GetComponent<FixedJoint>().connectedBody = null;
             Destroy(GetComponent<FixedJoint>());
-
+            objectInHand.GetComponent<MeshCollider>().enabled = true;//めり込み防止用　コライダーオン
             objectInHand.GetComponent<Rigidbody>().velocity = Controller.velocity;
             objectInHand.GetComponent<Rigidbody>().angularVelocity = Controller.angularVelocity*rotationDiameter+PenRotate;
             objectInHand.GetComponent<Rigidbody>().AddTorque(PenRotate, ForceMode.Impulse);
