@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MonsterGlass : MonoBehaviour {
 
+	[SerializeField]
+	int id = 0;
+
     [SerializeField]
     bool onHand = false;
 
@@ -24,8 +27,15 @@ public class MonsterGlass : MonoBehaviour {
     {
         if (other.gameObject.tag == "Head")
         {
-           DataManager.Instance.playerModel = DataManager.Instance.monsters[monsterObj.name];
-            Debug.Log(monsterObj.name);  
+			DataManager.Instance.SetPlayerPencil(id);
+
+			Fade_In_Out.Instance.StartFade(1, 3, 1, () => {
+				BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Battle);
+				MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Battle);
+				PositionManager.Instance.ChangePosition(0, 1);
+			});
+
+			Debug.Log(monsterObj.name);
         }
         if (other.gameObject.tag == "Controller")
         {

@@ -19,6 +19,10 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 		NonActiveController = null;
 	}
 
+	private void Start() {
+		StartCoroutine(Fade_In_Out.Instance.FadeIn(1));
+	}
+
 	void Update() {
 		// コンテキストのステート滞在中の処理
 		BattleContext.ExecuteUpdate();
@@ -26,7 +30,7 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 
 	// 勝手に鉛筆を投げる
 	public void ForceThrowPencil(OperatorController oc) {
-		oc.GetComponent<Throw_ball>().ThrowPencil();
+		oc.GetComponentInChildren<Throw_ball>().ThrowPencil();
 	}
 
 	// 両者の投擲フェイズ開始
@@ -63,6 +67,8 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 
 	// 攻守交代
 	public void SwitchAvtiveController() {
+		ActiveController.StopThrow();
+
 		if (ActiveController == ControllerList[0]) {
             var tmp = ActiveController;
 			ActiveController = ControllerList[1];
@@ -73,15 +79,19 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
             ActiveController = ControllerList[0];
 			NonActiveController = tmp;
 		}
+
+		ActiveController.StartThrow();
 	}
 
-	public void FinishGame() {
+	public void GameFinish() {
+		BattleContext.ChangeState(BattleContext.stateResult);
+
 		foreach (var oc in ControllerList) {
 			oc.OperatorContext.ToResult();
 		}
 	}
 
 	public void StartThrowActiveController() {
-		ActiveController.OperatorModel.pencil.StartOutcomeDetection();
+		ActiveController.StartThrow();
 	}
 }

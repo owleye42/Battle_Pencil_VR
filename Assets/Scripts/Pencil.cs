@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Pencil : MonoBehaviour {
 
+	[SerializeField]
+	int id = 0;
+	public int ID { get { return id; } }
+
 	// 初期位置
 	public Vector3 InitPencilPos { get; private set; }
 
@@ -20,37 +24,18 @@ public class Pencil : MonoBehaviour {
 	public void Init() {
 		Outcome = 0;
 		TmpOutcome = 0;
-        //var rigidbody = GetComponent<Rigidbody>();
-        //rigidbody.velocity = Vector3.zero;
-        //rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
-
-        if (this.gameObject.tag == "Player")
-        {
-            //  monsterPrefab = DataManager.Instance.playerModel;//保存しないで戻すこと
-        }
-        else
-        {
-           // monsterPrefab = DataManager.Instance.computerModel;///保存しないで戻すこと
-        }
-    }
+		//var rigidbody = GetComponent<Rigidbody>();
+		//rigidbody.velocity = Vector3.zero;
+		//rigidbody.rotation = Quaternion.identity * Quaternion.FromToRotation(Vector3.forward, Vector3.left);
+	}
 
 	private void Awake() {
 		Init();
 		InitPencilPos = transform.position;
-	}
-
-	private void Start() {
-        // CPUのモンスター格納
-        if (gameObject.layer == /*CPU = */9)
-        {
-            monsterPrefab = DataManager.Instance.computerModel;
-        }
-	}
+    }
 
 	public void StartOutcomeDetection() {
-		Debug.Log("StartOutcomeDetection : " + transform.parent.name);
-
-		GetComponentInParent<OperatorController>().StartThrow();
+		Debug.Log("StartOutcomeDetection : " + transform.parent.parent.name);
 
 		Init();
 		StartCoroutine(OutcomeDetectionCoroutine());
@@ -80,10 +65,14 @@ public class Pencil : MonoBehaviour {
 			yield return null;
 		}
 
+		var monsUI = BattleManager.Instance.ActiveController.OperatorModel.monsterUI;
+
 		while (true) {
 			// 出目表示用の変数に格納
 			TmpOutcome = LuckDetermination();
 			//Debug.Log(gameObject.name + "出目(仮)" + TmpOutcome);
+			if (monsUI != null)
+				monsUI.SkillSelect(TmpOutcome);
 
 			// 静止していたら
 			if (rigidbody.velocity.sqrMagnitude == 0) {
@@ -101,7 +90,7 @@ public class Pencil : MonoBehaviour {
 		Outcome = LuckDetermination();
 		Debug.Log(gameObject.name + "出目(確定)" + Outcome);
 
-		GetComponentInParent<OperatorController>().StopThrow();
+        GetComponentInParent<OperatorController>().StopThrow();
 
 		yield return null;
 	}
@@ -117,9 +106,8 @@ public class Pencil : MonoBehaviour {
 
 		if (Physics.Raycast(ray, out hit, 10)) {
 			if (hit.collider.tag == "numbers") {
-				num = hit.collider.gameObject.GetComponent<number>().num;
-
-				//Debug.Log(gameObject.name + "出目" + num);
+				num = int.Parse(hit.collider.gameObject.name);
+				//num = hit.collider.gameObject.GetComponent<number>().num;
 			}
 		}
 
@@ -134,7 +122,7 @@ public class Pencil : MonoBehaviour {
 
 	// モンスターの召喚
 	public void SummonMonster() {
-		
+
 		Transform standPosTransform;
 		Transform enemyStandPosTransform;
 
@@ -152,7 +140,7 @@ public class Pencil : MonoBehaviour {
 		monsObj.tag = transform.parent.gameObject.tag;
 
 		monsObj.transform.position = standPosTransform.position;
-		
+
 		monsObj.transform.LookAt(enemyStandPosTransform, monsObj.transform.up);
 	}
 }

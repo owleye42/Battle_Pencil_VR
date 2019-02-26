@@ -10,10 +10,22 @@ public class MonsterStateSkill : IState<MonsterContext> {
 
     public void ExecuteEntry(MonsterContext context) {
         Debug.Log("[Entry] Monster State : Skill");
+        var nonActive = BattleManager.Instance.NonActiveController.OperatorModel;
         var active = BattleManager.Instance.ActiveController.OperatorModel;
 
         active.monsterBehaviour.MonsterModel.isAttack = true;
-        active.monsterBehaviour._Animator.SetTrigger("SkillTrigger");
+        
+        if (active.monsterBehaviour.MonsterModel.type == Type.DEFENCE) {
+            if (nonActive.monsterBehaviour.MonsterModel.isAttack) {
+                active.monsterBehaviour._Animator.SetTrigger("SkillTrigger");
+            }
+            else {
+                BattleManager.Instance.BattleContext.isDone = true;
+                context.ChangeState(context.stateIdle);
+            }
+        }
+        else
+            active.monsterBehaviour._Animator.SetTrigger("SkillTrigger");
     }
 
     public void ExecuteUpdate(MonsterContext context) {
