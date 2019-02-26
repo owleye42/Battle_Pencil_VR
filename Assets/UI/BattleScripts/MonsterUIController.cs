@@ -5,53 +5,61 @@ using UnityEngine.UI;
 
 public class MonsterUIController : MonoBehaviour
 {
-	public enum EOperatorUI {
-		PlayerUI, ComputerUI
-	}
+    public enum EOperatorUI
+    {
+        PlayerUI, ComputerUI
+    }
 
-	[SerializeField]
-	EOperatorUI operatorUI;
+    [SerializeField]
+    EOperatorUI operatorUI;
 
     [SerializeField]
     MonsterUIModel uiModel;
-    
+
     OperatorModel operatorModel;
-    
+
     public bool IsDecision { get; set; }
     float elapsedTime = 0f;
+    Color _color;
 
-    private IEnumerator Start() {
-		while (OperatorManager.Instance == null
-			|| OperatorManager.Instance == null) {
-			yield return null;
-		}
+    private IEnumerator Start()
+    {
+        while (OperatorManager.Instance == null
+            || OperatorManager.Instance == null)
+        {
+            yield return null;
+        }
 
-		while (OperatorManager.Instance.PlayerController == null
-			|| OperatorManager.Instance.ComputerController == null) {
-			yield return null;
-		}
+        while (OperatorManager.Instance.PlayerController == null
+            || OperatorManager.Instance.ComputerController == null)
+        {
+            yield return null;
+        }
 
-		while (OperatorManager.Instance.PlayerController.OperatorModel == null
-			|| OperatorManager.Instance.ComputerController.OperatorModel == null) {
-			yield return null;
-		}
+        while (OperatorManager.Instance.PlayerController.OperatorModel == null
+            || OperatorManager.Instance.ComputerController.OperatorModel == null)
+        {
+            yield return null;
+        }
 
-		if (operatorUI == EOperatorUI.PlayerUI) {
-			operatorModel = OperatorManager.Instance.PlayerController.OperatorModel;
-		}
-		else if (operatorUI == EOperatorUI.ComputerUI) {
-			operatorModel = OperatorManager.Instance.ComputerController.OperatorModel;
-		}
+        if (operatorUI == EOperatorUI.PlayerUI)
+        {
+            operatorModel = OperatorManager.Instance.PlayerController.OperatorModel;
+        }
+        else if (operatorUI == EOperatorUI.ComputerUI)
+        {
+            operatorModel = OperatorManager.Instance.ComputerController.OperatorModel;
+        }
 
-		operatorModel.monsterUI = this;
+        operatorModel.monsterUI = this;
 
         SkillSelect(0);
     }
-    
+
     // 生成されるタイミングで一回呼ぶ
     public void Init()
     {
-        uiModel.HPText.text = operatorModel.monsterBehaviour.MonsterModel.hp + "/" + operatorModel.monsterBehaviour.MonsterModel.maxHP;
+        uiModel.HPText.text = operatorModel.monsterBehaviour.MonsterModel.hp + " / " + operatorModel.monsterBehaviour.MonsterModel.maxHP;
         uiModel.monsterName.text = operatorModel.monsterBehaviour.MonsterModel.name;
 
         for (int i = 0; i < operatorModel.monsterBehaviour.MonsterModel.skillList.Count; ++i)
@@ -78,13 +86,16 @@ public class MonsterUIController : MonoBehaviour
             }
         }
 
-        if(operatorModel.monsterBehaviour.MonsterModel.id == 1)
+        if (operatorModel.monsterBehaviour.MonsterModel.id == 1)
             uiModel.characterImage.sprite = BlackBoardManager.Instance.StandingSprite[0];
-        else if(operatorModel.monsterBehaviour.MonsterModel.id == 2)
+        else if (operatorModel.monsterBehaviour.MonsterModel.id == 2)
             uiModel.characterImage.sprite = BlackBoardManager.Instance.StandingSprite[1];
-        else if(operatorModel.monsterBehaviour.MonsterModel.id == 3)
+        else if (operatorModel.monsterBehaviour.MonsterModel.id == 3)
             uiModel.characterImage.sprite = BlackBoardManager.Instance.StandingSprite[2];
 
+
+        _color = new Color(0f, 1f, 0f);
+        uiModel.HPBar.transform.GetChild(1).GetComponentInChildren<Image>().color = _color;
     }
 
     public void SkillSelect(int num)
@@ -96,7 +107,7 @@ public class MonsterUIController : MonoBehaviour
     public void SkillDecision()
     {
         IsDecision = false;
-        
+
         elapsedTime += Time.deltaTime;
         if (elapsedTime <= 1f)
         {
@@ -110,9 +121,9 @@ public class MonsterUIController : MonoBehaviour
         }
     }
 
-    public void AAA(int damage)
+    public IEnumerator DamageCoroutine(int damage)
     {
-        while (damage != 0)
+        while (operatorModel.monsterBehaviour.MonsterModel.hp > 0 && damage != 0)
         {
             //　ダメージ量を10で割った商をHPから減らす
             var tempDamage = damage / 10;
@@ -122,11 +133,24 @@ public class MonsterUIController : MonoBehaviour
                 tempDamage = damage % 10;
             }
 
-            Debug.Log(tempDamage);
             operatorModel.monsterBehaviour.MonsterModel.hp -= tempDamage;
-            uiModel.HPText.text = operatorModel.monsterBehaviour.MonsterModel.hp + "/" + operatorModel.monsterBehaviour.MonsterModel.maxHP;
+            //0~100になるようにHP制限
+            operatorModel.monsterBehaviour.MonsterModel.hp = Mathf.Clamp(operatorModel.monsterBehaviour.MonsterModel.hp, 0, operatorModel.monsterBehaviour.MonsterModel.maxHP);
+            uiModel.HPText.text = operatorModel.monsterBehaviour.MonsterModel.hp + " / " + operatorModel.monsterBehaviour.MonsterModel.maxHP;
             uiModel.HPBar.value = operatorModel.monsterBehaviour.MonsterModel.hp;
             damage -= tempDamage;
+
+            if (operatorModel.monsterBehaviour.MonsterModel.hp < operatorModel.monsterBehaviour.MonsterModel.maxHP * (20f / 100f)) {
+                _color = new Color(1f, 0f, 0f);
+            }
+            else if (operatorModel.monsterBehaviour.MonsterModel.hp < operatorModel.monsterBehaviour.MonsterModel.maxHP * (50f / 100f)) {
+                _color = new Color(1f, 1f, 0f);
+            }
+            
+            uiModel.HPBar.transform.GetChild(1).GetComponentInChildren<Image>().color = _color;
+            yield return new WaitForSeconds(0.001f);
         }
+
+        yield return null;
     }
 }

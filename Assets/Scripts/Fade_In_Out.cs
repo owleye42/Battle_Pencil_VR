@@ -79,6 +79,7 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
     {
         while (true)
         {
+            GetComponent<Image>().color = new Color(red, green, blue, 255);
             Debug.Log("KEEP");
             keepTime -= 1 * Time.deltaTime;
 
