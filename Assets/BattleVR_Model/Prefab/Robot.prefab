@@ -668,7 +668,6 @@ GameObject:
   - component: {fileID: 4746915611586688}
   - component: {fileID: 95184406308433670}
   - component: {fileID: 114581930376612692}
-  - component: {fileID: 54223207447797846}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -1525,21 +1524,6 @@ Transform:
   m_Father: {fileID: 4050757417882110}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &54223207447797846
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1702529892645896}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 84
-  m_CollisionDetection: 0
 --- !u!95 &95184406308433670
 Animator:
   serializedVersion: 3
@@ -1572,32 +1556,32 @@ MonoBehaviour:
   monsterModel:
     id: 2
     name: Robot
-    hp: 100
+    hp: 1000
     type: 1
     skillList:
     - skillType: 0
       targetType: 0
-      power: 0
+      power: 300
       text: 
     - skillType: 0
+      targetType: 0
+      power: 300
+      text: 
+    - skillType: 1
+      targetType: 0
+      power: 300
+      text: 
+    - skillType: 0
+      targetType: 0
+      power: 300
+      text: 
+    - skillType: 2
       targetType: 0
       power: 0
       text: 
     - skillType: 0
       targetType: 0
-      power: 0
-      text: 
-    - skillType: 0
-      targetType: 0
-      power: 0
-      text: 
-    - skillType: 0
-      targetType: 0
-      power: 0
-      text: 
-    - skillType: 0
-      targetType: 0
-      power: 0
+      power: 300
       text: 
 --- !u!137 &137388817310302052
 SkinnedMeshRenderer:
