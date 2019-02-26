@@ -123,7 +123,7 @@ public class MonsterUIController : MonoBehaviour
 
     public IEnumerator DamageCoroutine(int damage)
     {
-        while (damage != 0)
+        while (operatorModel.monsterBehaviour.MonsterModel.hp > 0 && damage != 0)
         {
             //　ダメージ量を10で割った商をHPから減らす
             var tempDamage = damage / 10;

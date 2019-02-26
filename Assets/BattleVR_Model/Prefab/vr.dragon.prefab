@@ -1843,7 +1843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterModel:
     id: 1
-    name: 
+    name: Dragon
     hp: 1000
     type: 0
     skillList:
@@ -1853,7 +1853,7 @@ MonoBehaviour:
       text: 
     - skillType: 0
       targetType: 0
-      power: 200
+      power: 300
       text: 
     - skillType: 2
       targetType: 0
@@ -1865,7 +1865,7 @@ MonoBehaviour:
       text: 
     - skillType: 0
       targetType: 0
-      power: 200
+      power: 300
       text: 
     - skillType: 2
       targetType: 0
