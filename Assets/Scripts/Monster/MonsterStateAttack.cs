@@ -37,7 +37,7 @@ public class MonsterStateAttack : IState<MonsterContext>
         //nonActive.monsterBehaviour.MonsterModel.hp -=
         //    active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
 
-        //nonActive.monsterUI.AAA(active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power);
+        nonActive.monsterBehaviour.Damage(active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power);
 
         nonActive.monsterBehaviour.MonsterModel.counterPower =
             active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;

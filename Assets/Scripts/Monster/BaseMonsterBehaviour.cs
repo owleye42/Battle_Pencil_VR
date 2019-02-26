@@ -27,4 +27,10 @@ public class BaseMonsterBehaviour : MonoBehaviour
         operatorModel.monsterBehaviour = this;
         operatorModel.monsterUI.Init();
     }
+
+    public void Damage(int damage)
+    {
+        StartCoroutine(operatorModel.monsterUI.DamageCoroutine(damage));
+    }
+
 }
