@@ -9,6 +9,7 @@ public class DiscriptionUITextAlpha :MonoBehaviour
     float alpha;
     float red, green, blue;    //RGBを操作するための変数
 
+	static bool isCanvasChanged = false;
    
     // Use this for initialization
     void Start ()
@@ -20,6 +21,10 @@ public class DiscriptionUITextAlpha :MonoBehaviour
 
     public void Appear()
     {
+		if(!isCanvasChanged) {
+			BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Select);
+		}
+
         Mytext.color =new Color(1,1,1,1);
         
         Debug.Log("ok");

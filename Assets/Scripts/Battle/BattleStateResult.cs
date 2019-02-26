@@ -27,6 +27,8 @@ public class BattleStateResult : IState<BattleContext> {
 	public void ExecuteExit(BattleContext context) {
 		Debug.LogWarning("[Exit] Battle State : Result");
 
+		BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Title);
 		MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Title);
+		PositionManager.Instance.ChangePosition(0, 0);
 	}
 }
