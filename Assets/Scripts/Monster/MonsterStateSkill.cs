@@ -43,15 +43,19 @@ public class MonsterStateSkill : IState<MonsterContext> {
         var active = BattleManager.Instance.ActiveController.OperatorModel;
 
         if (active.monsterBehaviour.MonsterModel.type == Type.ATTACK) {
-            nonActive.monsterBehaviour.MonsterModel.hp -=
-                active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
+            //nonActive.monsterBehaviour.MonsterModel.hp -=
+            //    active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
 
+            nonActive.monsterBehaviour.Damage(active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power);
+            
             nonActive.monsterBehaviour.MonsterModel.counterPower =
                 active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
         }
         else if (active.monsterBehaviour.MonsterModel.type == Type.DEFENCE) {
             if (nonActive.monsterBehaviour.MonsterModel.isAttack) {
-                nonActive.monsterBehaviour.MonsterModel.hp -= active.monsterBehaviour.MonsterModel.counterPower * 2;
+                //nonActive.monsterBehaviour.MonsterModel.hp -= active.monsterBehaviour.MonsterModel.counterPower * 2;
+                nonActive.monsterBehaviour.Damage(active.monsterBehaviour.MonsterModel.counterPower * 2);
+                
                 nonActive.monsterBehaviour.MonsterModel.counterPower = active.monsterBehaviour.MonsterModel.counterPower * 2;
             }
             else {
@@ -60,8 +64,10 @@ public class MonsterStateSkill : IState<MonsterContext> {
             }
         }
         else if (active.monsterBehaviour.MonsterModel.type == Type.HEAL) {
-            active.monsterBehaviour.MonsterModel.hp += 
-                active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
+            //active.monsterBehaviour.MonsterModel.hp += 
+            //    active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
+
+            active.monsterBehaviour.Damage(-active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power);
 
             active.monsterBehaviour.MonsterModel.isAttack = false;
 
