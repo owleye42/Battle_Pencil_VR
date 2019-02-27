@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BlackBoardManager : BaseSingletonMono<BlackBoardManager> {
+	
+	[SerializeField]
+	List<Sprite> standingSprite = new List<Sprite>();
+	public List<Sprite> StandingSprite { get { return standingSprite; } }
 
 	[System.Serializable]
 	public enum ECanvasType {
@@ -20,10 +24,10 @@ public class BlackBoardManager : BaseSingletonMono<BlackBoardManager> {
 
 	GameObject activeCanvas = null;
 
-	protected void Awake() {
+	protected override void Awake() {
 		base.Awake();
 
-		SwitchCanvas(ECanvasType.Title);
+		ChangeCanvas(ECanvasType.Title);
 	}
 
 	void Start() {
@@ -31,14 +35,14 @@ public class BlackBoardManager : BaseSingletonMono<BlackBoardManager> {
 	}
 
 	// Canvas切り替え
-	public void SwitchCanvas(ECanvasType canvasType) {
+	public void ChangeCanvas(ECanvasType canvasType) {
 		if (activeCanvas != null) {
 			Destroy(activeCanvas);
 		}
 
 		canvasList.ForEach(cc => {
 			if(canvasType == cc.type)
-				Instantiate(cc.prefCanvas);
+				activeCanvas = Instantiate(cc.prefCanvas);
 		});
 	}
 }

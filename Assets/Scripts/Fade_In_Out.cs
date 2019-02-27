@@ -28,44 +28,28 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
         alfaFrag = false;
         a_color = 0;
     }
-    private void Update()
+
+    public IEnumerator FadeIO(float outSpeed, float keepTime, float inSpeed, System.Action corInKeep)
     {
-      
-        if (Input.GetKey(KeyCode.Space))
-        {
-            FadeIO();
-        }
-    }
+		var cor = StartCoroutine(FadeOut(outSpeed));
+		yield return cor;
 
-    public void FadeIO()
+		cor = StartCoroutine(FadeKeep(keepTime / 2));
+		yield return cor;
+
+		corInKeep();
+		yield return new WaitForEndOfFrame();
+
+		cor = StartCoroutine(FadeKeep(keepTime / 2));
+		yield return cor;
+
+		cor = StartCoroutine(FadeIn(inSpeed));
+		yield return cor;
+	}
+
+    public void StartFade(float outTime, float keepTime, float inTime, System.Action corInKeep)
     {
-
-        phase = 1;
-        StartCoroutine(StartFade());//暗転
-    
-
-    }
-
-    
-
-    IEnumerator StartFade()
-    {
-        while (once)
-        {
-            switch (phase)
-            {
-                case 1:
-                  //  StartCoroutine(FadeOut());//暗転
-                    break;
-                case 2:
-                    StartCoroutine(FadeKeep());//維持
-                    break;
-                case 3:
-              //      StartCoroutine(FadeIn());//明転
-                    break;
-            }
-            yield return null;
-        }
+		StartCoroutine(FadeIO(outTime, keepTime, inTime, corInKeep));
     }
 
     
@@ -91,17 +75,19 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
         yield return null;
     }
 
-    IEnumerator FadeKeep()
+    IEnumerator FadeKeep(float keepTime)
     {
         while (true)
         {
+            GetComponent<Image>().color = new Color(red, green, blue, 255);
             Debug.Log("KEEP");
-            TimeCount -= 1 * Time.deltaTime;
-            if (TimeCount <= 0)
+            keepTime -= 1 * Time.deltaTime;
+
+            if (keepTime <= 0)
             {
-                TimeCount = 0;
-                phase=3;
-                Debug.Log("KEEP");
+                keepTime = 0;
+                //phase=3;
+                Debug.Log("KEEP END");
                 break;
             }
             yield return null;

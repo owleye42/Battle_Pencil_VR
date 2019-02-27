@@ -13,9 +13,12 @@ public class HTC_Controller : MonoBehaviour {
     [Header("伝達倍率（rotation）")]
     [SerializeField] float rotationDiameter=1.0f;
 
+    [Header("自レイヤー")]
+    [SerializeField] public int layer1 ;//当たり判定透過レイヤー
+    [SerializeField] public int layer2 ;//当たり判定透過するレイヤー
 
-
-    Vector3 PenRotate = new Vector3(2000f, 0, 0);
+    Vector3 PenRotate = new Vector3(12.0f, 0, 0);
+    Vector3 PenVector = new Vector3(0, 0, 1f);
     private SteamVR_Controller.Device Controller
     {
         get { return SteamVR_Controller.Input((int)trackedObj.index); }
@@ -23,7 +26,11 @@ public class HTC_Controller : MonoBehaviour {
 
    void Awake()
     {
+        layer1 = LayerMask.NameToLayer("Default");
+        layer2 = LayerMask.NameToLayer("Default");
+
         trackedObj = GetComponent<SteamVR_TrackedObject>();
+       
     }
 
     private void SetCollidingObject(Collider col)
@@ -57,8 +64,12 @@ public class HTC_Controller : MonoBehaviour {
 
     private void GrabObject()
     {
+        
+
         objectInHand = collidingObject;
         collidingObject = null;
+        Physics.IgnoreLayerCollision(layer1,layer2);
+        //objectInHand.GetComponent<MeshCollider>().enabled = false;//めり込み防止用　コライダーオフ
         var joint = AddFixedJoint();
         joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
     }
@@ -66,8 +77,8 @@ public class HTC_Controller : MonoBehaviour {
     private FixedJoint AddFixedJoint()
     {
         FixedJoint fx = gameObject.AddComponent<FixedJoint>();
-        fx.breakForce = 2000;
-        fx.breakTorque = 2000;
+        fx.breakForce = 50000;
+        fx.breakTorque = 50000;
         return fx;
     }
 
@@ -77,10 +88,13 @@ public class HTC_Controller : MonoBehaviour {
         {
             GetComponent<FixedJoint>().connectedBody = null;
             Destroy(GetComponent<FixedJoint>());
-
-            objectInHand.GetComponent<Rigidbody>().velocity = Controller.velocity*forceDiameter;
+            Physics.IgnoreLayerCollision(layer1, layer2,false);
+            //objectInHand.GetComponent<MeshCollider>().enabled = true;//めり込み防止用　コライダーオン
+            objectInHand.GetComponent<Rigidbody>().velocity = Controller.velocity;
             objectInHand.GetComponent<Rigidbody>().angularVelocity = Controller.angularVelocity*rotationDiameter+PenRotate;
             objectInHand.GetComponent<Rigidbody>().AddTorque(PenRotate, ForceMode.Impulse);
+            objectInHand.GetComponent<Rigidbody>().AddForce(PenVector*forceDiameter, ForceMode.Impulse);
+
         }
 
         objectInHand = null;

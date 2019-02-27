@@ -10,21 +10,15 @@ using UnityEngine;
 public class MonsterStateIdle : IState<MonsterContext> {
 
 	public void ExecuteEntry(MonsterContext context) {
-        Debug.Log("[Entry] Monster State : Idol");
-
-        // MonsterModel参照
-        var nonActiveMonsterModel = BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour.MonsterModel;
-        var activeMonsterModel = BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour.MonsterModel;
-
-        // HP制限
-        nonActiveMonsterModel.hp = Mathf.Clamp(nonActiveMonsterModel.hp, 0, nonActiveMonsterModel.maxHP);
-        activeMonsterModel.hp = Mathf.Clamp(activeMonsterModel.hp, 0, nonActiveMonsterModel.maxHP);
-
+        Debug.Log("[Entry] Monster State : Idol");   
     }
 
     public void ExecuteUpdate(MonsterContext context) {
         var active = BattleManager.Instance.ActiveController.OperatorModel;
 
+        active.monsterUI.SkillDecision();
+
+        if(active.monsterUI.IsDecision)
         // ActiveControllerの中のスキルタイプによって行動変更
         if (active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].skillType == SkillType.ATTACK) {
             context.ChangeState(context.stateAttack);

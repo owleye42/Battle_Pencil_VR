@@ -7,7 +7,10 @@ public class DataManager : BaseSingletonMono<DataManager> {
 	public GameObject PrefabPlayerPencil { get; private set; }
 	public GameObject PrefabComputerPencil { get; private set; }
 
-	public List<GameObject> prefPencils = new List<GameObject>();
+	public bool isPlayerWinner = false;
+
+	[SerializeField]
+	List<GameObject> prefPencils = new List<GameObject>();
 
 	public void SetPlayerPencil(int id) {
 		PrefabPlayerPencil = prefPencils[id];

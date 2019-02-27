@@ -293,7 +293,7 @@ MeshCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1908127074984982}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: fc4b31c079b93bd4f8367b1b452e6b42, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  monsterPrefab: {fileID: 1080683720702862, guid: 44f096f10042a614681ef0505ad877ac,
+  monsterPrefab: {fileID: 1702529892645896, guid: b253483960adaf54a87f9f6e2c66178c,
     type: 2}
 --- !u!114 &114238880421951812
 MonoBehaviour:

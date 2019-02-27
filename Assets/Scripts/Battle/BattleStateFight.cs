@@ -17,6 +17,7 @@ public class BattleStateFight : IState<BattleContext> {
 		Debug.LogWarning("[Entry] Battle State : Fight");
 
 		BattleManager.Instance.StartThrowActiveController();
+        TurnUI.Instance.ChangeText(BattleManager.Instance.ActiveController);
         
 		count = 600;
 	}

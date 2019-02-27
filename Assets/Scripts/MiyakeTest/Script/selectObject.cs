@@ -17,7 +17,7 @@ public class selectObject : MonoBehaviour {
         if (collision.gameObject.tag == "Obj")
         {
             //DataManager.Instance.playerModel = DataManager.Instance.monsters[monsterName];
-            Fade_In_Out.Instance.FadeIO();
+            //Fade_In_Out.Instance.FadeIO();
         }
 
         

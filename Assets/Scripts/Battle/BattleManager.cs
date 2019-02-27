@@ -19,6 +19,10 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 		NonActiveController = null;
 	}
 
+	private void Start() {
+		StartCoroutine(Fade_In_Out.Instance.FadeIn(1));
+	}
+
 	void Update() {
 		// コンテキストのステート滞在中の処理
 		BattleContext.ExecuteUpdate();
