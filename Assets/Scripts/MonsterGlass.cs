@@ -17,11 +17,6 @@ public class MonsterGlass : MonoBehaviour {
     float smoothTime = 0.2f;
     Vector3 velocity = Vector3.zero;
     Rigidbody rigidbody;
-    [Header("中のモンスターオブジェクト")]
-    [SerializeField] GameObject monsterObj;
-
-    [SerializeField] GameObject headpos;
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -34,8 +29,6 @@ public class MonsterGlass : MonoBehaviour {
 				MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Battle);
 				PositionManager.Instance.ChangePosition(0, 1);
 			});
-
-			Debug.Log(monsterObj.name);
         }
         if (other.gameObject.tag == "Controller")
         {

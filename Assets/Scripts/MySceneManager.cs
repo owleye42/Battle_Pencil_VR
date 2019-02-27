@@ -27,7 +27,7 @@ public class MySceneManager : BaseSingletonMono<MySceneManager> {
 	}
 
 	public void ChangeScene(ESceneType type) {
-
+		DeleteObjects();
 		StartCoroutine(CreateObjects(type));
 	}
 
@@ -46,10 +46,10 @@ public class MySceneManager : BaseSingletonMono<MySceneManager> {
 	void DeleteObjects() {
 		if (activeObjects != null) {
 			activeObjects.ForEach(obj => {
-				foreach(var child in obj.GetComponentsInChildren<MonoBehaviour>()) {
-					child.StopAllCoroutines();
+				foreach(var childMono in obj.GetComponentsInChildren<MonoBehaviour>()) {
+					childMono.StopAllCoroutines();
 				}
-				obj.GetComponent<MonoBehaviour>().StopAllCoroutines();
+				//obj.GetComponent<MonoBehaviour>().StopAllCoroutines();
 				Destroy(obj);
 			});
 			activeObjects.Clear();
