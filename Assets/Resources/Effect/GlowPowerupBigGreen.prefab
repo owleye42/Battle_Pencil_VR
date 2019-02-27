@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4123578251875408}
   - component: {fileID: 198198086167497732}
   - component: {fileID: 199433188311749764}
+  - component: {fileID: 114070141367475994}
   m_Layer: 0
   m_Name: GlowPowerupBigGreen
   m_TagString: Untagged
@@ -196,6 +197,17 @@ Transform:
   m_Father: {fileID: 4123578251875408}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114070141367475994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054081094007342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18ba310b6d2b0a42963b510b0b6d47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198119819560421790
 ParticleSystem:
   m_ObjectHideFlags: 1

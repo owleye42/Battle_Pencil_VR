@@ -10,6 +10,15 @@ public class CreateEffect : MonoBehaviour {
     [SerializeField]
     float destryTime;
 
+    [SerializeField]
+    float ballDestryTime=1f;
+
+    public void CreateMahouBall(string effectName)
+    {
+        EffectManager.Instance.CreateMahou(effectName,this.transform, AtackPosition.position, ballDestryTime);
+
+    }
+
     public void CreateSkillEffect(string effectName)
     {
         EffectManager.Instance.CreateEffect(effectName, skillPos.position, destryTime);
