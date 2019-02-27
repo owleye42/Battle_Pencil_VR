@@ -27,23 +27,32 @@ public class MySceneManager : BaseSingletonMono<MySceneManager> {
 	}
 
 	public void ChangeScene(ESceneType type) {
-		if (activeObjects != null) {
-			activeObjects.ForEach(obj => Destroy(obj));
-			activeObjects.Clear();
-		}
-
+		DeleteObjects();
 		StartCoroutine(CreateObjects(type));
 	}
 
 	IEnumerator CreateObjects(ESceneType type) {
-		foreach(var sp in prefabsEachScene) {
+		foreach (var sp in prefabsEachScene) {
 			if (type == sp.type) {
-				foreach(var prefab in sp.prefabs) {
+				foreach (var prefab in sp.prefabs) {
 					var obj = Instantiate(prefab);
 					activeObjects.Add(obj);
 					yield return new WaitForEndOfFrame();
 				}
 			}
+		}
+	}
+
+	void DeleteObjects() {
+		if (activeObjects != null) {
+			activeObjects.ForEach(obj => {
+				foreach(var childMono in obj.GetComponentsInChildren<MonoBehaviour>()) {
+					childMono.StopAllCoroutines();
+				}
+				//obj.GetComponent<MonoBehaviour>().StopAllCoroutines();
+				Destroy(obj);
+			});
+			activeObjects.Clear();
 		}
 	}
 }

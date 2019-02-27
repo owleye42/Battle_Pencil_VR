@@ -38,6 +38,17 @@ public class EffectManager : BaseSingletonMono<EffectManager> {
         Destroy(effect,destryTime);
      }
 
-    
-    
+    public void CreateMahou(string effectName, Transform parent, Vector3 createPosition, float destryTime)
+    {
+        var effect = Instantiate<GameObject>(effects[effectName] as GameObject);
+      //  effect.transform.rotation = parent.rotation;
+        effect.transform.position = createPosition;
+        effect.GetComponent<Rigidbody>().AddForce(parent.transform.forward*48);// transform.position+=parent.transform.forward;
+        Destroy(effect, destryTime);
+
+
+
+    }
+
+
 }

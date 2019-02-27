@@ -17,25 +17,34 @@ public class MonsterGlass : MonoBehaviour {
     float smoothTime = 0.2f;
     Vector3 velocity = Vector3.zero;
     Rigidbody rigidbody;
+<<<<<<< HEAD
     [Header("中のモンスターオブジェクト")]
     [SerializeField] GameObject monsterObj;
 
     [SerializeField] GameObject headpos;
 
+    [SerializeField] AudioClip selectClip;
+   
+=======
+>>>>>>> 029b1648cbe1a127e5d60200943668984572935f
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Head")
         {
 			DataManager.Instance.SetPlayerPencil(id);
+<<<<<<< HEAD
+            Debug.Log(monsterObj.name);
+            SoundManager.Instance.PlayeSE(selectClip.name);
+
+=======
 
 			Fade_In_Out.Instance.StartFade(1, 3, 1, () => {
 				BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Battle);
 				MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Battle);
 				PositionManager.Instance.ChangePosition(0, 1);
 			});
-
-			Debug.Log(monsterObj.name);
+>>>>>>> 029b1648cbe1a127e5d60200943668984572935f
         }
         if (other.gameObject.tag == "Controller")
         {
@@ -59,6 +68,7 @@ public class MonsterGlass : MonoBehaviour {
 
     private void Update()
     {
+        
         //float angle = Mathf.LerpAngle(0, 0, Time.time);
         //transform.eulerAngles = new Vector3(0, angle, 0);
         if (!onHand)

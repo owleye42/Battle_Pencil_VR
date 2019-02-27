@@ -25,18 +25,22 @@ public class OperatorController : MonoBehaviour {
 		};
 
 		var pencilPrefab = DataManager.Instance.PrefabPlayerPencil;
+		var layerId = 0;
 
 		if (operatorModel.eOperator == OperatorModel.EOperator.Player) {
 			OperatorManager.Instance.PlayerController = this;
 			pencilPrefab = DataManager.Instance.PrefabPlayerPencil;
+			layerId = 8;
 		}
 		else if (operatorModel.eOperator == OperatorModel.EOperator.Computer) {
 			OperatorManager.Instance.ComputerController = this;
 			pencilPrefab = DataManager.Instance.PrefabComputerPencil;
+			layerId = 9;
 		}
 
 		var pen = Instantiate(pencilPrefab, pencilSpawnPos.position, Quaternion.identity, pencilSpawnPos);
 		operatorModel.pencil = pen.GetComponent<Pencil>();
+		pen.layer = layerId;
 
 		BattleManager.Instance.ControllerList.Add(this);
 	}
