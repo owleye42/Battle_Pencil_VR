@@ -18,6 +18,8 @@ public class TurnUI : BaseSingletonMono<TurnUI> {
     public float speed = 1.0F;
 
     private Vector3 vector = Vector3.zero;
+
+   
     // Use this for initialization
     void Start () {
         turnText.color = new Color(1f, 1f, 1f, 0f);
