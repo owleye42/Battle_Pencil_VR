@@ -22,13 +22,17 @@ public class MonsterGlass : MonoBehaviour {
 
     [SerializeField] GameObject headpos;
 
+    [SerializeField] AudioClip selectClip;
+   
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Head")
         {
 			DataManager.Instance.SetPlayerPencil(id);
-            Debug.Log(monsterObj.name);  
+            Debug.Log(monsterObj.name);
+            SoundManager.Instance.PlayeSE(selectClip.name);
+
         }
         if (other.gameObject.tag == "Controller")
         {
@@ -52,6 +56,7 @@ public class MonsterGlass : MonoBehaviour {
 
     private void Update()
     {
+        
         //float angle = Mathf.LerpAngle(0, 0, Time.time);
         //transform.eulerAngles = new Vector3(0, angle, 0);
         if (!onHand)

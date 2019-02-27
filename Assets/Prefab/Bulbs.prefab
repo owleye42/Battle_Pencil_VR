@@ -6711,6 +6711,7 @@ MonoBehaviour:
   defaultPos: {fileID: 1639126737327050}
   monsterObj: {fileID: 1531743880301022}
   headpos: {fileID: 0}
+  selectClip: {fileID: 8300000, guid: 696ea6003e33ca948aa752f317180d21, type: 3}
 --- !u!114 &114154177140073644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6739,6 +6740,7 @@ MonoBehaviour:
   defaultPos: {fileID: 1184020034265062}
   monsterObj: {fileID: 0}
   headpos: {fileID: 0}
+  selectClip: {fileID: 8300000, guid: 4b512ae930943324991141a8f21222ec, type: 3}
 --- !u!114 &114347779962346338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6755,6 +6757,7 @@ MonoBehaviour:
   defaultPos: {fileID: 1784833449941638}
   monsterObj: {fileID: 1312549826348506}
   headpos: {fileID: 0}
+  selectClip: {fileID: 8300000, guid: fbe1db692ad7dbf4380c846b479321ec, type: 3}
 --- !u!114 &114350579088968790
 MonoBehaviour:
   m_ObjectHideFlags: 1
