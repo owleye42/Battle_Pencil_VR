@@ -24,8 +24,7 @@ public class MonsterUIController : MonoBehaviour
 
     private IEnumerator Start()
     {
-        while (OperatorManager.Instance == null
-            || OperatorManager.Instance == null)
+        while (OperatorManager.Instance == null)
         {
             yield return null;
         }
@@ -53,13 +52,19 @@ public class MonsterUIController : MonoBehaviour
 
         operatorModel.monsterUI = this;
 
+		yield return new WaitForSeconds(0.1f);
+
+		Init();
+
         SkillSelect(0);
     }
 
     // 生成されるタイミングで一回呼ぶ
     public void Init()
     {
-        uiModel.HPText.text = operatorModel.monsterBehaviour.MonsterModel.hp + " / " + operatorModel.monsterBehaviour.MonsterModel.maxHP;
+        uiModel.HPText.text
+			= operatorModel.monsterBehaviour.MonsterModel.hp 
+			+ " / " + operatorModel.monsterBehaviour.MonsterModel.maxHP;
         uiModel.monsterName.text = operatorModel.monsterBehaviour.MonsterModel.name;
 
         for (int i = 0; i < operatorModel.monsterBehaviour.MonsterModel.skillList.Count; ++i)

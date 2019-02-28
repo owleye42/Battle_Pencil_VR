@@ -611,7 +611,7 @@ MonoBehaviour:
     monsterUI: {fileID: 0}
   monsterStandPos: {fileID: 4348897075926422}
   pencilSpawnPos: {fileID: 4220099610092316}
-  timeLimit: 10
+  timeLimit: 300
 --- !u!114 &114640860247538734
 MonoBehaviour:
   m_ObjectHideFlags: 1
