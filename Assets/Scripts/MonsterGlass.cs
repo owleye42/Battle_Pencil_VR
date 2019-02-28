@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MonsterGlass : MonoBehaviour {
 
+    [Header("キャラ選択重複防止用")]
+    [SerializeField]
+    public bool onceFrag=false;
+
 	[SerializeField]
 	int id = 0;
 
@@ -17,34 +21,31 @@ public class MonsterGlass : MonoBehaviour {
     float smoothTime = 0.2f;
     Vector3 velocity = Vector3.zero;
     Rigidbody rigidbody;
-<<<<<<< HEAD
     [Header("中のモンスターオブジェクト")]
     [SerializeField] GameObject monsterObj;
 
     [SerializeField] GameObject headpos;
 
     [SerializeField] AudioClip selectClip;
-   
-=======
->>>>>>> 029b1648cbe1a127e5d60200943668984572935f
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Head")
+        if (other.gameObject.tag == "Head"&&onceFrag==false)
         {
+            onceFrag = true;
 			DataManager.Instance.SetPlayerPencil(id);
-<<<<<<< HEAD
+
             Debug.Log(monsterObj.name);
             SoundManager.Instance.PlayeSE(selectClip.name);
 
-=======
+
 
 			Fade_In_Out.Instance.StartFade(1, 3, 1, () => {
 				BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Battle);
 				MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Battle);
 				PositionManager.Instance.ChangePosition(0, 1);
 			});
->>>>>>> 029b1648cbe1a127e5d60200943668984572935f
+
         }
         if (other.gameObject.tag == "Controller")
         {
