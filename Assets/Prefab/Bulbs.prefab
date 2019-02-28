@@ -6764,8 +6764,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07ac8bb878a685840a80624a98b1bb5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  id: 1
+  onHand: 0
+  defaultPos: {fileID: 1639126737327050}
+  monsterObj: {fileID: 1531743880301022}
+  headpos: {fileID: 0}
+  selectClip: {fileID: 8300000, guid: 696ea6003e33ca948aa752f317180d21, type: 3}
+--- !u!114 &114154177140073644
+=======
   monsterID: 1
 --- !u!114 &114254113752463022
+>>>>>>> 029b1648cbe1a127e5d60200943668984572935f
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6793,7 +6803,12 @@ MonoBehaviour:
   defaultPos: {fileID: 1495830668415486}
   monsterObj: {fileID: 0}
   headpos: {fileID: 0}
+<<<<<<< HEAD
+  selectClip: {fileID: 8300000, guid: 4b512ae930943324991141a8f21222ec, type: 3}
+--- !u!114 &114347779962346338
+=======
 --- !u!114 &114731051015743608
+>>>>>>> 029b1648cbe1a127e5d60200943668984572935f
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6809,7 +6824,12 @@ MonoBehaviour:
   defaultPos: {fileID: 1859001503777526}
   monsterObj: {fileID: 0}
   headpos: {fileID: 0}
+<<<<<<< HEAD
+  selectClip: {fileID: 8300000, guid: fbe1db692ad7dbf4380c846b479321ec, type: 3}
+--- !u!114 &114350579088968790
+=======
 --- !u!114 &114857884434120806
+>>>>>>> 029b1648cbe1a127e5d60200943668984572935f
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
