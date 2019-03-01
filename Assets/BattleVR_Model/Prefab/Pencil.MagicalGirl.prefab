@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 23424847190657872}
   - component: {fileID: 54039388175693720}
   - component: {fileID: 64664244192912388}
+  - component: {fileID: 114694964503013090}
   - component: {fileID: 114114082825813342}
   m_Layer: 0
   m_Name: Pencil.MagicalGirl
@@ -729,6 +730,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   num: 1
+--- !u!114 &114694964503013090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1287816083063126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65aa23f4bac3b0c43a2159e96a6497a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StandardPos: {fileID: 0}
+  marginalDistance: 7
 --- !u!114 &114819556937521674
 MonoBehaviour:
   m_ObjectHideFlags: 1

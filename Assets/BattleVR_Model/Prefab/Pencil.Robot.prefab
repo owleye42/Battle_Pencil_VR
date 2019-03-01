@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 23052175779609084}
   - component: {fileID: 54566840208514616}
   - component: {fileID: 64994812320354580}
+  - component: {fileID: 114937525689606754}
   - component: {fileID: 114024972196118180}
   m_Layer: 0
   m_Name: Pencil.Robot
@@ -803,6 +804,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 9
   m_Text: "\u30DF \u30B9"
+--- !u!114 &114937525689606754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1908127074984982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65aa23f4bac3b0c43a2159e96a6497a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StandardPos: {fileID: 0}
+  marginalDistance: 7
 --- !u!114 &114957076175202724
 MonoBehaviour:
   m_ObjectHideFlags: 1
