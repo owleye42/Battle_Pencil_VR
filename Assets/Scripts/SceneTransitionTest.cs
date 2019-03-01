@@ -10,9 +10,6 @@ public class SceneTransitionTest : MonoBehaviour {
 	Button titleButton;
 
 	[SerializeField]
-	Button selectButton;
-
-	[SerializeField]
 	Button battleButton;
 
 	[SerializeField]
@@ -20,26 +17,15 @@ public class SceneTransitionTest : MonoBehaviour {
 
 	void Start () {
 		titleButton.gameObject.SetActive(false);
-		battleButton.gameObject.SetActive(false);
+		battleButton.gameObject.SetActive(true);
 		resultButton.gameObject.SetActive(false);
-
-		BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Title);
-		selectButton.gameObject.SetActive(true);
-		MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Title);
-		PositionManager.Instance.ChangePosition(0, 0);
 
 		titleButton.OnClickAsObservable().Subscribe(_ => {
 			titleButton.gameObject.SetActive(false);
-			selectButton.gameObject.SetActive(true);
+			battleButton.gameObject.SetActive(true);
 			BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Title);
 			MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Title);
 			PositionManager.Instance.ChangePosition(0, 0);
-		});
-
-		selectButton.OnClickAsObservable().Subscribe(_ => {
-			BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Select);
-			battleButton.gameObject.SetActive(true);
-			selectButton.gameObject.SetActive(false);
 		});
 
 		battleButton.OnClickAsObservable().Subscribe(_ => {
@@ -47,17 +33,17 @@ public class SceneTransitionTest : MonoBehaviour {
 
 			Fade_In_Out.Instance.StartFade(1, 3, 1, () => {
 				battleButton.gameObject.SetActive(false);
-				resultButton.gameObject.SetActive(true);
 				BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Battle);
 				MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Battle);
 				PositionManager.Instance.ChangePosition(0, 1);
+				resultButton.gameObject.SetActive(true);
 			});
 		});
 
 		resultButton.OnClickAsObservable().Subscribe(_ => {
 			BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Result);
-			titleButton.gameObject.SetActive(true);
 			resultButton.gameObject.SetActive(false);
+			titleButton.gameObject.SetActive(true);
 		});
 	}
 

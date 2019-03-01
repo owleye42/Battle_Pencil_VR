@@ -10,7 +10,7 @@ public class BlackBoardManager : BaseSingletonMono<BlackBoardManager> {
 
 	[System.Serializable]
 	public enum ECanvasType {
-		Title, Select, Battle, Result
+		Title, Battle, Result
 	}
 
 	[System.Serializable]
@@ -22,27 +22,24 @@ public class BlackBoardManager : BaseSingletonMono<BlackBoardManager> {
 	[SerializeField]
 	List<CanvasContainer> canvasList = new List<CanvasContainer>();
 
-	GameObject activeCanvas = null;
+	List<GameObject> activeCanvasList = new List<GameObject>();
 
-	protected override void Awake() {
+	protected void Awake() {
 		base.Awake();
 
 		ChangeCanvas(ECanvasType.Title);
 	}
 
-	void Start() {
-
-	}
-
 	// Canvas切り替え
-	public void ChangeCanvas(ECanvasType canvasType) {
-		if (activeCanvas != null) {
-			Destroy(activeCanvas);
+	public void ChangeCanvas(ECanvasType canvasType, bool willDestroyActive = true) {
+
+		if (willDestroyActive && activeCanvasList.Count > 0) {
+			activeCanvasList.ForEach(canvas => Destroy(canvas));
 		}
 
 		canvasList.ForEach(cc => {
 			if(canvasType == cc.type)
-				activeCanvas = Instantiate(cc.prefCanvas);
+				activeCanvasList.Add(Instantiate(cc.prefCanvas));
 		});
 	}
 }
