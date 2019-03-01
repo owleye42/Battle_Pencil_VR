@@ -20,10 +20,6 @@ public class SceneTransitionTest : MonoBehaviour {
 		battleButton.gameObject.SetActive(true);
 		resultButton.gameObject.SetActive(false);
 
-		BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Title);
-		MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Title);
-		PositionManager.Instance.ChangePosition(0, 0);
-
 		titleButton.OnClickAsObservable().Subscribe(_ => {
 			titleButton.gameObject.SetActive(false);
 			battleButton.gameObject.SetActive(true);
