@@ -70,6 +70,7 @@ public class MonsterGlass : MonoBehaviour {
     {
         rigidbody = this.gameObject.GetComponent<Rigidbody>();
         followTfm = defaultPos.transform;
+        headpos= GameObject.Find("HeadPos");
     }
 
     private void Update()
@@ -80,7 +81,7 @@ public class MonsterGlass : MonoBehaviour {
         if (!onHand)
         {
             Vector3 targetPos = followTfm.TransformPoint(new Vector3(0f, 0f, 0f));
-
+            this.transform.LookAt(headpos.transform);
             // 移動
             transform.position =
                 Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
