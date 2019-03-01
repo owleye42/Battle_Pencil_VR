@@ -19,9 +19,9 @@ public class BaseMonsterBehaviour : MonoBehaviour
         _Animator = GetComponent<Animator>();
     }
 
-    void Start()
-    {
-        operatorModel.monsterBehaviour = this;
+    void Start() {
+		operatorModel = GetComponentInParent<OperatorController>().OperatorModel;
+		operatorModel.monsterBehaviour = this;
         //operatorModel.monsterUI.Init();
     }
 
