@@ -5,8 +5,8 @@ using UnityEngine;
 public class MonsterGlass : MonoBehaviour {
 
     [Header("キャラ選択重複防止用")]
-    [SerializeField]
-    public bool onceFrag=false;
+    
+     static bool onceFrag=false;
 
 	[SerializeField]
 	int id = 0;
@@ -27,6 +27,11 @@ public class MonsterGlass : MonoBehaviour {
     [SerializeField] GameObject headpos;
 
     [SerializeField] AudioClip selectClip;
+
+    public void Init()
+    {
+        onceFrag = false;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
